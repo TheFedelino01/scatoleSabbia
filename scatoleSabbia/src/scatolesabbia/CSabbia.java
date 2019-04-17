@@ -56,9 +56,7 @@ public class CSabbia {
     public float getMovimentoX() {
         return movimentoX;
     }
-    public float getMovimentoY() {
-        return movimentoY;
-    }
+
     public float getQuantita() {
         return quantita;
     }
