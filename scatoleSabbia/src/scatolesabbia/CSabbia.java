@@ -48,8 +48,8 @@ public class CSabbia {
         return false;
     }
     
-    public int direzioneDiUscitaSabbia(){
-        return 0;
+    public Directions direzioneDiUscitaSabbia(){
+        return Directions.SINISTRA;
     }
     
     //GET e SET DELLA CLASSE

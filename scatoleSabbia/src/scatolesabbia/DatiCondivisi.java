@@ -10,5 +10,14 @@ package scatolesabbia;
  * @author feder
  */
 public class DatiCondivisi {
-    
+
+    //TODO
+
+    public Scatola getScatola(int idScatola) {
+        return null;
+    }
+
+    public Scatola getScatolaAdiacente(int idScatola, Directions direction) {
+        return null;
+    }
 }
