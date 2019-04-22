@@ -21,7 +21,7 @@ public class Scatola {
     private float inclinazioneY;
 
     //Indica le dimensioni della scatola
-    private final Box dimensioni;
+    private final Box dimensioni; //misurata in cm
     private final Point posizione;
 
     //Indica la sabbia presente nella scatola

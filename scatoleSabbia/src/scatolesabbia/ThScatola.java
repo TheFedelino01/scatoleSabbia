@@ -24,9 +24,9 @@ public class ThScatola extends Thread {
 
         while (!isInterrupted()) {
             scatola.muovi();
-
-            if (scatola.getSabbiaPresente().staUscendo((int) scatola.getDimensioni().getHeight())) {
-                final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia();
+            final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia((int) scatola.getDimensioni().getHeight());
+            
+            if (direzioneUscita!=Directions.NONE) {
                 final Scatola ricevente = ptrDati.getScatolaAdiacente(idScatola, direzioneUscita);
                 scatola.spostaSabbia(1, ricevente);
             }

@@ -7,5 +7,5 @@ package scatolesabbia;
  * @author Giacomo Orsenigo
  */
 public enum Directions {
-    SOPRA, SOTTO, DESTRA, SINISTRA;
+    SOPRA, SOTTO, DESTRA, SINISTRA, NONE;
 }
