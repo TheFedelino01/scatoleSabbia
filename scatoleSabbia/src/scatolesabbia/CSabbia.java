@@ -9,7 +9,7 @@ import java.awt.Point;
 
 /**
  *
- * @author feder
+ * @author Saccani Federico
  */
 public class CSabbia {
     private float movimentoX;//Capisco se la sponda maggiore e' a DX o a SX
