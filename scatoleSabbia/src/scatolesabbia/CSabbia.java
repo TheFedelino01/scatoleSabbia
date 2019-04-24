@@ -5,6 +5,8 @@
  */
 package scatolesabbia;
 
+import java.awt.Point;
+
 /**
  *
  * @author feder
@@ -102,6 +104,10 @@ public class CSabbia {
         }
         
         return direzione;
+    }
+    
+    public void visualizza(Point centroScatola){
+        //TODO 
     }
     
     //GET e SET DELLA CLASSE
