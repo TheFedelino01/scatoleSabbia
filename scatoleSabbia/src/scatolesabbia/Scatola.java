@@ -26,16 +26,18 @@ public class Scatola {
 
     //Indica la sabbia presente nella scatola
     private CSabbia sabbiaPresente;
+    
+    private JPallina pallina;
 
     //Rappresenta la pallina presente nella scatola (se presente)
     //private CPallina pallina
 
 
-    public Scatola(Box dimensioni, Point posizione, CSabbia sabbiaPresente /*, CPallina pallina*/) {
+    public Scatola(Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
         this.dimensioni = dimensioni;
         this.posizione = posizione;
         this.sabbiaPresente = sabbiaPresente;
-        //this.pallina = pallina;
+        this.pallina = pallina;
         inclinazioneX = 0;
         inclinazioneY = 0;
     }
@@ -77,6 +79,9 @@ public class Scatola {
      * @param altra scatola in cui spostare la pallina
      */
     public void spostaPallina(Scatola altra){
+        
+        this.pallina.rimuovi();
+        altra.setPallina(pallina);
     }
 
     public CSabbia getSabbiaPresente() {
@@ -85,5 +90,9 @@ public class Scatola {
 
     public Box getDimensioni() {
         return dimensioni;
+    }
+    
+    public void setPallina(JPallina pallina) {
+        this.pallina = pallina;
     }
 }

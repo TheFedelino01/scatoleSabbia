@@ -41,13 +41,17 @@ public final class JPallina {
     }
     
     public void visualizza() {
-        
-        Presente = true;
+        //TO DO
     }
     
     public void rimuovi() {
         
         Presente = false;
+    }
+    
+    public void mostra() {
+        
+        Presente = true;
     }
     
     public void sposta(Point nuovaPos) { 
