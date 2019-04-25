@@ -5,6 +5,10 @@
  */
 package scatolesabbia;
 
+import java.lang.reflect.Array;
+import java.util.Vector;
+
+
 /**
  *
  * @author feder
@@ -12,12 +16,33 @@ package scatolesabbia;
 public class DatiCondivisi {
 
     //TODO
-
+    private Vector scatole;
+    private int numS;
+    
+    public DatiCondivisi(int numScatole){
+        scatole = new Vector<Scatola>();
+        numS=numScatole;
+        
+        //Aggiungo le scatole al vettore
+        for(int i=0; i<numS;i++)
+            scatole.add(new Scatola());
+        
+        
+    }
+    
+    public void addScatolola(Scatola scatola){
+        scatole.add(scatola);
+    }
     public Scatola getScatola(int idScatola) {
-        return null;
+        return (Scatola)scatole.get(idScatola);
     }
 
     public Scatola getScatolaAdiacente(int idScatola, Directions direction) {
         return null;
     }
+
+    public int getNumScatole() {
+       return numS;
+    }
+
 }

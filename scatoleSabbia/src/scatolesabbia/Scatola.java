@@ -21,8 +21,8 @@ public class Scatola {
     private float inclinazioneY;
 
     //Indica le dimensioni della scatola
-    private final Box dimensioni; //misurata in cm
-    private final Point posizione;
+    private  Box dimensioni; //misurata in cm
+    private  Point posizione;
 
     //Indica la sabbia presente nella scatola
     private CSabbia sabbiaPresente;
@@ -32,6 +32,13 @@ public class Scatola {
     //Rappresenta la pallina presente nella scatola (se presente)
     //private CPallina pallina
 
+    public Scatola(){
+        dimensioni = new Box();
+        dimensioni.setDepth(100);
+        dimensioni.setHeight(100);
+        
+        posizione = new Point(500,500);
+    }
 
     public Scatola(Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
         this.dimensioni = dimensioni;
@@ -94,5 +101,9 @@ public class Scatola {
     
     public void setPallina(JPallina pallina) {
         this.pallina = pallina;
+    }
+    
+    public Point getPosizioneCentrale(){
+        return posizione;
     }
 }

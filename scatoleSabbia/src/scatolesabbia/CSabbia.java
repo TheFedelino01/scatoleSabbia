@@ -6,6 +6,7 @@
 package scatolesabbia;
 
 import java.awt.Point;
+import processing.core.PApplet;
 
 /**
  *
@@ -108,6 +109,7 @@ public class CSabbia {
     
     public void visualizza(Point centroScatola){
         //TODO 
+        
     }
     
     //GET e SET DELLA CLASSE

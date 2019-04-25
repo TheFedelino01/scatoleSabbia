@@ -20,16 +20,16 @@ public class ThScatola extends Thread {
 
     @Override
     public void run() {
-        final Scatola scatola = ptrDati.getScatola(idScatola);
-
-        while (!isInterrupted()) {
-            scatola.muovi();
-            final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia((int) scatola.getDimensioni().getHeight());
-            
-            if (direzioneUscita!=Directions.NONE) {
-                final Scatola ricevente = ptrDati.getScatolaAdiacente(idScatola, direzioneUscita);
-                scatola.spostaSabbia(1, ricevente);
-            }
-        }
+//        final Scatola scatola = ptrDati.getScatola(idScatola);
+//
+//        while (!isInterrupted()) {
+//            scatola.muovi();
+//            final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia((int) scatola.getDimensioni().getHeight());
+//            
+//            if (direzioneUscita!=Directions.NONE) {
+//                final Scatola ricevente = ptrDati.getScatolaAdiacente(idScatola, direzioneUscita);
+//                scatola.spostaSabbia(1, ricevente);
+//            }
+//        }
     }
 }
