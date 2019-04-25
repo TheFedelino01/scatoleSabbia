@@ -23,6 +23,14 @@ public final class JPallina {
     
     private Color Colore; //Colore della pallina 
 
+    public JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore) {
+        this.velocitaSpostamento = velocitaSpostamento;
+        this.Posizione = Posizione;
+        this.Presente = Presente;
+        this.Dimensioni = Dimensioni;
+        this.Colore = Colore;
+    }
+
     
     public JPallina() {
         
@@ -53,6 +61,10 @@ public final class JPallina {
         
         Presente = true;
     }
+    
+    
+    
+    
     
     public void sposta(Point nuovaPos) { 
         Posizione = nuovaPos;
