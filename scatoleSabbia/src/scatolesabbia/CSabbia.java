@@ -124,7 +124,7 @@ public class CSabbia {
         }
         
     }
-    
+
     public Directions direzioneDiUscitaSabbia(int altezzaDaSuperare){
         Directions direzione = Directions.NONE;//Parto dal presupposto che la sabbia non sta uscendo
         
@@ -161,5 +161,13 @@ public class CSabbia {
     }
     public float getVelocita() {
         return velocita;
+    }
+
+
+    public float getAltezzaLatoMaggiore() {
+        return altezzaLatoMaggiore;
+    }
+    public float getAltezzaLatoMinore() {
+        return altezzaLatoMinore;
     }
 }

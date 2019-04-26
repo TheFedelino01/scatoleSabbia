@@ -20,6 +20,8 @@ public class ThInput extends Thread {
             for (Scatola s : ptrDati.getScatole()) {
                 s.setInclinazioneX(x);
                 s.setInclinazioneY(y);
+                System.out.println("Alteza lato maggiore: "+s.getSabbiaPresente().getAltezzaLatoMaggiore());
+                System.out.println("Alteza lato minore: "+s.getSabbiaPresente().getAltezzaLatoMaggiore());
             }
         }
     }

@@ -29,6 +29,7 @@ public class ThScatola extends Thread {
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia((int) scatola.getDimensioni().getHeight());
 
             if (direzioneUscita != Directions.NONE) {
+                System.out.println("LA SABBIA ESCE!!");
                 final Scatola ricevente = ptrDati.getScatolaAdiacente(idScatola, direzioneUscita);
                 scatola.spostaSabbia(1, ricevente);
                 if (scatola.getPallina().isPresente()) {

@@ -54,7 +54,7 @@ public class Scatola {
         dimensioni.setDepth(100);
         dimensioni.setHeight(500);
         this.posizione = posizione;
-        sabbiaPresente = new CSabbia();
+        sabbiaPresente = new CSabbia(100);
         pallina = new JPallina();
         pallina.mostraPallina();
         inclinazioneX = 0;
@@ -95,7 +95,7 @@ public class Scatola {
 
     //Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola'/
     public void aggiornaDistribuzioneVelocitaSabbia() {
-        sabbiaPresente.aggiornati(30, dimensioni);
+        sabbiaPresente.aggiornati(inclinazioneX, dimensioni);
     }
 
     /**
