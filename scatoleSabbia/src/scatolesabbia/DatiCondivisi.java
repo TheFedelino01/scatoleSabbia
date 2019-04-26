@@ -10,6 +10,7 @@ import processing.core.PApplet;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.Vector;
+import java.util.concurrent.Semaphore;
 
 
 /**
@@ -20,6 +21,59 @@ public class DatiCondivisi {
     //TODO
     private Vector<Scatola> scatole;
     private int numS;
+    private int dimensioneSchermoX;
+    private int dimensioneSchermoy;
+    private int inclinazioneTavoloDiGiocoX;
+    private int inclinazioneTavoloDiGiocoY;
+    private Semaphore finito;
+
+    public int getNumS() {
+        return numS;
+    }
+
+    public void setNumS(int numS) {
+        this.numS = numS;
+    }
+
+    public int getDimensioneSchermoX() {
+        return dimensioneSchermoX;
+    }
+
+    public void setDimensioneSchermoX(int dimensioneSchermoX) {
+        this.dimensioneSchermoX = dimensioneSchermoX;
+    }
+
+    public int getDimensioneSchermoy() {
+        return dimensioneSchermoy;
+    }
+
+    public void setDimensioneSchermoy(int dimensioneSchermoy) {
+        this.dimensioneSchermoy = dimensioneSchermoy;
+    }
+
+    public int getInclinazioneTavoloDiGiocoX() {
+        return inclinazioneTavoloDiGiocoX;
+    }
+
+    public void setInclinazioneTavoloDiGiocoX(int inclinazioneTavoloDiGiocoX) {
+        this.inclinazioneTavoloDiGiocoX = inclinazioneTavoloDiGiocoX;
+    }
+
+    public int getInclinazioneTavoloDiGiocoY() {
+        return inclinazioneTavoloDiGiocoY;
+    }
+
+    public void setInclinazioneTavoloDiGiocoY(int inclinazioneTavoloDiGiocoY) {
+        this.inclinazioneTavoloDiGiocoY = inclinazioneTavoloDiGiocoY;
+    }
+
+    public Semaphore getFinito() {
+        return finito;
+    }
+
+    public void setFinito(Semaphore finito) {
+        this.finito = finito;
+    }
 
     public DatiCondivisi(int numScatole, PApplet processingSketch) {
         scatole = new Vector<>();
