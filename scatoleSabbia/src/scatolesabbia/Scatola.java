@@ -91,7 +91,7 @@ public class Scatola {
      */
     public void spostaPallina(Scatola altra){
         
-        this.pallina.rimuovi();
+        this.pallina.rimuoviPallina();
         altra.setPallina(pallina);
     }
 

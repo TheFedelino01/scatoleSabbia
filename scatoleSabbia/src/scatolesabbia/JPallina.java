@@ -25,7 +25,7 @@ public final class JPallina {
 
     public JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore) {
         this.velocitaSpostamento = velocitaSpostamento;
-        this.Posizione = Posizione;
+        this.Posizione = Posizione; //La posizione andrà impostata al centro della scatola
         this.Presente = Presente;
         this.Dimensioni = Dimensioni;
         this.Colore = Colore;
@@ -41,9 +41,9 @@ public final class JPallina {
     public void reset() {
         
         velocitaSpostamento = 0.0f;
-        Presente = false;
+        Presente = false; 
         Dimensioni = 1.0f;
-        Posizione = new Point();
+        Posizione = new Point(); //La posizione andrà impostata al centro della scatola
         Colore = new Color(0,0,0);
         
     }
@@ -52,25 +52,29 @@ public final class JPallina {
         //TO DO
     }
     
-    public void rimuovi() {
+    public void rimuoviPallina() { //La pallina viene rimossa
         
         Presente = false;
     }
     
-    public void mostra() {
+    public void mostraPallina() { //Viene aggiunta la pallina
         
         Presente = true;
     }
-    
-    
-    
-    
     
     public void sposta(Point nuovaPos) { 
         Posizione = nuovaPos;
     }
     
-    
+    public void sposta(float inclinazioneScatolaX) {
+        
+        velocitaSpostamento = Math.abs(inclinazioneScatolaX); //La velocità è direttamente proporzionale all'inclinazione della scatola
+        
+        if(inclinazioneScatolaX > 0) //Se la scatola è inclinata verso destra la scatola si sposta verso destra
+            Posizione.x += (1 * velocitaSpostamento);
+        else 
+            Posizione.x += (-1 * velocitaSpostamento);
+    }
     
 
     
