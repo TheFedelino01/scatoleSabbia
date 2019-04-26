@@ -6,6 +6,7 @@
 package scatolesabbia;
 
 import java.awt.Point;
+import javafx.scene.shape.Box;
 import processing.core.PApplet;
 
 /**
@@ -15,17 +16,18 @@ import processing.core.PApplet;
 public class CSabbia {
     private float movimentoX;//Capisco se la sponda maggiore e' a DX o a SX
     private float altezzaLatoMaggiore;//In cm identifica a che livello arriva la sabbia sulla sponda maggiore
+    private float altezzaLatoMinore;//In cm identifica a che livello arriva la sabbia sulla sponda minore
     //private float movimentoY;
-    private float quantita;//QUANTITA MAX 100 litri di sabbia ogni litro corrisponde a 1 cm
+    private float quantitaSabbia;//QUANTITA MAX 100 litri di sabbia
     private float velocita;
     
     public CSabbia(){
-        this.quantita=0;
+        this.quantitaSabbia=10;
         setup();
     }
     
     public CSabbia(float quantita){
-        this.quantita=quantita;
+        this.quantitaSabbia=quantita;
         setup();
     }
     
@@ -36,29 +38,68 @@ public class CSabbia {
     }
     
     public void aggiungiSabbia(float aggiunta){
-        quantita+=aggiunta;
+        quantitaSabbia+=aggiunta;
     }
     
     public void rimuoviSabbia(float rimossa){
-        quantita-=rimossa;
+        quantitaSabbia-=rimossa;
     }
     
-    //http://spartanita.altervista.org/download/manuali/livello.pdf
-    public void aggiornati(float inclinazioneX){
+    
+    public void aggiornati(float inclinazioneX, Box dimensioni){
         impostaMovimentoX(inclinazioneX);
         
-        calcolaLivelloDiRaggiungimentoMaggiore(inclinazioneX);
+        calcolaLivelloDiRaggiungimentoMaggiore(inclinazioneX, dimensioni);
     }
     
-    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX){
-        //CALCOLO IL LIVELLO MASSIMO DI RAGGIUNGIMENTO DELLA SABBIA SULLA SPONDA VERSO LA QUALE E' ORIENTATA (la sabbia)
-        float valoreVirgola = inclinazioneX/100; //10 gradi ---> 0,1
-        float percentualeSabbiaMovente = quantita*valoreVirgola;//La sabbia che si muove in base all'inclinazione
+//    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX){
+//        //CALCOLO IL LIVELLO MASSIMO DI RAGGIUNGIMENTO DELLA SABBIA SULLA SPONDA VERSO LA QUALE E' ORIENTATA (la sabbia)
+//        float valoreVirgola = inclinazioneX/100; //10 gradi ---> 0,1
+//        float percentualeSabbiaMovente = quantitaSabbia*valoreVirgola;//La sabbia che si muove in base all'inclinazione
+//        
+//        //livello massimo a cui la sabbia arriva con l'inclinazione
+//        //maggiore sara' il livello, e maggiore sara' l'altezza registrata
+//        altezzaLatoMaggiore = (quantitaSabbia+percentualeSabbiaMovente/2); //diviso 2 una parte sale e una scende \ oppure /
+//    }
+    
+    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX,Box dimensioni){
+        inclinazioneX=Math.abs(inclinazioneX);//La rendo sempre positiva
         
-        //livello massimo a cui la sabbia arriva con l'inclinazione
-        //maggiore sara' il livello, e maggiore sara' l'altezza registrata
-        altezzaLatoMaggiore = (quantita+percentualeSabbiaMovente/2); //diviso 2 una parte sale e una scende \ oppure /
+        double altezzaScatola = (float)dimensioni.getHeight();
+        double lato = (float)dimensioni.getDepth();
+        double VolumeIniziale = (float) ((quantitaSabbia*lato)*lato);
+        
+        
+        double angoloAdiacente = 180-(90+inclinazioneX);
+        double risCosAngA=  Math.cos(trasformaARadianti(angoloAdiacente))*altezzaScatola;
+        double risSinAngA=  Math.sin(trasformaARadianti(angoloAdiacente))*altezzaScatola;
+        double lunghezzaLivelloMAX = Math.sqrt( (risCosAngA*risCosAngA) + (risSinAngA*risSinAngA) );
+        
+        double angoloSuperioreSX= Math.abs((180-(angoloAdiacente+90))-90);
+        double angoloSuperioreDX= 180-(angoloSuperioreSX+90);
+        
+        double lunghezzaDiagonale = lato/(Math.cos(trasformaARadianti(angoloSuperioreDX)));
+        
+        double latoTriangolo =  (Math.cos(trasformaARadianti(angoloSuperioreDX))*lunghezzaDiagonale);
+        double areaTriangolo = (lato*latoTriangolo)/2;
+        
+        double parteBassaLatoTriangolo = lunghezzaLivelloMAX-latoTriangolo;
+        double areaRettangolo = parteBassaLatoTriangolo*lato;
+        double areaTrapezio=parteBassaLatoTriangolo+areaRettangolo;
+        double volumeTrapezio = areaTrapezio*lato;
+        
+        //float lunghezzaLivelloMIN = ((2*VolumeIniziale-lunghezzaLivelloMAX)/lato);//E' incognito e faccio la formula inversa
+        //float volumeTrapezio = (float) ((((lunghezzaLivelloMAX+lunghezzaLivelloMIN)*lato)/2)*lato);
+        
+        altezzaLatoMaggiore= (float) lunghezzaLivelloMAX;
+        altezzaLatoMinore=(float) parteBassaLatoTriangolo;
     }
+    
+    private double trasformaARadianti(double gradi){
+        //180:gradi=pi:rad
+        return ((gradi*Math.PI)/180);
+    }
+    
     
     private void impostaMovimentoX(float inclinazioneX){
         //IMPOSTO IL VERSO DI MOVIMENTO/ORIENTAMENTO DELLA SABBIA (VERSO DX O VERSO SX)
@@ -117,7 +158,7 @@ public class CSabbia {
         return movimentoX;
     }
     public float getQuantita() {
-        return quantita;
+        return quantitaSabbia;
     }
     public float getVelocita() {
         return velocita;

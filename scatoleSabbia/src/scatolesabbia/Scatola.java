@@ -38,9 +38,11 @@ public class Scatola {
         this.processingSketch = processingSketch;
         dimensioni = new Box();
         dimensioni.setDepth(100);
-        dimensioni.setHeight(100);
+        dimensioni.setHeight(500);
         
         posizione = new Point(500,500);
+        
+        sabbiaPresente = new CSabbia();
     }
 
     public Scatola(PApplet processingSketch, Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
@@ -70,7 +72,7 @@ public class Scatola {
 
     //Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola'/
     public void aggiornaDistribuzioneVelocitaSabbia() {
-        sabbiaPresente.aggiornati(inclinazioneX);
+        sabbiaPresente.aggiornati(30,dimensioni);
     }
 
     /**
