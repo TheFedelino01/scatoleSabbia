@@ -5,6 +5,8 @@
  */
 package scatolesabbia;
 
+import processing.core.PApplet;
+
 import java.lang.reflect.Array;
 import java.util.Vector;
 
@@ -18,16 +20,14 @@ public class DatiCondivisi {
     //TODO
     private Vector scatole;
     private int numS;
-    
-    public DatiCondivisi(int numScatole){
+
+    public DatiCondivisi(int numScatole, PApplet processingSketch){
         scatole = new Vector<Scatola>();
         numS=numScatole;
-        
+
         //Aggiungo le scatole al vettore
         for(int i=0; i<numS;i++)
-            scatole.add(new Scatola());
-        
-        
+            scatole.add(new Scatola(processingSketch));
     }
     
     public void addScatolola(Scatola scatola){

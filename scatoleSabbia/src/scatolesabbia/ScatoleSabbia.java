@@ -5,8 +5,6 @@
  */
 package scatolesabbia;
 
-import java.awt.Point;
-import javafx.scene.shape.Box;
 import processing.core.PApplet;
 
 /**
@@ -18,18 +16,22 @@ public class ScatoleSabbia extends PApplet{
     private static DatiCondivisi dati;
     private static ThScatola[] thScatole;
     private static int numScatole=1;
-    
+
+    /**
+     * costruttore
+     */
+    public ScatoleSabbia(){
+        //Inizializzo i dati condivisi e il numero di th
+        dati = new DatiCondivisi(numScatole,this);
+        thScatole = new ThScatola[numScatole];
+    }
+
     public static void main(String[] args) {
         PApplet.main(new String[]{"scatolesabbia.ScatoleSabbia"});//Imposto questo come main principale
-        
-        //Inizializzo i dati condivisi e il numero di th
-        dati = new DatiCondivisi(numScatole);
-        thScatole = new ThScatola[numScatole];
-        
+
         //Assegno al vettore con i th i thread delle scatole
         for(int i=0; i<numScatole;i++)
             thScatole[i] = new ThScatola(dati,i);
-        
         faiPartireITh();
     }
 
@@ -54,18 +56,8 @@ public class ScatoleSabbia extends PApplet{
         Scatola scatola;
         
         for(int i=0; i<dati.getNumScatole();i++){
-            disegnati(dati.getScatola(i));    
+            dati.getScatola(i).draw();
         }
     }
-    
-    public void disegnati(Scatola scatola){
-        Point posScatola;
-        posScatola = scatola.getPosizioneCentrale();
-        Box dimensioni = scatola.getDimensioni();
-        
-        fill(color(240, 0, 0));
-        rect(posScatola.x,posScatola.y,(float)dimensioni.getDepth(),(float)dimensioni.getHeight());
-    }
-
     
 }

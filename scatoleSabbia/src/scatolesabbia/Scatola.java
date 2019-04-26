@@ -7,6 +7,7 @@ package scatolesabbia;
 
 
 import javafx.scene.shape.Box;
+import processing.core.PApplet;
 
 import java.awt.*;
 
@@ -15,6 +16,7 @@ import java.awt.*;
  * @author Giacomo Orsenigo
  */
 public class Scatola {
+    private final PApplet processingSketch;
 
     //Indica il grado di inclinazione della scatola
     private float inclinazioneX;
@@ -32,7 +34,8 @@ public class Scatola {
     //Rappresenta la pallina presente nella scatola (se presente)
     //private CPallina pallina
 
-    public Scatola(){
+    public Scatola(PApplet processingSketch){
+        this.processingSketch = processingSketch;
         dimensioni = new Box();
         dimensioni.setDepth(100);
         dimensioni.setHeight(100);
@@ -40,7 +43,8 @@ public class Scatola {
         posizione = new Point(500,500);
     }
 
-    public Scatola(Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
+    public Scatola(PApplet processingSketch, Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
+        this.processingSketch = processingSketch;
         this.dimensioni = dimensioni;
         this.posizione = posizione;
         this.sabbiaPresente = sabbiaPresente;
@@ -105,5 +109,11 @@ public class Scatola {
     
     public Point getPosizioneCentrale(){
         return posizione;
+    }
+
+
+    public void draw(){
+        processingSketch.fill(processingSketch.color(240, 0, 0));
+        processingSketch.rect(posizione.x,posizione.y,(float)dimensioni.getDepth(),(float)dimensioni.getHeight());
     }
 }

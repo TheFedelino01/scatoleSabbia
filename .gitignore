@@ -25,3 +25,21 @@ hs_err_pid*
 
 # la cartella librerie va pushata
 !*/libs/*
+
+
+/scatoleSabbia/dist/*
+/scatoleSabbia/build/*
+/scatoleSabbia/nbproject/private/*
+
+
+# Per IntelliJ
+
+/scatoleSabbia/.idea/*
+
+/scatoleSabbia/*.iml
+/scatoleSabbia/modules.xml
+/scatoleSabbia/.idea/misc.xml
+/scatoleSabbia/*.ipr
+
+/scatoleSabbia/out/
+/scatoleSabbia/.idea_modules/
