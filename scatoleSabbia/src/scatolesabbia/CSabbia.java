@@ -65,34 +65,33 @@ public class CSabbia {
     private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX,Box dimensioni){
         inclinazioneX=Math.abs(inclinazioneX);//La rendo sempre positiva
         
-        double altezzaScatola = (float)dimensioni.getHeight();
-        double lato = (float)dimensioni.getDepth();
-        double VolumeIniziale = (float) ((quantitaSabbia*lato)*lato);
+        double altezzaScatola = dimensioni.getHeight();
+        double lato = dimensioni.getDepth();
+        double VolumeIniziale =  ((quantitaSabbia*lato)*lato);
         
         
         double angoloAdiacente = 180-(90+inclinazioneX);
         double risCosAngA=  Math.cos(trasformaARadianti(angoloAdiacente))*altezzaScatola;
         double risSinAngA=  Math.sin(trasformaARadianti(angoloAdiacente))*altezzaScatola;
-        double lunghezzaLivelloMAX = Math.sqrt( (risCosAngA*risCosAngA) + (risSinAngA*risSinAngA) );
         
         double angoloSuperioreSX= Math.abs((180-(angoloAdiacente+90))-90);
         double angoloSuperioreDX= 180-(angoloSuperioreSX+90);
         
         double lunghezzaDiagonale = lato/(Math.cos(trasformaARadianti(angoloSuperioreDX)));
         
-        double latoTriangolo =  (Math.cos(trasformaARadianti(angoloSuperioreDX))*lunghezzaDiagonale);
-        double areaTriangolo = (lato*latoTriangolo)/2;
         
-        double parteBassaLatoTriangolo = lunghezzaLivelloMAX-latoTriangolo;
-        double areaRettangolo = parteBassaLatoTriangolo*lato;
-        double areaTrapezio=parteBassaLatoTriangolo+areaRettangolo;
-        double volumeTrapezio = areaTrapezio*lato;
+        double latoTriangolo =  (Math.sin(trasformaARadianti(angoloSuperioreDX))*lunghezzaDiagonale);
+        double volumeTriangolo = ((lato*latoTriangolo)/2)*lato;
         
-        //float lunghezzaLivelloMIN = ((2*VolumeIniziale-lunghezzaLivelloMAX)/lato);//E' incognito e faccio la formula inversa
-        //float volumeTrapezio = (float) ((((lunghezzaLivelloMAX+lunghezzaLivelloMIN)*lato)/2)*lato);
+
+        double altezzaRett = -((volumeTriangolo-VolumeIniziale)/(lato*lato));
+        double volumeRettangolo = (altezzaRett*lato)*lato;
         
-        altezzaLatoMaggiore= (float) lunghezzaLivelloMAX;
-        altezzaLatoMinore=(float) parteBassaLatoTriangolo;
+        double volumeTrapezio = volumeRettangolo+volumeTriangolo;
+        
+
+        altezzaLatoMaggiore= (float)( altezzaRett+latoTriangolo);
+        altezzaLatoMinore=(float) altezzaRett;
     }
     
     private double trasformaARadianti(double gradi){
