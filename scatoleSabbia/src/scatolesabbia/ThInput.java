@@ -17,11 +17,15 @@ public class ThInput extends Thread {
             float x = sc.nextFloat();
             System.out.print("Inclinazione Y: ");
             float y = sc.nextFloat();
-            for (Scatola s : ptrDati.getScatole()) {
+            
+            System.out.println("\n\n-------------");
+            for (int i=0; i<ptrDati.getNumScatole();i++) {
+                Scatola s = ptrDati.getScatola(i);
                 s.setInclinazioneX(x);
                 s.setInclinazioneY(y);
-                System.out.println("Alteza lato maggiore: "+s.getSabbiaPresente().getAltezzaLatoMaggiore());
-                System.out.println("Alteza lato minore: "+s.getSabbiaPresente().getAltezzaLatoMaggiore());
+                s.muovi();
+                System.out.println("SCATOLA ID: "+i);
+                System.out.println(s.getSabbiaPresente().toString());
             }
         }
     }

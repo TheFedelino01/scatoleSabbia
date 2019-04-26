@@ -52,6 +52,7 @@ public class CSabbia {
         calcolaLivelloDiRaggiungimentoMaggiore(inclinazioneX, dimensioni);
     }
     
+    //DEPRECATO
 //    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX){
 //        //CALCOLO IL LIVELLO MASSIMO DI RAGGIUNGIMENTO DELLA SABBIA SULLA SPONDA VERSO LA QUALE E' ORIENTATA (la sabbia)
 //        float valoreVirgola = inclinazioneX/100; //10 gradi ---> 0,1
@@ -91,7 +92,7 @@ public class CSabbia {
         
 
         altezzaLatoMaggiore= (float)( altezzaRett+latoTriangolo);
-        altezzaLatoMinore=(float) altezzaRett;
+        altezzaLatoMinore=(float) Math.abs(altezzaRett);
     }
     
     private double trasformaARadianti(double gradi){
@@ -169,5 +170,9 @@ public class CSabbia {
     }
     public float getAltezzaLatoMinore() {
         return altezzaLatoMinore;
+    }
+    
+    public String toString(){
+        return "Lato maggiore: "+altezzaLatoMaggiore+"\nLato minore: "+altezzaLatoMinore+"\nQuantita' sabbia: "+altezzaLatoMinore+"\nMovimentoX: "+movimentoX+"\n---------";
     }
 }

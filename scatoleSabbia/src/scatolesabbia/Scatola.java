@@ -50,11 +50,11 @@ public class Scatola {
     public Scatola(PApplet processingSketch, Point posizione) {
         this.processingSketch = processingSketch;
         dimensioni = new Box();
-        dimensioni.setWidth(150);
+        dimensioni.setWidth(100);
         dimensioni.setDepth(100);
-        dimensioni.setHeight(500);
+        dimensioni.setHeight(50);
         this.posizione = posizione;
-        sabbiaPresente = new CSabbia(100);
+        sabbiaPresente = new CSabbia(10);
         pallina = new JPallina();
         pallina.mostraPallina();
         inclinazioneX = 0;
@@ -183,4 +183,6 @@ public class Scatola {
     public void setInclinazioneY(float inclinazioneY) {
         this.inclinazioneY = inclinazioneY;
     }
+
+
 }
