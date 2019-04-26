@@ -23,26 +23,42 @@ public class Scatola {
     private float inclinazioneY;
 
     //Indica le dimensioni della scatola
-    private  Box dimensioni; //misurata in cm
-    private  Point posizione;
+    private Box dimensioni; //misurata in cm
+    private Point posizione;
 
     //Indica la sabbia presente nella scatola
     private CSabbia sabbiaPresente;
-    
+
     private JPallina pallina;
 
     //Rappresenta la pallina presente nella scatola (se presente)
     //private CPallina pallina
 
-    public Scatola(PApplet processingSketch){
+    public Scatola(PApplet processingSketch) {
         this.processingSketch = processingSketch;
         dimensioni = new Box();
         dimensioni.setDepth(100);
         dimensioni.setHeight(500);
-        
-        posizione = new Point(500,500);
-        
+
+        posizione = new Point(200, 200);
+
         sabbiaPresente = new CSabbia();
+        pallina = new JPallina();
+        pallina.mostraPallina();
+    }
+
+    public Scatola(PApplet processingSketch, Point posizione) {
+        this.processingSketch = processingSketch;
+        dimensioni = new Box();
+        dimensioni.setWidth(150);
+        dimensioni.setDepth(100);
+        dimensioni.setHeight(500);
+        this.posizione = posizione;
+        sabbiaPresente = new CSabbia();
+        pallina = new JPallina();
+        pallina.mostraPallina();
+        inclinazioneX = 0;
+        inclinazioneY = 0;
     }
 
     public Scatola(PApplet processingSketch, Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
@@ -53,6 +69,8 @@ public class Scatola {
         this.pallina = pallina;
         inclinazioneX = 0;
         inclinazioneY = 0;
+        pallina = new JPallina();
+        pallina.mostraPallina();
     }
 
 
@@ -68,20 +86,25 @@ public class Scatola {
 
     //Metodo che permette di aggiornare la posizione della pallina all'interno della scatola a seconda della velocita' della sabbia
     public void aggiornaPosPallina() {
+        if (inclinazioneX < 0 && isPallinaControBordi() == Directions.SINISTRA)
+            return;
+        if (inclinazioneX > 0 && isPallinaControBordi() == Directions.DESTRA)
+            return;
+        pallina.sposta(inclinazioneX);
     }
 
     //Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola'/
     public void aggiornaDistribuzioneVelocitaSabbia() {
-        sabbiaPresente.aggiornati(30,dimensioni);
+        sabbiaPresente.aggiornati(30, dimensioni);
     }
 
     /**
      * sposta la sabbia in un'altra scatola
      *
      * @param altezza sabbia da spostare
-     * @param altra scatola in cui spostare la sabbia
+     * @param altra   scatola in cui spostare la sabbia
      */
-    public void spostaSabbia(float altezza, Scatola altra){
+    public void spostaSabbia(float altezza, Scatola altra) {
         sabbiaPresente.rimuoviSabbia(altezza);
         altra.sabbiaPresente.aggiungiSabbia(altezza);
     }
@@ -91,10 +114,11 @@ public class Scatola {
      *
      * @param altra scatola in cui spostare la pallina
      */
-    public void spostaPallina(Scatola altra){
-        
+    public void spostaPallina(Scatola altra) {
+
         this.pallina.rimuoviPallina();
         altra.setPallina(pallina);
+        altra.pallina.mostraPallina();
     }
 
     public CSabbia getSabbiaPresente() {
@@ -104,18 +128,59 @@ public class Scatola {
     public Box getDimensioni() {
         return dimensioni;
     }
-    
+
     public void setPallina(JPallina pallina) {
         this.pallina = pallina;
     }
-    
-    public Point getPosizioneCentrale(){
+
+    public JPallina getPallina() {
+        return pallina;
+    }
+
+    public Point getPosizioneCentrale() {
         return posizione;
     }
 
 
-    public void draw(){
+    public void draw() {
         processingSketch.fill(processingSketch.color(240, 0, 0));
-        processingSketch.rect(posizione.x,posizione.y,(float)dimensioni.getDepth(),(float)dimensioni.getHeight());
+        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
+
+        if (pallina.isPresente()) {
+            processingSketch.fill(pallina.getColore().getRGB());
+            processingSketch.ellipse(pallina.getPosizione().x + posizione.x, pallina.getPosizione().y + posizione.y, pallina.getDimensioni(), pallina.getDimensioni());
+        }
+
+        processingSketch.noFill();
+        processingSketch.stroke(0, 0, 0);
+        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
+    }
+
+    public float getInclinazioneX() {
+        return inclinazioneX;
+    }
+
+    public float getInclinazioneY() {
+        return inclinazioneY;
+    }
+
+    public Directions isPallinaControBordi() {
+        if (pallina.getPosizione().x > dimensioni.getWidth())
+            return Directions.DESTRA;
+        else if (pallina.getPosizione().x < 0)
+            return Directions.SINISTRA;
+        else if (pallina.getPosizione().y < 0)
+            return Directions.SOPRA;
+        else if (pallina.getPosizione().y > dimensioni.getDepth())
+            return Directions.SOTTO;
+        return Directions.NONE;
+    }
+
+    public void setInclinazioneX(float inclinazioneX) {
+        this.inclinazioneX = inclinazioneX;
+    }
+
+    public void setInclinazioneY(float inclinazioneY) {
+        this.inclinazioneY = inclinazioneY;
     }
 }

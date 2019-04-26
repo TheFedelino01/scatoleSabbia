@@ -40,11 +40,11 @@ public final class JPallina {
     
     public void reset() {
         
-        velocitaSpostamento = 0.0f;
+        velocitaSpostamento = 0f;
         Presente = false; 
-        Dimensioni = 1.0f;
+        Dimensioni = 10.0f;
         Posizione = new Point(); //La posizione andrà impostata al centro della scatola
-        Colore = new Color(0,0,0);
+        Colore = new Color(0,0, 240);
         
     }
     
@@ -69,16 +69,26 @@ public final class JPallina {
     public void sposta(float inclinazioneScatolaX) {
         
         velocitaSpostamento = Math.abs(inclinazioneScatolaX); //La velocità è direttamente proporzionale all'inclinazione della scatola
-        
+
         if(inclinazioneScatolaX > 0) //Se la scatola è inclinata verso destra la scatola si sposta verso destra
             Posizione.x += (1 * velocitaSpostamento);
-        else 
+        else
             Posizione.x += (-1 * velocitaSpostamento);
     }
-    
 
-    
-    
-    
-    
+    public boolean isPresente() {
+        return Presente;
+    }
+
+    public Point getPosizione() {
+        return Posizione;
+    }
+
+    public float getDimensioni() {
+        return Dimensioni;
+    }
+
+    public Color getColore() {
+        return Colore;
+    }
 }

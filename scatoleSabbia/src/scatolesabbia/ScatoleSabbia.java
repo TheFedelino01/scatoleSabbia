@@ -13,9 +13,9 @@ import processing.core.PApplet;
  */
 public class ScatoleSabbia extends PApplet{
 
-    private static DatiCondivisi dati;
+    private static  DatiCondivisi dati;
     private static ThScatola[] thScatole;
-    private static int numScatole=1;
+    private static int numScatole=3;
 
     /**
      * costruttore
@@ -24,15 +24,17 @@ public class ScatoleSabbia extends PApplet{
         //Inizializzo i dati condivisi e il numero di th
         dati = new DatiCondivisi(numScatole,this);
         thScatole = new ThScatola[numScatole];
+        //Assegno al vettore con i th i thread delle scatole
+        for(int i=0; i<numScatole;i++)
+            thScatole[i] = new ThScatola(dati,i);
     }
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"scatolesabbia.ScatoleSabbia"});//Imposto questo come main principale
 
-        //Assegno al vettore con i th i thread delle scatole
-        for(int i=0; i<numScatole;i++)
-            thScatole[i] = new ThScatola(dati,i);
         faiPartireITh();
+
+        new ThInput(dati).start();
     }
 
     public void settings() {
@@ -53,7 +55,6 @@ public class ScatoleSabbia extends PApplet{
 
     public void draw() {
         background(255, 255, 255);
-        Scatola scatola;
         
         for(int i=0; i<dati.getNumScatole();i++){
             dati.getScatola(i).draw();
