@@ -7,13 +7,18 @@ package scatolesabbia;
 
 import java.awt.Color;
 import java.awt.Point;
-
+import processing.core.PApplet;
 /**
  *
  * @author Samuele Peduzzi
  */
+
 public final class JPallina {
     
+    
+    private Point posScatola; //angolo sx scatola
+    
+    private PApplet processingSketch;
     
     private float velocitaSpostamento; //valore tra 0 e 1
     private Point Posizione; //Indicante le coordinate all'interno della scatola dell'oggetto
@@ -34,8 +39,10 @@ public final class JPallina {
     }
 
     
-    public JPallina() {
+    public JPallina(PApplet processingSketch, Point posScatola) {
         
+        this.processingSketch = processingSketch;
+        this.posScatola = posScatola;
         reset();
     }
     
@@ -78,16 +85,15 @@ public final class JPallina {
             Posizione.x += (-0.5 * velocitaSpostamento);
     }
     
-//    public void draw() {
-//        if (Presente) {
-//            processingSketch.fill(Colore.getRGB());
-//            processingSketch.ellipse(pallina.getPosizione().x + posizione.x, pallina.getPosizione().y + posizione.y, pallina.getDimensioni(), pallina.getDimensioni());
-//        }
-//
-//        processingSketch.noFill();
-//        processingSketch.stroke(0, 0, 0);
-//        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
-//    }
+    public void draw() {
+        
+        if (Presente) {
+            processingSketch.fill(Colore.getRGB());
+            processingSketch.ellipse(Posizione.x + posScatola.x, Posizione.y + posScatola.y, Dimensioni, Dimensioni);
+        }
+
+
+    }
 
     public boolean isPresente() {
         return Presente;

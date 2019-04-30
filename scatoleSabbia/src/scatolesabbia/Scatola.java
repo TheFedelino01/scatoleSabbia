@@ -43,7 +43,7 @@ public class Scatola {
         posizione = new Point(200, 200);
 
         sabbiaPresente = new CSabbia();
-        pallina = new JPallina();
+        pallina = new JPallina(this.processingSketch, this.posizione);
         pallina.mostraPallina();
     }
 
@@ -55,7 +55,7 @@ public class Scatola {
         dimensioni.setHeight(50);
         this.posizione = posizione;
         sabbiaPresente = new CSabbia(10);
-        pallina = new JPallina();
+        pallina = new JPallina(this.processingSketch, this.posizione);
         pallina.mostraPallina();
         inclinazioneX = 0;
         inclinazioneY = 0;
@@ -69,7 +69,7 @@ public class Scatola {
         this.pallina = pallina;
         inclinazioneX = 0;
         inclinazioneY = 0;
-        pallina = new JPallina();
+        pallina = new JPallina(this.processingSketch, this.posizione);
         pallina.mostraPallina();
     }
 
@@ -146,11 +146,13 @@ public class Scatola {
         processingSketch.fill(processingSketch.color(240, 0, 0));
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
 
-        if (pallina.isPresente()) {
-            processingSketch.fill(pallina.getColore().getRGB());
-            processingSketch.ellipse(pallina.getPosizione().x + posizione.x, pallina.getPosizione().y + posizione.y, pallina.getDimensioni(), pallina.getDimensioni());
-        }
+//        if (pallina.isPresente()) {
+//            processingSketch.fill(pallina.getColore().getRGB());
+//            processingSketch.ellipse(pallina.getPosizione().x + posizione.x, pallina.getPosizione().y + posizione.y, pallina.getDimensioni(), pallina.getDimensioni());
+//        }
 
+        pallina.draw();    
+        
         processingSketch.noFill();
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
