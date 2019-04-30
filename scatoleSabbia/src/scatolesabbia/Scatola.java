@@ -90,7 +90,15 @@ public class Scatola {
             return;
         if (inclinazioneX > 0 && isPallinaControBordi() == Directions.DESTRA)
             return;
-        pallina.sposta(inclinazioneX);
+        
+        pallina.spostaX(inclinazioneX);
+        
+        if(inclinazioneY < 0 && isPallinaControBordi() == Directions.SOPRA)
+            return;
+        if(inclinazioneY > 0 && isPallinaControBordi() == Directions.SOTTO)
+            return;
+
+        pallina.spostaY(inclinazioneY);
     }
 
     //Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola'/
@@ -99,7 +107,7 @@ public class Scatola {
     }
 
     /**
-     * sposta la sabbia in un'altra scatola
+     * spostaX la sabbia in un'altra scatola
      *
      * @param altezza sabbia da spostare
      * @param altra   scatola in cui spostare la sabbia
@@ -110,7 +118,7 @@ public class Scatola {
     }
 
     /**
-     * sposta la pallina in un'altra scatola
+     * spostaX la pallina in un'altra scatola
      *
      * @param altra scatola in cui spostare la pallina
      */
