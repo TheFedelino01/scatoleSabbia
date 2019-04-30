@@ -22,6 +22,8 @@ public final class JPallina {
     private float Dimensioni; //Indicante la lunghezza del diametro della pallina
     
     private Color Colore; //Colore della pallina 
+    
+
 
     public JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore) {
         this.velocitaSpostamento = velocitaSpostamento;
@@ -71,10 +73,21 @@ public final class JPallina {
         velocitaSpostamento = Math.abs(inclinazioneScatolaX); //La velocità è direttamente proporzionale all'inclinazione della scatola
 
         if(inclinazioneScatolaX > 0) //Se la scatola è inclinata verso destra la scatola si sposta verso destra
-            Posizione.x += (1 * velocitaSpostamento);
+            Posizione.x += (0.5 * velocitaSpostamento);
         else
-            Posizione.x += (-1 * velocitaSpostamento);
+            Posizione.x += (-0.5 * velocitaSpostamento);
     }
+    
+//    public void draw() {
+//        if (Presente) {
+//            processingSketch.fill(Colore.getRGB());
+//            processingSketch.ellipse(pallina.getPosizione().x + posizione.x, pallina.getPosizione().y + posizione.y, pallina.getDimensioni(), pallina.getDimensioni());
+//        }
+//
+//        processingSketch.noFill();
+//        processingSketch.stroke(0, 0, 0);
+//        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
+//    }
 
     public boolean isPresente() {
         return Presente;
