@@ -1,0 +1,193 @@
+@startuml
+
+class DatiCondivisi{
+    -Vector<Scatola> matriceScatole;
+    -int numScatole;
+    -int dimensioneSchermoX;
+    -int dimensioneSchermoY;
+    -float inclinazioneXpianoDiGioco;
+    -float inclinazioneYpianoDiGioco;
+    -Semaphore finito;
+    
+    +DatiCondivisi(int numScatole, PApplet pianoDiDisegno);
+    +Directions getScatolaAdiacente(int id);
+    +int getNumScatole();
+    +Vector<Scatola> getAllScatole();
+    +Scatola getScatola();
+    +void addScatola(Scatola nuova);
+    +getSemFinito();
+    
+    
+}
+
+
+class Scatola{
+    -PApplet pianoDiDisegno;
+    
+    -Box dimensioni
+
+
+    /'Indica la sabbia presente nella scatola'/
+    -CSabbia sabbiaPresente
+
+    /'Rappresenta la pallina presente nella scatola (se presente)'/
+    -JPallina pallina
+
+    -Point posizioneScatola
+
+
+
+    +Scatola(PApplet tavoloDiDisegno);
+    
+    +Scatola(PApplet tavoloDiDisegno, Point posizione);
+
+    +Scatola(PApplet tavoloDiDisegno, Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina);
+    
+    +void visualizzaTutto();
+    
+    +void muovi();
+    
+    +void aggiornaPosPallina();
+    
+    +void aggiornaDistribuzioneVelocitaSabbia();
+    
+    +void spostaSabbia(float altezza, Scatola altra);;
+    
+    +void spostaPallina(Scatola altra);
+    
+    +void visualizza();
+    
+    +void aggiornaPosPallina();
+    
+    +Directions isPallinaControBordi();
+    
+
+}
+
+//TO DO .......
+
+
+class Sabbia{
+    /'Indica il valore di altezza della sabbia nella parte sinistra della scatola'/
+    -float altezzaSX
+
+    /'Indica il valore di altezza della sabbia nella parte destra della scatola'/
+    -float altezzaDX
+
+    /'Indica la velocita' di spostamento della sabbia'/
+    -float velocitaDiSpostamento
+
+    /'Indica la quantita' di sabbia presente'/
+    -float quantita
+
+    /'Indica la densita' della sabbia presente'/
+    -float densita
+
+
+
+    /'Metodo che permette di aggiornare l'inclinazione della sabbia
+     a seconda dell'altezza di destra e di sinistra della scatola passati come parametro'/
+    +aggiorna(float altezzaDx, float altezzaSx)
+
+    /'Metodo che permette di visualizzare la sabbia'/
+    +visualizza()
+
+    /'Metodo che permette di reimpostare tutti gli attributi ai valori iniziali'/
+    +reset()
+
+}
+
+class Pallina{
+    /'Indica la posizione nella scatola dove e' presente la pallina'/
+    -posizione posizionePallina
+
+    /'Indica il colore della pallina'/
+    -String colore
+
+    /'Indica le dimensioni della pallina'/
+    -float dimensioni
+
+    /'Indica la velocita' di spostamento della pallina quanto e' in movimento'/
+    -float velocitaDiSpostamento
+
+    /'Indica se la pallina e' visibile e soprattutto presente nella scatola'/
+    -boolean ePresente
+
+
+
+    /'Metodo che permette di visualizzare la pallina'/
+    +visualizza()
+
+    /'Metodo che permette di rimuovere la pallina'/
+    +rimuovi()
+
+    /'Metodo che permette di spostare la pallina nella scatola'/
+    +sposta(posizione nuovaPosizione)
+
+    /'Metodo che permette di reimpostare tutti gli attributi ai valori iniziali'/
+    +reset()
+}
+
+
+class Output{
+    /'Rappresenta il percorso dell'immagine che dovra' essere visualizzata'/
+    -String sourceImg
+
+
+    /'Metodo che permette di disegnare un trapezio colorato'/
+    +disegnaTrapezio(String colore)
+
+    /'Metodo che permette di rappresentare sullo schermo del device l'immagine
+    presente nel percorso sourceImg (attributo) nella posizione passata come parametro'/
+    +disegnaImmagine(Posizione posizione)
+}
+
+
+class Input{
+    /'Rappresenta il valore di input letto dalla tastiera'/
+    -Character inputTastiera
+
+    /'Rappresenta il valore di input letto da arduino'/
+    -Character inputArduino
+
+    /'Rappresenta il valore di input letto dal bluetooth'/
+    -Character inputBluetooth
+
+    /'Rappresenta il valore di input letto dal giroscopio'/
+    -int giroscopio
+
+    /'Rappresenta il valore di input letto dal dispositivo'/
+    -int dispositivo
+
+
+    /'Metodo che permette di leggere il valore di input dalla tastiera e aggiornare
+    di conseguenza l'attributo inputTastiera della classe'/
+    +leggiDaTastiera()
+
+    /'Metodo che permette di leggere il valore di input dall'Arduino e aggiornare
+    di conseguenza l'attributo inputArduino della classe'/
+    +leggiDaArduino()
+
+    /'Metodo che permette di leggere il valore di input dal Bluetooth e aggiornare
+    di conseguenza l'attributo inputBluetooth della classe'/
+    +leggiDaBluetooth()
+
+    /'Metodo che permette di leggere il valore di input dal Giroscopio e aggiornare
+    di conseguenza l'attributo giroscopio della classe'/
+    +leggiValoreGiroscopio()
+
+    /'Metodo che permette di leggere il valore di input dal Dispositivo e aggiornare
+    di conseguenza l'attributo dispositivo della classe'/
+    +leggiValoreDispositivo()
+}
+
+
+Gioco o-- Scatola:  Compone <
+Gioco o-- Input:  fa parte <
+Gioco o-- Output:  fa parte <
+Scatola o-- Pallina:  puo' essere presente <
+Scatola o-- Sabbia:  puo' essere presente <
+Scatola o-- Finestra:  fa parte <
+Scatola o-- Posizione:  localizza <
+Pallina o-- Posizione:  localizza <
+@enduml
