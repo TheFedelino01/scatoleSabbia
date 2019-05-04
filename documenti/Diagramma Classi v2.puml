@@ -1,0 +1,148 @@
+@startuml
+
+class DatiCondivisi{
+    -Vector<Scatola> matriceScatole;
+    -int numScatole;
+    -int dimensioneSchermoX;
+    -int dimensioneSchermoY;
+    -float inclinazioneXpianoDiGioco;
+    -float inclinazioneYpianoDiGioco;
+    -Semaphore finito;
+    
+    +DatiCondivisi(int numScatole, PApplet pianoDiDisegno);
+    +Directions getScatolaAdiacente(int id);
+    +int getNumScatole();
+    +Vector<Scatola> getAllScatole();
+    +Scatola getScatola();
+    +void addScatola(Scatola nuova);
+    +getSemFinito();
+}
+
+
+class Scatola{
+    -PApplet pianoDiDisegno;
+    -Box dimensioni
+    -CSabbia sabbiaPresente
+    -JPallina pallina
+    -Point posizioneScatola
+
+
+
+    +Scatola(PApplet tavoloDiDisegno);
+    +Scatola(PApplet tavoloDiDisegno, Point posizione);
+    +Scatola(PApplet tavoloDiDisegno, Box dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina);  
+    +void visualizzaTutto();
+    +void muovi();  
+    +void aggiornaPosPallina();  
+    +void aggiornaDistribuzioneVelocitaSabbia(); 
+    +void spostaSabbia(float altezza, Scatola altra);;  
+    +void spostaPallina(Scatola altra);  
+    +void visualizza();  
+    +Directions isPallinaControBordi();
+}
+
+
+
+class CSabbia{
+    -float movimentoX;
+    -float altezzaLatoMaggiore;
+    -float altezzaLatoMinore;
+    -float quantitaSabbia;
+    -float velocita;
+    
+    +CSabbia();
+    +CSabbia(float quantita);
+    -void setup();
+    +void aggiungiSabbia(float aggiunta);
+    +void rimuoviSabbia(float rimossa);  
+    +void aggiornati(float inclinazioneX, Box dimensioni); 
+    -void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX,Box dimensioni);
+    -double trasformaARadianti(double gradi); 
+    -void impostaMovimentoX(float inclinazioneX);
+    -boolean staUscendo(int altezzaDaSuperare);
+    +Directions direzioneDiUscitaSabbia(int altezzaDaSuperare); 
+    +void visualizza(Point centroScatola);
+
+}
+
+class JPallina{
+    -Point posScatola; //angolo sx scatola
+    -PApplet pianoDiDisegno; 
+    -float velocitaSpostamento; //valore tra 0 e 1
+    -Point Posizione; //Indicante le coordinate all'interno della scatola dell'oggetto
+    -boolean Presente; //Indicante la presenza della pallina o viceversa
+    -float Dimensioni; //Indicante la lunghezza del diametro della pallina
+    -Color Colore; //Colore della pallina 
+    
+
+
+    +JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore);
+    +JPallina(PApplet processingSketch, Point posScatola);
+    +void reset(); 
+    +void visualizza();  
+    +void rimuoviPallina();  
+    +void mostraPallina(); 
+    +void sposta(Point nuovaPos);  
+    +void spostaX(float inclinazioneScatolaX); 
+    +void spostaY(float inclinazioneScatolaY);  
+    +void draw();
+}
+
+
+class Directions{
+    +SOPRA;
+	+SOTTO;
+	+DESTRA;
+	+SINISTRA;
+	+NONE;
+}
+
+
+class Input{
+    /'Rappresenta il valore di input letto dalla tastiera'/
+    -Character inputTastiera
+
+    /'Rappresenta il valore di input letto da arduino'/
+    -Character inputArduino
+
+    /'Rappresenta il valore di input letto dal bluetooth'/
+    -Character inputBluetooth
+
+    /'Rappresenta il valore di input letto dal giroscopio'/
+    -int giroscopio
+
+    /'Rappresenta il valore di input letto dal dispositivo'/
+    -int dispositivo
+
+
+    /'Metodo che permette di leggere il valore di input dalla tastiera e aggiornare
+    di conseguenza l'attributo inputTastiera della classe'/
+    +leggiDaTastiera()
+
+    /'Metodo che permette di leggere il valore di input dall'Arduino e aggiornare
+    di conseguenza l'attributo inputArduino della classe'/
+    +leggiDaArduino()
+
+    /'Metodo che permette di leggere il valore di input dal Bluetooth e aggiornare
+    di conseguenza l'attributo inputBluetooth della classe'/
+    +leggiDaBluetooth()
+
+    /'Metodo che permette di leggere il valore di input dal Giroscopio e aggiornare
+    di conseguenza l'attributo giroscopio della classe'/
+    +leggiValoreGiroscopio()
+
+    /'Metodo che permette di leggere il valore di input dal Dispositivo e aggiornare
+    di conseguenza l'attributo dispositivo della classe'/
+    +leggiValoreDispositivo()
+}
+
+
+Gioco o--Scatola:  Compone <
+Gioco o--Input:  fa parte <
+Gioco o--Output:  fa parte <
+Scatola o--Pallina:  puo' essere presente <
+Scatola o--Sabbia:  puo' essere presente <
+Scatola o--Finestra:  fa parte <
+Scatola o--Posizione:  localizza <
+Pallina o--Posizione:  localizza <
+@enduml
