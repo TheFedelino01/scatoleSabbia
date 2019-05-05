@@ -7,6 +7,7 @@ package scatolesabbia;
 
 import java.awt.Point;
 import javafx.scene.shape.Box;
+import javax.swing.text.Position;
 import processing.core.PApplet;
 
 /**
@@ -20,14 +21,16 @@ public class CSabbia {
     //private float movimentoY;
     private float quantitaSabbia;//QUANTITA MAX 100 litri di sabbia
     private float velocita;
-    
+    private PApplet processingSketch;
+            
     public CSabbia(){
         this.quantitaSabbia=10;
         setup();
     }
     
-    public CSabbia(float quantita){
+    public CSabbia(float quantita, PApplet disegno){
         this.quantitaSabbia=quantita;
+        processingSketch=disegno;
         setup();
     }
     
@@ -148,9 +151,14 @@ public class CSabbia {
         return direzione;
     }
     
-    public void visualizza(Point centroScatola){
+    public void visualizza(Scatola scatola){
         //TODO 
+        processingSketch.fill(processingSketch.color(0, 255, 0));
+        Box dim = scatola.getDimensioni();
+        Point pos = scatola.getPosizioneCentrale();
+        Float altezzaScatola = (float)dim.getDepth();
         
+        processingSketch.rect(pos.x,pos.y+altezzaScatola, altezzaScatola,-quantitaSabbia);
     }
     
     //GET e SET DELLA CLASSE

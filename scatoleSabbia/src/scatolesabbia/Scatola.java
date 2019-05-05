@@ -10,6 +10,7 @@ import javafx.scene.shape.Box;
 import processing.core.PApplet;
 
 import java.awt.*;
+import java.util.Random;
 
 
 /**
@@ -54,7 +55,8 @@ public class Scatola {
         dimensioni.setDepth(100);
         dimensioni.setHeight(50);
         this.posizione = posizione;
-        sabbiaPresente = new CSabbia(10);
+        Random rn = new Random();
+        sabbiaPresente = new CSabbia(rn.nextInt(40), processingSketch);
         pallina = new JPallina(this.processingSketch, this.posizione);
         pallina.mostraPallina();
         inclinazioneX = 0;
@@ -164,6 +166,8 @@ public class Scatola {
         processingSketch.noFill();
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getWidth(), (float) dimensioni.getDepth());
+        
+        sabbiaPresente.visualizza(this);
     }
 
     public float getInclinazioneX() {

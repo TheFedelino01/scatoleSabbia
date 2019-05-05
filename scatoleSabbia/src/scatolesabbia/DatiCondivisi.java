@@ -27,6 +27,17 @@ public class DatiCondivisi {
     private int inclinazioneTavoloDiGiocoY;
     private Semaphore finito;
 
+    
+    public DatiCondivisi(int numScatole, PApplet processingSketch) {
+        scatole = new Vector<>();
+        numS = numScatole;
+
+        //Aggiungo le scatole al vettore
+        for (int i = 0; i < numS; i++)
+            scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
+    }
+    
+    
     public int getNumS() {
         return numS;
     }
@@ -75,14 +86,7 @@ public class DatiCondivisi {
         this.finito = finito;
     }
 
-    public DatiCondivisi(int numScatole, PApplet processingSketch) {
-        scatole = new Vector<>();
-        numS = numScatole;
-
-        //Aggiungo le scatole al vettore
-        for (int i = 0; i < numS; i++)
-            scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
-    }
+    
 
     public void addScatolola(Scatola scatola) {
         scatole.add(scatola);
