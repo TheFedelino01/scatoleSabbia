@@ -1,0 +1,42 @@
+@startuml 
+
+Main-->datiCondivisi**: new 
+Main--> ThScatola**:new 
+
+
+
+
+Main-->Main: faiPartireITh()
+
+
+Main-->ThScatola++:start()
+Main-->ThInput**:new
+Main-->ThInput++:start()
+
+loop !isInterrupted()
+ThScatola-->datiCondivisi: getScatola(idScatola).muovi()
+
+alt se la sabbia dsta uscendo
+ThScatola-->datiCondivisi: getScatola(idScatola).spostaSabbia(scatolaAdiacente)
+end
+
+alt se è presente una pallina all interno della scatola 
+ThScatola-->datiCondivisi: getScatola(idScatola).spostaPallina(scatolaAdiacente)
+ThScatola-->scatolaAdiacente: getPallina().sposta(nuovaPos)
+end
+
+end
+
+
+loop !isInterrupted()
+
+ThInput -->datiCondivisi: getScatola(all).setInclinazioneX(x)
+ThInput -->datiCondivisi: getScatola(all).setInclinazioneY(y)
+ThInput -->datiCondivisi: getScatola(all).muovi()
+
+end 
+
+
+
+
+@enduml
