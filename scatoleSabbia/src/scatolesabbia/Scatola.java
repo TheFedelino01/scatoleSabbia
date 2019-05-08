@@ -53,7 +53,7 @@ public class Scatola {
         dimensioni = new Box();
         dimensioni.setWidth(100);
         dimensioni.setDepth(100);
-        dimensioni.setHeight(50);
+        dimensioni.setHeight(100);
         this.posizione = posizione;
         Random rn = new Random();
         sabbiaPresente = new CSabbia(rn.nextInt(40), processingSketch);

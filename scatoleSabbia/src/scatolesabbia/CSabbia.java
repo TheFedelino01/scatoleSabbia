@@ -202,7 +202,7 @@ public class CSabbia {
         
 
         altezzaLatoMaggiore= (float)( altezzaRett+latoTriangolo);
-        altezzaLatoMinore=(float) Math.abs(altezzaRett);
+        altezzaLatoMinore=(float)altezzaRett;
     }
     
     /**
@@ -312,9 +312,37 @@ public class CSabbia {
         processingSketch.fill(processingSketch.color(0, 255, 0));
         Box dim = scatola.getDimensioni();
         Point pos = scatola.getPosizioneCentrale();
-        Float altezzaScatola = (float)dim.getDepth();
+        Float altezzaScatola = (float)dim.getHeight();
+        Float largezzaScatola = (float)dim.getWidth();
+        //processingSketch.rect(pos.x,pos.y+altezzaScatola, altezzaScatola,-quantitaSabbia);
         
-        processingSketch.rect(pos.x,pos.y+altezzaScatola, altezzaScatola,-quantitaSabbia);
+        float x2 = pos.x+largezzaScatola;
+        float y1,y2;
+        
+        if(movimentoX==1){
+            y1 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
+            y2 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+        }else{
+            y1 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+            y2 = (pos.y+altezzaScatola)-altezzaLatoMaggiore; 
+        }
+        
+        float x = largezzaScatola;
+        
+        if(altezzaLatoMinore<0 && movimentoX==1){
+            // ---> \
+            processingSketch.quad(pos.x,y1, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
+        }else if(altezzaLatoMinore<0 && movimentoX==-1){
+            // ---> /
+           processingSketch.quad(pos.x-altezzaLatoMinore,pos.y+altezzaScatola, x2, y2, x2, pos.y+altezzaScatola,pos.x-altezzaLatoMinore,pos.y+altezzaScatola);
+        }
+
+        if(altezzaLatoMinore>0){
+             processingSketch.quad(pos.x,y1, x2, y2, x2, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
+        }
+        //processingSketch.quad(pos.x,y1, x2, y2, pos.x, pos.y+altezzaScatola, x2, pos.y+altezzaScatola); 
+        
+        
     }
     
     //GET e SET DELLA CLASSE
