@@ -1,6 +1,6 @@
-#CASI D’USO
+# CASI D’USO
 
-##Titolo: Apertura dell’applicazione
+## Titolo: Apertura dell’applicazione
 Attori Principali: Utente
 Prerequisiti: Installazione dell’applicazione su tablet/smartphone
 Racconto: 
@@ -10,7 +10,7 @@ Racconto:
 
 
 
-##Titolo: Inclinazione del tablet/smartphone su un asse
+## Titolo: Inclinazione del tablet/smartphone su un asse
 Attori Principali: Utente
 Prerequisiti: Installazione dell’applicazione su tablet/smartphone, apertura dell’applicazione
 Racconto: 
@@ -20,7 +20,7 @@ Racconto:
 
 
 
-##Titolo: Inclinazione del tablet/smartphone su più assi
+## Titolo: Inclinazione del tablet/smartphone su più assi
 Attori Principali: Utente
 Prerequisiti: Installazione dell’applicazione su tablet/smartphone, apertura dell’applicazione
 Racconto: 
@@ -31,7 +31,7 @@ Racconto:
 
 
 
-##Titolo: Movimento del tablet/smartphone sull’asse verticale
+## Titolo: Movimento del tablet/smartphone sull’asse verticale
 Attori Principali: Utente
 Prerequisiti: Installazione dell’applicazione su tablet/smartphone, apertura dell’applicazione
 Racconto: 
@@ -42,7 +42,7 @@ Racconto:
 
 
 
-##Titolo: Chiusura dell’applicazione
+## Titolo: Chiusura dell’applicazione
 Attori Principali: Utente
 Prerequisiti: Installazione dell’applicazione su tablet/smartphone, apertura dell’applicazione
 Racconto: 
