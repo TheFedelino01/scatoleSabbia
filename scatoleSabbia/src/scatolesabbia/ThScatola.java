@@ -8,13 +8,28 @@ package scatolesabbia;
 import java.awt.*;
 
 /**
- * @author giaco
+ * @author Giacomo Orsenigo
+ * @brief Thread che gestisce la fisica del gioco
  */
 public class ThScatola extends Thread {
 
+    /**
+     * @brief puntatore ai dati condivisi
+     */
     private final DatiCondivisi ptrDati;
+
+    /**
+     * @brief id della scatola
+     */
     private final int idScatola;
 
+    /**
+     * @param ptrDati   dati condivisi
+     * @param idScatola id della scatola
+     * @brief costruttore
+     * <p>
+     * Inizializza gli attributi
+     */
     public ThScatola(DatiCondivisi ptrDati, int idScatola) {
         this.ptrDati = ptrDati;
         this.idScatola = idScatola;
@@ -26,7 +41,8 @@ public class ThScatola extends Thread {
 
         while (!isInterrupted()) {
             scatola.muovi();
-            final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia((int) scatola.getDimensioni().getHeight());
+            int altezzaLatoUscita = scatola.getDimensioni().getAltezza(Directions.fromInclinazioneX(ptrDati.getDimensioneSchermoX()));
+            final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 
             if (direzioneUscita != Directions.NONE) {
                 System.out.println("LA SABBIA ESCE!!");
