@@ -21,24 +21,22 @@ public class ThScatola extends Thread {
     /**
      * @brief id della scatola
      */
-    private final int idScatola;
+    private final Scatola scatola;
 
     /**
      * @param ptrDati   dati condivisi
-     * @param idScatola id della scatola
+     * @param scatola scatola
      * @brief costruttore
      * <p>
      * Inizializza gli attributi
      */
-    public ThScatola(DatiCondivisi ptrDati, int idScatola) {
+    public ThScatola(DatiCondivisi ptrDati, int r, int c) {
         this.ptrDati = ptrDati;
-        this.idScatola = idScatola;
+        this.scatola = ptrDati.getScatola(r, c);
     }
 
     @Override
     public void run() {
-        final Scatola scatola = ptrDati.getScatola(idScatola);
-
         while (!isInterrupted()) {
             scatola.muovi();
             int altezzaLatoUscita = scatola.getDimensioni().getAltezza(Directions.fromInclinazioneX(ptrDati.getDimensioneSchermoX()));
@@ -46,12 +44,12 @@ public class ThScatola extends Thread {
 
             if (direzioneUscita != Directions.NONE) {
                 System.out.println("LA SABBIA ESCE!!");
-                final Scatola ricevente = ptrDati.getScatolaAdiacente(idScatola, direzioneUscita);
+                final Scatola ricevente = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, direzioneUscita);
                 scatola.spostaSabbia(1, ricevente);
                 if (scatola.getPallina().isPresente()) {
                     final Directions dirPallina = scatola.isPallinaControBordi();
                     if (dirPallina != Directions.NONE) {
-                        final Scatola s = ptrDati.getScatolaAdiacente(idScatola, dirPallina);
+                        final Scatola s = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, dirPallina);
                         scatola.spostaPallina(s);
                         Point nuovaPos = s.getPallina().getPosizione();
                         switch (dirPallina) {

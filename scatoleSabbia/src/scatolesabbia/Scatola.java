@@ -193,5 +193,7 @@ public class Scatola {
         this.inclinazioneY = inclinazioneY;
     }
 
-
+    public Point getPosizione() {
+        return posizione;
+    }
 }
