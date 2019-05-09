@@ -7,6 +7,7 @@ package scatolesabbia;
 
 import processing.core.PApplet;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -25,15 +26,12 @@ public class ScatoleSabbia extends PApplet {
         //Inizializzo i dati condivisi e il numero di th
 
         dati = new DatiCondivisi(numScatole, this, 100, 100, 500, 1000);
-        thScatole = new ThScatola[100000000];
+        thScatole = new ThScatola[numScatole];
 
         //Assegno al vettore con i th i thread delle scatole
-        int i = 0;
-        for (Vector<Scatola> v : dati.getScatole())
-            for (Scatola s : v) {
-                thScatole[i] = new ThScatola(dati, s);
-                i++;
-            }
+        List<Scatola> scatole = dati.getScatoleInUnaLista();
+        for (int i = 0; i < scatole.size(); i++)
+            thScatole[i] = new ThScatola(dati, scatole.get(i));
     }
 
     public static void main(String[] args) {

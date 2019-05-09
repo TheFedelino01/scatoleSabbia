@@ -25,7 +25,7 @@ public class ThScatola extends Thread {
 
     /**
      * @param ptrDati dati condivisi
-     * @param r scatola
+     * @param s scatola
      * @brief costruttore
      * <p>
      * Inizializza gli attributi
@@ -43,27 +43,29 @@ public class ThScatola extends Thread {
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 
             if (direzioneUscita != Directions.NONE) {
-                System.out.println("LA SABBIA ESCE!!");
                 final Scatola ricevente = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, direzioneUscita);
-                scatola.spostaSabbia(1, ricevente);
-                if (scatola.getPallina().isPresente()) {
-                    final Directions dirPallina = scatola.isPallinaControBordi();
-                    if (dirPallina != Directions.NONE) {
-                        final Scatola s = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, dirPallina);
-                        scatola.spostaPallina(s);
-                        Point nuovaPos = s.getPallina().getPosizione();
-                        switch (dirPallina) {
-                            case SOPRA:
-                            case SOTTO:
-                                nuovaPos.y = -nuovaPos.y;
-                                break;
-                            case SINISTRA:
-                            case DESTRA:
-                                nuovaPos.x = -nuovaPos.x;
-                                break;
-                        }
-                        s.getPallina().sposta(nuovaPos);
-                    }
+                if (ricevente != null) {    //se la scatola esiste e non è vuoto
+                    System.out.println("LA SABBIA ESCE!!");
+                    scatola.spostaSabbia(1, ricevente);
+//                        if (scatola.getPallina().isPresente()) {
+//                            final Directions dirPallina = scatola.isPallinaControBordi();
+//                            if (dirPallina != Directions.NONE) {
+//                                final Scatola s = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, dirPallina);
+//                                scatola.spostaPallina(s);
+//                                Point nuovaPos = s.getPallina().getPosizione();
+//                                switch (dirPallina) {
+//                                    case SOPRA:
+//                                    case SOTTO:
+//                                        nuovaPos.y = -nuovaPos.y;
+//                                        break;
+//                                    case SINISTRA:
+//                                    case DESTRA:
+//                                        nuovaPos.x = -nuovaPos.x;
+//                                        break;
+//                                }
+//                                s.getPallina().sposta(nuovaPos);
+//                            }
+//                        }
                 }
             }
             try {

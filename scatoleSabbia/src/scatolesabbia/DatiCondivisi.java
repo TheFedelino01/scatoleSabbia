@@ -7,8 +7,9 @@ package scatolesabbia;
 
 import processing.core.PApplet;
 
-import java.awt.*;
-import java.lang.reflect.Array;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.Semaphore;
 
@@ -31,6 +32,14 @@ public class DatiCondivisi {
 
     public Vector<Vector<Scatola>> getScatole() {
         return scatole;
+    }
+
+    public List<Scatola> getScatoleInUnaLista() {
+        List<Scatola> v = new ArrayList<Scatola>();
+        for (Vector<Scatola> vett : scatole)
+            for (Scatola s : vett)
+                v.add(s);
+        return v;
     }
 
     public void setScatole(Vector<Vector<Scatola>> scatole) {
@@ -60,34 +69,33 @@ public class DatiCondivisi {
     public void setDimensioneScatolaY(int dimensioneScatolaY) {
         this.dimensioneScatolaY = dimensioneScatolaY;
     }
-    
-    public DatiCondivisi(int numScatole, PApplet processingSketch, int dimensioneScatolaX, int dimensioneScatolaY, int dimensioneSchermoY,int dimensioneSchermoX) {
+
+    public DatiCondivisi(int numScatole, PApplet processingSketch, int dimensioneScatolaX, int dimensioneScatolaY, int dimensioneSchermoY, int dimensioneSchermoX) {
         this.dimensioneScatolaX = dimensioneScatolaX;
         this.dimensioneScatolaY = dimensioneScatolaY;
         this.dimensioneSchermoY = dimensioneSchermoY;
         this.dimensioneSchermoX = dimensioneSchermoX;
         numS = numScatole;
         int c = 0;
-        scatole=new Vector<>();
+        scatole = new Vector<>();
         int numScatolePerRigaPossibili = dimensioneSchermoX / dimensioneScatolaX;
         int numScatolePerColonnaPossibili = dimensioneSchermoY / dimensioneScatolaY;
         //Aggiungo le scatole al vettore
-        for (int i = 0; i < numScatolePerRigaPossibili; i++)
-        {
+        for (int i = 0; i < numScatolePerRigaPossibili; i++) {
             scatole.add(new Vector<Scatola>());
-            for (int j = 0; j < numScatolePerColonnaPossibili; j++){
-                if(c < numS)
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY)));
+            for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
+                if (c < numS)
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX, i * dimensioneScatolaY)));
                 //else
-                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
+                //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
             }
         }
-            
-            //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
+
+        //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
-    
-    
+
+
     public int getNumS() {
         return numS;
     }
@@ -140,33 +148,35 @@ public class DatiCondivisi {
         return (Scatola) scatole.get(r).get(c);
     }
 
-    public Scatola getScatolaAdiacente(int r,int c, Directions direction) {
+    public Scatola getScatolaAdiacente(int r, int c, Directions direction) {
+        r /= dimensioneScatolaX;
+        c /= dimensioneScatolaY;
         Scatola scatola = null;
-        if(direction ==Directions.SOPRA){
-            try{
-            scatola = scatole.get(r+1).get(c);
-            }catch(Exception e){
+        if (direction == Directions.SOPRA) {
+            try {
+                scatola = scatole.get(r + 1).get(c);
+            } catch (Exception e) {
                 scatola = null;
             }
         }
-        if(direction ==Directions.SOTTO){
-            try{
-            scatola = scatole.get(r-1).get(c);
-            }catch(Exception e){
+        if (direction == Directions.SOTTO) {
+            try {
+                scatola = scatole.get(r - 1).get(c);
+            } catch (Exception e) {
                 scatola = null;
             }
         }
-            if(direction ==Directions.DESTRA){
-            try{
-            scatola = scatole.get(r).get(c+1);
-            }catch(Exception e){
+        if (direction == Directions.DESTRA) {
+            try {
+                scatola = scatole.get(r).get(c + 1);
+            } catch (Exception e) {
                 scatola = null;
-            }            
+            }
         }
-            if(direction ==Directions.SINISTRA){
-            try{
-            scatola = scatole.get(r).get(c-1);
-            }catch(Exception e){
+        if (direction == Directions.SINISTRA) {
+            try {
+                scatola = scatole.get(r).get(c - 1);
+            } catch (Exception e) {
                 scatola = null;
             }
         }

@@ -95,6 +95,7 @@ public class Scatola {
      * @param altra   scatola in cui spostare la sabbia
      */
     public void spostaSabbia(float altezza, Scatola altra) {
+        System.out.println("Sposto la sabbia...");
         sabbiaPresente.rimuoviSabbia(altezza);
         altra.sabbiaPresente.aggiungiSabbia(altezza);
     }
@@ -105,7 +106,6 @@ public class Scatola {
      * @param altra scatola in cui spostare la pallina
      */
     public void spostaPallina(Scatola altra) {
-
         this.pallina.rimuoviPallina();
         altra.setPallina(pallina);
         altra.pallina.mostraPallina();
