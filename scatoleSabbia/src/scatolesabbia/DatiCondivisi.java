@@ -78,8 +78,8 @@ public class DatiCondivisi {
             for (int j = 0; j < numScatolePerColonnaPossibili; j++){
                 if(c < numS)
                     scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY)));
-                else
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
+                //else
+                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
             }
         }
