@@ -1,6 +1,7 @@
 package scatolesabbia;
 
 import java.util.Scanner;
+import java.util.Vector;
 
 public class ThInput extends Thread {
     private DatiCondivisi ptrDati;
@@ -14,19 +15,21 @@ public class ThInput extends Thread {
     public void run() {
         while (!isInterrupted()) {
             System.out.print("Inclinazione X: ");
-            float x = sc.nextFloat();
+            int x = sc.nextInt();
             System.out.print("Inclinazione Y: ");
-            float y = sc.nextFloat();
-            
+            int y = sc.nextInt();
+
             System.out.println("\n\n-------------");
-            for (int i=0; i<ptrDati.getNumScatole();i++) {
-                Scatola s = ptrDati.getScatola(i);
-                s.setInclinazioneX(x);
-                s.setInclinazioneY(y);
-                s.muovi();
-                System.out.println("SCATOLA ID: "+i);
-                System.out.println(s.getSabbiaPresente().toString());
-            }
+
+            ptrDati.setInclinazioneTavoloDiGiocoX(x);
+            ptrDati.setInclinazioneTavoloDiGiocoY(y);
+
+            for (Vector<Scatola> v : ptrDati.getScatole())
+                for (Scatola s : v) {
+                    s.muovi(x, y);
+                    System.out.println(s.getSabbiaPresente().toString());
+                }
+
         }
     }
 }

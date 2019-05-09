@@ -7,26 +7,33 @@ package scatolesabbia;
 
 import processing.core.PApplet;
 
+import java.util.Vector;
+
 /**
- *
  * @author Federico Saccani
  */
-public class ScatoleSabbia extends PApplet{
+public class ScatoleSabbia extends PApplet {
 
-    private static  DatiCondivisi dati;
+    private static DatiCondivisi dati;
     private static ThScatola[] thScatole;
-    private static int numScatole=3;
+    private static int numScatole = 3;
 
     /**
      * costruttore
      */
-    public ScatoleSabbia(){
+    public ScatoleSabbia() {
         //Inizializzo i dati condivisi e il numero di th
-        dati = new DatiCondivisi(numScatole,this);
-        thScatole = new ThScatola[numScatole];
+
+        dati = new DatiCondivisi(numScatole, this, 100, 100, 500, 1000);
+        thScatole = new ThScatola[100000000];
+
         //Assegno al vettore con i th i thread delle scatole
-        for(int i=0; i<numScatole;i++)
-            thScatole[i] = new ThScatola(dati,i);
+        int i = 0;
+        for (Vector<Scatola> v : dati.getScatole())
+            for (Scatola s : v) {
+                thScatole[i] = new ThScatola(dati, s);
+                i++;
+            }
     }
 
     public static void main(String[] args) {
@@ -40,10 +47,10 @@ public class ScatoleSabbia extends PApplet{
     public void settings() {
         size(1080, 760);
     }
-    
-    private static void faiPartireITh(){
+
+    private static void faiPartireITh() {
         //Faccio partire i th
-        for(int i=0; i<numScatole;i++)
+        for (int i = 0; i < numScatole; i++)
             thScatole[i].start();
     }
 
@@ -55,10 +62,10 @@ public class ScatoleSabbia extends PApplet{
 
     public void draw() {
         background(255, 255, 255);
-        
-        for(int i=0; i<dati.getNumScatole();i++){
-            dati.getScatola(i).draw();
-        }
+        for (Vector<Scatola> v : dati.getScatole())
+            for (Scatola s : v) {
+                s.draw();
+            }
     }
-    
 }
+

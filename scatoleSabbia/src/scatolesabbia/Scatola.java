@@ -23,16 +23,6 @@ public class Scatola {
      */
     private final PApplet processingSketch;
 
-    /**
-     * @brief Inclinazione della scatola lungo l'asse X
-     */
-    private float inclinazioneX;
-
-    /**
-     * @brief Inclinazione della scatola lungo l'asse Y
-     */
-    private float inclinazioneY;
-
 
     /**
      * @brief dimensioni della scatola
@@ -53,11 +43,10 @@ public class Scatola {
      * @brief pallina presente nella scatola (se presente)
      */
     private JPallina pallina;
-    
 
 
     public Scatola(PApplet processingSketch, Point posizione) {
-        this(processingSketch,new DimensioniScatola(),posizione,new CSabbia(processingSketch),new JPallina(processingSketch, posizione));
+        this(processingSketch, new DimensioniScatola(), posizione, new CSabbia(processingSketch), new JPallina(processingSketch, posizione));
     }
 
     public Scatola(PApplet processingSketch, DimensioniScatola dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
@@ -66,8 +55,6 @@ public class Scatola {
         this.posizione = posizione;
         this.sabbiaPresente = sabbiaPresente;
         this.pallina = pallina;
-        inclinazioneX = 0;
-        inclinazioneY = 0;
         pallina.mostraPallina();
     }
 
@@ -77,13 +64,13 @@ public class Scatola {
     }
 
     //Metodo che permette di simulare un movimento  della scatola richiamando aggiornamento Sabbia, poi aggiornamento Pallina e successivamento visualizzazione scatola'/
-    public void muovi() {
-        aggiornaDistribuzioneVelocitaSabbia();
-        aggiornaPosPallina();
+    public void muovi(float inclinazioneX, float inclinazioneY) {
+        aggiornaDistribuzioneVelocitaSabbia(inclinazioneX, inclinazioneY);
+        aggiornaPosPallina(inclinazioneX, inclinazioneY);
     }
 
     //Metodo che permette di aggiornare la posizione della pallina all'interno della scatola a seconda della velocita' della sabbia
-    public void aggiornaPosPallina() {
+    public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY) {
         if (inclinazioneX < 0 && isPallinaControBordi() == Directions.SINISTRA)
             return;
         if (inclinazioneX > 0 && isPallinaControBordi() == Directions.DESTRA)
@@ -100,7 +87,7 @@ public class Scatola {
     }
 
     //Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola'/
-    public void aggiornaDistribuzioneVelocitaSabbia() {
+    public void aggiornaDistribuzioneVelocitaSabbia(float inclinazioneX, float inclinazioneY) {
         sabbiaPresente.aggiornati(inclinazioneX, dimensioni);
     }
 
@@ -166,13 +153,6 @@ public class Scatola {
         sabbiaPresente.visualizza(this);
     }
 
-    public float getInclinazioneX() {
-        return inclinazioneX;
-    }
-
-    public float getInclinazioneY() {
-        return inclinazioneY;
-    }
 
     public Directions isPallinaControBordi() {
         if (pallina.getPosizione().x > dimensioni.getLarghezza())
@@ -186,13 +166,6 @@ public class Scatola {
         return Directions.NONE;
     }
 
-    public void setInclinazioneX(float inclinazioneX) {
-        this.inclinazioneX = inclinazioneX;
-    }
-
-    public void setInclinazioneY(float inclinazioneY) {
-        this.inclinazioneY = inclinazioneY;
-    }
 
     public Point getPosizione() {
         return posizione;

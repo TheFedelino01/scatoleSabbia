@@ -24,21 +24,21 @@ public class ThScatola extends Thread {
     private final Scatola scatola;
 
     /**
-     * @param ptrDati   dati condivisi
-     * @param scatola scatola
+     * @param ptrDati dati condivisi
+     * @param r scatola
      * @brief costruttore
      * <p>
      * Inizializza gli attributi
      */
-    public ThScatola(DatiCondivisi ptrDati, int r, int c) {
+    public ThScatola(DatiCondivisi ptrDati, Scatola s) {
         this.ptrDati = ptrDati;
-        this.scatola = ptrDati.getScatola(r, c);
+        this.scatola = s;
     }
 
     @Override
     public void run() {
         while (!isInterrupted()) {
-            scatola.muovi();
+            scatola.muovi(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
             int altezzaLatoUscita = scatola.getDimensioni().getAltezza(Directions.fromInclinazioneX(ptrDati.getDimensioneSchermoX()));
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 
