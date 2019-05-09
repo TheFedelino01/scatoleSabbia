@@ -15,7 +15,7 @@ public class ThPallina extends Thread  {
     
     
     private DatiCondivisi ptrDati;
-    private int idPallina;
+    private int idPallina; 
 
     public ThPallina(DatiCondivisi ptrDati) {
         this.ptrDati = ptrDati;
