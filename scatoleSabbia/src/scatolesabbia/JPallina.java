@@ -28,6 +28,7 @@ public final class JPallina {
     
     private Color Colore; //Colore della pallina 
     
+    private int r,c; //Posizione scatola nella quale è presente la pallina 
 
 
     public JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore) {
@@ -120,4 +121,15 @@ public final class JPallina {
     public Color getColore() {
         return Colore;
     }
+
+    public int getR() {
+        return r;
+    }
+
+    public int getC() {
+        return c;
+    }
+    
+    
+    
 }

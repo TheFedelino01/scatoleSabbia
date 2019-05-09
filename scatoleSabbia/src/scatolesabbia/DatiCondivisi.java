@@ -19,22 +19,72 @@ import java.util.concurrent.Semaphore;
 public class DatiCondivisi {
 
     //TODO
-    private Vector<Scatola> scatole;
+    private Vector<Vector<Scatola>> scatole;
     private int numS;
     private int dimensioneSchermoX;
-    private int dimensioneSchermoy;
+    private int dimensioneSchermoY;
     private int inclinazioneTavoloDiGiocoX;
     private int inclinazioneTavoloDiGiocoY;
     private Semaphore finito;
+    private int dimensioneScatolaX;
+    private int dimensioneScatolaY;
 
+    public Vector<Vector<Scatola>> getScatole() {
+        return scatole;
+    }
+
+    public void setScatole(Vector<Vector<Scatola>> scatole) {
+        this.scatole = scatole;
+    }
+
+    public int getDimensioneSchermoY() {
+        return dimensioneSchermoY;
+    }
+
+    public void setDimensioneSchermoY(int dimensioneSchermoY) {
+        this.dimensioneSchermoY = dimensioneSchermoY;
+    }
+
+    public int getDimensioneScatolaX() {
+        return dimensioneScatolaX;
+    }
+
+    public void setDimensioneScatolaX(int dimensioneScatolaX) {
+        this.dimensioneScatolaX = dimensioneScatolaX;
+    }
+
+    public int getDimensioneScatolaY() {
+        return dimensioneScatolaY;
+    }
+
+    public void setDimensioneScatolaY(int dimensioneScatolaY) {
+        this.dimensioneScatolaY = dimensioneScatolaY;
+    }
     
-    public DatiCondivisi(int numScatole, PApplet processingSketch) {
-        scatole = new Vector<>();
+    public DatiCondivisi(int numScatole, PApplet processingSketch, int dimensioneScatolaX, int dimensioneScatolaY, int dimensioneSchermoY,int dimensioneSchermoX) {
+        this.dimensioneScatolaX = dimensioneScatolaX;
+        this.dimensioneScatolaY = dimensioneScatolaY;
+        this.dimensioneSchermoY = dimensioneSchermoY;
+        this.dimensioneSchermoX = dimensioneSchermoX;
         numS = numScatole;
-
+        int c = 0;
+        
+        int numScatolePerRigaPossibili = dimensioneSchermoX / dimensioneScatolaX;
+        int numScatolePerColonnaPossibili = dimensioneSchermoY / dimensioneScatolaY;
         //Aggiungo le scatole al vettore
-        for (int i = 0; i < numS; i++)
-            scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
+        for (int i = 0; i < numScatolePerRigaPossibili; i++)
+        {
+            scatole.add(new Vector<Scatola>());
+            for (int j = 0; j < numScatolePerColonnaPossibili; j++){
+                if(c < numS)
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(dimensioneScatolaX, dimensioneScatolaY)));
+                else
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(dimensioneScatolaX, dimensioneScatolaY /*,false**/)));
+                c++;
+            }
+        }
+            
+            //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
     
     
@@ -55,11 +105,11 @@ public class DatiCondivisi {
     }
 
     public int getDimensioneSchermoy() {
-        return dimensioneSchermoy;
+        return dimensioneSchermoY;
     }
 
     public void setDimensioneSchermoy(int dimensioneSchermoy) {
-        this.dimensioneSchermoy = dimensioneSchermoy;
+        this.dimensioneSchermoY = dimensioneSchermoy;
     }
 
     public int getInclinazioneTavoloDiGiocoX() {
@@ -86,25 +136,44 @@ public class DatiCondivisi {
         this.finito = finito;
     }
 
-    
-
-    public void addScatolola(Scatola scatola) {
-        scatole.add(scatola);
+    public Scatola getScatola(int r, int c) {
+        return (Scatola) scatole.get(r).get(c);
     }
 
-    public Scatola getScatola(int idScatola) {
-        return (Scatola) scatole.get(idScatola);
-    }
-
-    public Scatola getScatolaAdiacente(int idScatola, Directions direction) {
-        return null;
+    public Scatola getScatolaAdiacente(int r,int c, Directions direction) {
+        Scatola scatola = null;
+        if(direction ==Directions.SOPRA){
+            try{
+            scatola = scatole.get(r+1).get(c);
+            }catch(Exception e){
+                scatola = null;
+            }
+        }
+        if(direction ==Directions.SOTTO){
+            try{
+            scatola = scatole.get(r-1).get(c);
+            }catch(Exception e){
+                scatola = null;
+            }
+        }
+            if(direction ==Directions.DESTRA){
+            try{
+            scatola = scatole.get(r).get(c+1);
+            }catch(Exception e){
+                scatola = null;
+            }            
+        }
+            if(direction ==Directions.SINISTRA){
+            try{
+            scatola = scatole.get(r).get(c-1);
+            }catch(Exception e){
+                scatola = null;
+            }
+        }
+        return scatola;
     }
 
     public int getNumScatole() {
         return numS;
-    }
-
-    public Vector<Scatola> getScatole() {
-        return scatole;
     }
 }

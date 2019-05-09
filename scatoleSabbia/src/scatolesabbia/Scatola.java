@@ -53,6 +53,7 @@ public class Scatola {
      * @brief pallina presente nella scatola (se presente)
      */
     private JPallina pallina;
+    
 
 
     public Scatola(PApplet processingSketch, Point posizione) {
