@@ -1,12 +1,14 @@
 package scatolesabbia;
 
 import java.awt.Point;
+import java.util.Random;
 
 import javafx.scene.shape.Box;
 
 import javax.swing.text.Position;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * @author Saccani Federico
@@ -71,7 +73,8 @@ public class CSabbia {
      */
     public CSabbia(PApplet disegno) {
         processingSketch = disegno;
-        this.quantitaSabbia = 10;
+        Random rn = new Random();
+        this.quantitaSabbia = rn.nextInt(100);
         setup();
     }
 
@@ -288,40 +291,67 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public void visualizza(Scatola scatola) {
-        //TODO 
+    public void visualizza(Scatola scatola, boolean vistaSopra) {
+        
         processingSketch.fill(processingSketch.color(0, 255, 0));
         DimensioniScatola dim = scatola.getDimensioni();
         Point pos = scatola.getPosizioneCentrale();
         Float altezzaScatola = (float)dim.getAltezzaSotto();
         Float largezzaScatola = (float)dim.getLarghezza();
-        //processingSketch.rect(pos.x,pos.y+altezzaScatola, altezzaScatola,-quantitaSabbia);
-
-        float x2 = pos.x+largezzaScatola;
-        float y1,y2;
-
-        if(movimentoX==1){
-            y1 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
-            y2 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+        
+        
+        if(vistaSopra==true){
+            //La visione e' quella vista verso l'alto
+            
+            //Imposto l'opacita a seconda del quantitativo di sabbia
+            processingSketch.tint(255, (255*quantitaSabbia)/100);
+            //Carico l'immagine
+            PImage img;
+            img = processingSketch.loadImage("sabbia.jpg");  
+            processingSketch.noStroke();
+            //Imposto la posizione dell'immagine 
+            processingSketch.image(img, pos.x, pos.y,largezzaScatola,altezzaScatola);
+            
+            
+            //Aggiungo il testo relativo al quantitativo % di sabbia presente
+            processingSketch.textSize(32);
+            processingSketch.fill(0, 0, 0);
+            //Posizione al di sotto della scatola
+            processingSketch.text(quantitaSabbia+"%", pos.x, pos.y+altezzaScatola+35); 
+            
         }else{
-            y1 = (pos.y+altezzaScatola)-altezzaLatoMinore;
-            y2 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
-        }
+            //La visione e' quella di lato
+            float x2 = pos.x+largezzaScatola;
+            float y1,y2;
 
-        float x = largezzaScatola;
+            if(movimentoX==1){
+                y1 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
+                y2 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+            }else{
+                    y1 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+                    y2 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
+                }
 
-        if(altezzaLatoMinore<0 && movimentoX==1){
-            // ---> \
-            processingSketch.quad(pos.x,y1, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
-        }else if(altezzaLatoMinore<0 && movimentoX==-1){
-            // ---> /
-           processingSketch.quad(pos.x-altezzaLatoMinore,pos.y+altezzaScatola, x2, y2, x2, pos.y+altezzaScatola,pos.x-altezzaLatoMinore,pos.y+altezzaScatola);
-        }
+            float x = largezzaScatola;
 
-        if(altezzaLatoMinore>0){
-             processingSketch.quad(pos.x,y1, x2, y2, x2, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
+            if(altezzaLatoMinore<0 && movimentoX==1){
+                // ---> \
+                processingSketch.quad(pos.x,y1, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola, (pos.x+largezzaScatola)+altezzaLatoMinore, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
+            }else if(altezzaLatoMinore<0 && movimentoX==-1){
+                // ---> /
+               processingSketch.quad(pos.x-altezzaLatoMinore,pos.y+altezzaScatola, x2, y2, x2, pos.y+altezzaScatola,pos.x-altezzaLatoMinore,pos.y+altezzaScatola);
+            }
+
+            if(altezzaLatoMinore>0){
+                 processingSketch.quad(pos.x,y1, x2, y2, x2, pos.y+altezzaScatola,pos.x, pos.y+altezzaScatola);
+            }
+
         }
-        //processingSketch.quad(pos.x,y1, x2, y2, pos.x, pos.y+altezzaScatola, x2, pos.y+altezzaScatola);
+        
+        
+
+
+        
 
 
     }
