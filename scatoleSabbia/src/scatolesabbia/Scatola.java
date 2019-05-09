@@ -72,9 +72,6 @@ public class Scatola {
     }
 
 
-    //Metodo che permette di rappresentare la scatola visualizzando la sabbia, la pallina e le finestre sul dispositivo
-    public void visualizzaScatola() {
-    }
 
     //Metodo che permette di simulare un movimento  della scatola richiamando aggiornamento Sabbia, poi aggiornamento Pallina e successivamento visualizzazione scatola'/
     public void muovi() {
@@ -149,7 +146,7 @@ public class Scatola {
 
 
     public void draw() {
-        processingSketch.fill(processingSketch.color(240, 0, 0));
+        processingSketch.fill(processingSketch.color(255, 255, 255));
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
 //        if (pallina.isPresente()) {
@@ -163,7 +160,7 @@ public class Scatola {
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
-        sabbiaPresente.visualizza(this);
+        sabbiaPresente.visualizza(this, true);
     }
 
     public float getInclinazioneX() {
@@ -194,5 +191,7 @@ public class Scatola {
         this.inclinazioneY = inclinazioneY;
     }
 
-
+    public Point getPosizione() {
+        return posizione;
+    }
 }
