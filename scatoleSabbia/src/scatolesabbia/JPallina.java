@@ -30,7 +30,19 @@ public final class JPallina {
     
     private int r,c; //Posizione scatola nella quale è presente la pallina 
 
-
+        
+    /**
+     * @brief Costruttore
+     * @param velocitàSpostamento Velocità iniziale pallina
+     * @param Posizione Indicante le coordinate iniziali all'interno della scatola
+     * @param Presente Indicante se la pallinaè presente oppure no
+     * @param Dimensioni Indicante le dimensioni della pallina
+     * @param Colore Indicante il colore della pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
+    
     public JPallina(float velocitaSpostamento, Point Posizione, boolean Presente, float Dimensioni, Color Colore) {
         this.velocitaSpostamento = velocitaSpostamento;
         this.Posizione = Posizione; //La posizione andrà impostata al centro della scatola
@@ -40,6 +52,13 @@ public final class JPallina {
     }
 
     
+    /**
+     * @brief Costruttore vuoto
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
+    
     public JPallina(PApplet processingSketch, Point posScatola) {
         
         this.processingSketch = processingSketch;
@@ -47,6 +66,12 @@ public final class JPallina {
         reset();
     }
     
+    
+    /**
+     * @brief permette di reimpostare gli attributi ai valori di default
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     public void reset() {
         
@@ -62,19 +87,47 @@ public final class JPallina {
         //TO DO
     }
     
+    /**
+     * @brief Permette di rimuovere la pallina dalla scatola di appartenenza.
+     * All'effettivo l'oggetto non viene deistanziato, semplicemente non viene più visualizzato.
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     public void rimuoviPallina() { //La pallina viene rimossa
         
         Presente = false;
     }
+    
+    /**
+     * @brief Permette di aggiungere la pallina alla scatola di appartenenza.
+     * All'effettivo l'oggetto non viene istanziato, semplicemente inizia ad essere visualizzato.
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     public void mostraPallina() { //Viene aggiunta la pallina
         
         Presente = true;
     }
     
+    /**
+     * @brief Sposta la pallina in una posizione specifica all'interno della scatola
+     * @param nuovaPos Point indicante la posizione specifica che andrà ad essere assegnata alla pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     public void sposta(Point nuovaPos) { 
         Posizione = nuovaPos;
     }
+    
+    /**
+     * @brief Sposta la pallina in base all'inclinazione sull'asse delle x della scatola
+     * @param inclinazioneScatolaX Inclinazione sull'asse delle x della scatola 
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     public void spostaX(float inclinazioneScatolaX) {
         
@@ -86,6 +139,13 @@ public final class JPallina {
             Posizione.x += (-0.5 * velocitaSpostamento);
     }
     
+    /**
+     * @brief Sposta la pallina in base all'inclinazione sull'asse delle y della scatola
+     * @param inclinazioneScatolaY Inclinazione sull'asse delle y della scatola 
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     public void spostaY(float inclinazioneScatolaY) {
         
         velocitaSpostamento = Math.abs(inclinazioneScatolaY); //La velocità è direttamente proporzionale all'inclinazione della scatola
@@ -95,6 +155,14 @@ public final class JPallina {
         else
             Posizione.y += (-0.5 * velocitaSpostamento);
     }
+    
+    
+    /**
+     * @brief Renderizza la pallina mediante il core processing.
+     * Viene richiamato ripetutamente (in base al framerate) dal Thread pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     public void draw() {
         
