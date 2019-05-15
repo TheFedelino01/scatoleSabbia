@@ -17,7 +17,7 @@ public class ScatoleSabbia extends PApplet {
 
     private static DatiCondivisi dati;
     private static ThScatola[] thScatole;
-    private static int numScatole = 3;
+    private static int numScatole = 5;
 
     /**
      * costruttore

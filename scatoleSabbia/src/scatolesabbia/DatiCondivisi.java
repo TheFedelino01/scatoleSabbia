@@ -75,6 +75,7 @@ public class DatiCondivisi {
         this.dimensioneScatolaY = dimensioneScatolaY;
         this.dimensioneSchermoY = dimensioneSchermoY;
         this.dimensioneSchermoX = dimensioneSchermoX;
+        int spazioTraScatole=10;
         numS = numScatole;
         int c = 0;
         scatole = new Vector<>();
@@ -85,7 +86,7 @@ public class DatiCondivisi {
             scatole.add(new Vector<Scatola>());
             for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
                 if (c < numS)
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX, i * dimensioneScatolaY)));
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole*(j+1), i * dimensioneScatolaY+spazioTraScatole)));
                 //else
                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
