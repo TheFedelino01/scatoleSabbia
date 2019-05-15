@@ -15,18 +15,66 @@ import processing.core.PApplet;
 
 public final class JPallina {
     
-    
+    /**
+     * @brief L'attributo indica la posizione iniziale della pallina all'interno della scatola
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     private Point posScatola; //angolo sx scatola
+    
+    
+    /**
+     * @brief L'attributo rappresenta il canvas da utilizzare per il rendering della pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     private PApplet processingSketch;
     
+    /**
+     * @brief L'attributo rappresenta la velocità di spostamento della pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     private float velocitaSpostamento; //valore tra 0 e 1
+    
+    /**
+     * @brief L'attributo indica la posizione della pallina all'interno della scatola
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     private Point Posizione; //Indicante le coordinate all'interno della scatola dell'oggetto
+    
+    /**
+     * @brief L'attributo indica se la pallina è presente all'interno della scatola o viceversa
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     private boolean Presente; //Indicante la presenza della pallina o viceversa
-   
+    
+    
+    /**
+     * @brief L'attributo indica le dimensioni della pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     private float Dimensioni; //Indicante la lunghezza del diametro della pallina
     
+    /**
+     * @brief L'attributo indica il colore con il quale verrà renderizzata la pallina
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
+    
     private Color Colore; //Colore della pallina 
+    
+    /**
+     * @brief Gli attributi indicano la posizione della pallina all'interno della matrice di scatola
+     * @author Peduzzi Samuele
+     * @version 1.0
+     */
     
     private int r,c; //Posizione scatola nella quale è presente la pallina 
 
