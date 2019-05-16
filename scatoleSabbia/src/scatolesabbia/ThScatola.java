@@ -35,6 +35,11 @@ public class ThScatola extends Thread {
         this.scatola = s;
     }
 
+    /**
+     * @brief run
+     *
+     * Il thread aggiorna continuamente gli stati delle scatole in base all'inclinazione
+     */
     @Override
     public void run() {
         while (!isInterrupted()) {
