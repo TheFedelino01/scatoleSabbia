@@ -38,7 +38,8 @@ public class ThScatola extends Thread {
     @Override
     public void run() {
         while (!isInterrupted()) {
-            scatola.muovi(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
+            //scatola.muovi(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
+            scatola.aggiornaDistribuzioneVelocitaSabbia(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
             int altezzaLatoUscita = scatola.getDimensioni().getAltezza(Directions.fromInclinazioneX(ptrDati.getDimensioneSchermoX()));
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 

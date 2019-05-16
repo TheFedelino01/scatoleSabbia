@@ -39,7 +39,7 @@ public class ScatoleSabbia extends PApplet {
 
         faiPartireITh();
 
-        new ThInput(dati).start();
+        new SwingGui.InputAccelerometro(dati).setVisible(true);
     }
 
     public void settings() {

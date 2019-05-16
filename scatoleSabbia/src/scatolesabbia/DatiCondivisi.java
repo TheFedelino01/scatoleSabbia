@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.Semaphore;
 
-
 /**
  * @author feder
  */
@@ -36,9 +35,11 @@ public class DatiCondivisi {
 
     public List<Scatola> getScatoleInUnaLista() {
         List<Scatola> v = new ArrayList<Scatola>();
-        for (Vector<Scatola> vett : scatole)
-            for (Scatola s : vett)
+        for (Vector<Scatola> vett : scatole) {
+            for (Scatola s : vett) {
                 v.add(s);
+            }
+        }
         return v;
     }
 
@@ -75,7 +76,7 @@ public class DatiCondivisi {
         this.dimensioneScatolaY = dimensioneScatolaY;
         this.dimensioneSchermoY = dimensioneSchermoY;
         this.dimensioneSchermoX = dimensioneSchermoX;
-        int spazioTraScatole=10;
+        int spazioTraScatole = 10;
         numS = numScatole;
         int c = 0;
         scatole = new Vector<>();
@@ -85,8 +86,9 @@ public class DatiCondivisi {
         for (int i = 0; i < numScatolePerRigaPossibili; i++) {
             scatole.add(new Vector<Scatola>());
             for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
-                if (c < numS)
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole*(j+1), i * dimensioneScatolaY+spazioTraScatole)));
+                if (c < numS) {
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole)));
+                }
                 //else
                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
@@ -95,7 +97,6 @@ public class DatiCondivisi {
 
         //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
-
 
     public int getNumS() {
         return numS;
@@ -135,6 +136,14 @@ public class DatiCondivisi {
 
     public void setInclinazioneTavoloDiGiocoY(int inclinazioneTavoloDiGiocoY) {
         this.inclinazioneTavoloDiGiocoY = inclinazioneTavoloDiGiocoY;
+    }
+
+    public void incInclinazioneTavoloDiGiocoY(int incremento) {
+        this.inclinazioneTavoloDiGiocoY += incremento;
+    }
+
+    public void incInclinazioneTavoloDiGiocoX(int incremento) {
+        this.inclinazioneTavoloDiGiocoX += incremento;
     }
 
     public Semaphore getFinito() {
