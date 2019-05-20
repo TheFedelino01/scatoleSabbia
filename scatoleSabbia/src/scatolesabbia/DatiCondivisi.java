@@ -29,10 +29,21 @@ public class DatiCondivisi {
     private int dimensioneScatolaX;
     private int dimensioneScatolaY;
 
+    /**
+     * @return scatole valore dell'attributo quantitaSabbia della classe
+     * @brief permette di ottenere la matrice
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public Vector<Vector<Scatola>> getScatole() {
         return scatole;
     }
-
+    /**
+     * @return v lista delle scatole
+     * @brief Permette di ottenere una lista delle scatele
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public List<Scatola> getScatoleInUnaLista() {
         List<Scatola> v = new ArrayList<Scatola>();
         for (Vector<Scatola> vett : scatole) {
@@ -42,35 +53,88 @@ public class DatiCondivisi {
         }
         return v;
     }
-
+/**
+     * @brief Permette di cambiare la lista di sactole
+     * @param scatole 
+     * @author Colobmo Alessandro
+     * @version 1.0
+     */
     public void setScatole(Vector<Vector<Scatola>> scatole) {
         this.scatole = scatole;
     }
-
+    
+    /**
+     * @return dimensioneSchermoY
+     * @brief Ritorna la dimensione y dello schermo
+     * @author Colobmo Alessandro
+     * @version 1.0
+     */
     public int getDimensioneSchermoY() {
         return dimensioneSchermoY;
     }
 
+    /**
+     * @brief permette di cambiare la dimensione dello schermo
+     * @param dimensioneSchermoY dimensionedello schermo y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setDimensioneSchermoY(int dimensioneSchermoY) {
         this.dimensioneSchermoY = dimensioneSchermoY;
     }
-
+    
+    /**
+     * @return dimensioneScatolaX dimensione della scatola x
+     * @brief permette di otteneere le dimensionidello schermo
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getDimensioneScatolaX() {
         return dimensioneScatolaX;
     }
 
+    /**
+     * @brief permette di cambiare la dimensione dello schermo x
+     * @param dimensioneScatolaX dimensione schermo x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setDimensioneScatolaX(int dimensioneScatolaX) {
         this.dimensioneScatolaX = dimensioneScatolaX;
     }
 
+    /**
+     * @return dimensioneScatolaY dimensione dello schermo y
+     * @brief permette di ottenere la dimensione y dello schermo
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getDimensioneScatolaY() {
         return dimensioneScatolaY;
     }
 
+    /**
+     * @brief permette di cambiare le dimensioni y della scatola
+     * @param dimensioneScatolaY diemnsione scatola y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setDimensioneScatolaY(int dimensioneScatolaY) {
         this.dimensioneScatolaY = dimensioneScatolaY;
     }
 
+    /**
+     * @brief costruttore con parametri
+     * costruttore con parametri che crea le scatole in base alla grandezza dello schermo e delle sctole 
+     * @param numScatole numero delle scatole
+     * @param processingSketch Sketch di  processing
+     * @param dimensioneScatolaX diemnsione scatola x
+     * @param dimensioneScatolaY diemnsione scatola y
+     * @param dimensioneSchermoY dimensione schermo Y
+     * @param dimensioneSchermoX dimensione schermo x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public DatiCondivisi(int numScatole, PApplet processingSketch, int dimensioneScatolaX, int dimensioneScatolaY, int dimensioneSchermoY, int dimensioneSchermoX) {
         this.dimensioneScatolaX = dimensioneScatolaX;
         this.dimensioneScatolaY = dimensioneScatolaY;
@@ -98,66 +162,143 @@ public class DatiCondivisi {
         //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
 
+    /**
+     * @return getNumS numeroscatole
+     * @brief permette di ottenere il numero di scatole
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getNumS() {
         return numS;
     }
-
+/**
+     * @brief permette di cambiare il numero delle scatole
+     * @param numS numereo di scatole nuovo
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setNumS(int numS) {
         this.numS = numS;
     }
 
+    /**
+     * @return dimensioneScheroX dimensione dello schermo X
+     * @brief permette di ottenere la dimensione x dello schermo
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getDimensioneSchermoX() {
         return dimensioneSchermoX;
     }
 
+    /**
+     * @brief permette di ottenere la dimensione x dello schermo
+     * @param dimensioneSchermoX dimensione dello schermo
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setDimensioneSchermoX(int dimensioneSchermoX) {
         this.dimensioneSchermoX = dimensioneSchermoX;
     }
 
-    public int getDimensioneSchermoy() {
-        return dimensioneSchermoY;
-    }
-
-    public void setDimensioneSchermoy(int dimensioneSchermoy) {
-        this.dimensioneSchermoY = dimensioneSchermoy;
-    }
-
+    /**
+     * @return inclinazioneTavoloDiGiocoX inclinazione x
+     * @brief permette di ottenere la inclinazione x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getInclinazioneTavoloDiGiocoX() {
         return inclinazioneTavoloDiGiocoX;
     }
 
+    /**
+     * @brief permette di cambiare la inclinazione x
+     * @param inclinazioneTavoloDiGiocoX inclinazione del tavolo x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setInclinazioneTavoloDiGiocoX(int inclinazioneTavoloDiGiocoX) {
         this.inclinazioneTavoloDiGiocoX = inclinazioneTavoloDiGiocoX;
     }
 
+    /**
+     * @return inclinazioneTavoloDiGiocoY inclinazione y
+     * @brief permette di ottenere la inclinazione y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getInclinazioneTavoloDiGiocoY() {
         return inclinazioneTavoloDiGiocoY;
     }
 
+    /**
+     * @brief permette di cambiare la inclinazione y
+     * @param inclinazioneTavoloDiGiocoY inclinazione del tavolo 
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setInclinazioneTavoloDiGiocoY(int inclinazioneTavoloDiGiocoY) {
         this.inclinazioneTavoloDiGiocoY = inclinazioneTavoloDiGiocoY;
     }
-
+/**
+     * @param incremento incremento sull'inclinazione
+     * @brief incrementa l'inclinazione y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void incInclinazioneTavoloDiGiocoY(int incremento) {
         this.inclinazioneTavoloDiGiocoY += incremento;
     }
 
+    /**
+     * @param incremento incremento sull'inclinazione
+     * @brief incrementa l'inclinazione x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void incInclinazioneTavoloDiGiocoX(int incremento) {
         this.inclinazioneTavoloDiGiocoX += incremento;
     }
-
+/**
+     * @return finito semaforo 
+     * @brief permette di ottenere il semaforo finito
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public Semaphore getFinito() {
         return finito;
     }
-
+/**
+     * @param finito incremento sull'inclinazione
+     * @brief ermette di cambiare il semaforo finito
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public void setFinito(Semaphore finito) {
         this.finito = finito;
     }
 
+    /**
+     * @param r riga della matrice
+     * @param c riga della matrice
+     * @brief permette di ottenere una scatola secondole coordinate
+     * @return scatole una scatola precisa secondo le coordinate nella matrice
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public Scatola getScatola(int r, int c) {
         return (Scatola) scatole.get(r).get(c);
     }
 
+    /**
+     * @param r riga della matrice
+     * @param c riga della matrice
+     * @param direction direzione impostata
+     * @brief permette di ottenere la scatola adiacente ad unaltra presente nella direzione selezionata
+     * @return scatole una scatola precisa secondo le coordinate nella matrice
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public Scatola getScatolaAdiacente(int r, int c, Directions direction) {
         r /= dimensioneScatolaX;
         c /= dimensioneScatolaY;
@@ -193,6 +334,13 @@ public class DatiCondivisi {
         return scatola;
     }
 
+    /**
+
+     * @brief permette di ottenere il numero delle scatole
+     * @return numS numeroscatole
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     public int getNumScatole() {
         return numS;
     }
