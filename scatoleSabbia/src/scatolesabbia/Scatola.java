@@ -131,9 +131,21 @@ public class Scatola {
      * @param altra   scatola in cui spostare la sabbia
      */
     public void spostaSabbia(float altezza, Scatola altra) {
-        System.out.println("Sposto la sabbia...");
-        sabbiaPresente.rimuoviSabbia(altezza);
-        altra.sabbiaPresente.aggiungiSabbia(altezza);
+        
+        //NON SPOSTO LA SABBIA SE NON CE N'E'!!!!
+        
+        //DA CONTROLLARE PERCHE' DOPO UN CERTO PUNTO, VA IN LOOP
+        //E CONTINUA A RICHIAMARE QUESTO METODO E CONTINUA A DIRE CHE NON PUO'
+        //SPOSTARLA... (LA COSA E' CORRETTA MA NON CAPISCO PERCHE' CONTINUA A
+        //RICHIAMARLO)...
+        if(sabbiaPresente.getQuantita()-altezza<0){
+            System.out.println("Dovrei spostare la sabbia ma non ce n'e'");
+        }else{
+            System.out.println("Sposto la sabbia...");
+           sabbiaPresente.rimuoviSabbia(altezza);
+            altra.sabbiaPresente.aggiungiSabbia(altezza); 
+        }
+        
     }
 
     /**
