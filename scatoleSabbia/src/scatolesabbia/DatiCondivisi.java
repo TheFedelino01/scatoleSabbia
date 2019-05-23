@@ -17,16 +17,59 @@ import java.util.concurrent.Semaphore;
  * @author feder
  */
 public class DatiCondivisi {
-
-    //TODO
+    /**
+     * @brief matrice con le scatole
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private Vector<Vector<Scatola>> scatole;
+    /**
+     * @brief numero delle scatole
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int numS;
+    /**
+     * @brief dimensione dello schermo x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int dimensioneSchermoX;
+    /**
+     * @brief dimensione dello schermo y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int dimensioneSchermoY;
+    /**
+     * @brief dimensione del tavolo di gioco x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int inclinazioneTavoloDiGiocoX;
+    /**
+     * @brief dimensione del tavolo di gioco y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int inclinazioneTavoloDiGiocoY;
+    /**
+     * @brief semaforo di segnale finito
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private Semaphore finito;
+    /**
+     * @brief dimensione scatola x
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int dimensioneScatolaX;
+    /**
+     * @brief dimensione scatola y
+     * @author Colombo Alessandro
+     * @version 1.0
+     */
     private int dimensioneScatolaY;
 
     /**

@@ -20,27 +20,37 @@ import java.util.Random;
 public class Scatola {
     /**
      * @brief Puntatore all'istanza di processing per usare le librerie grafiche
+     * 
+     * @author Giacomo Orsenigo
      */
     private final PApplet processingSketch;
 
 
     /**
      * @brief dimensioni della scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     private DimensioniScatola dimensioni; //misurata in cm
 
     /**
      * @brief posizione della scatola nel piano
+     * 
+     * @author Giacomo Orsenigo
      */
     private Point posizione;
 
     /**
      * @brief sabbia presente nella scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     private CSabbia sabbiaPresente;
 
     /**
      * @brief pallina presente nella scatola (se presente)
+     * 
+     * @author Giacomo Orsenigo
      */
     private JPallina pallina;
 
@@ -50,6 +60,8 @@ public class Scatola {
      * Inizializza tutti gli attributi richiamando il costruttore {@link #Scatola(PApplet, DimensioniScatola, Point, CSabbia, JPallina)}
      * @param processingSketch istanza di processing
      * @param posizione posizione della scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     public Scatola(PApplet processingSketch, Point posizione) {
         this(processingSketch, new DimensioniScatola(), posizione, new CSabbia(processingSketch), new JPallina(processingSketch, posizione));
@@ -64,6 +76,8 @@ public class Scatola {
      * @param posizione posizione della scatola
      * @param sabbiaPresente sabbia presente nella scatola
      * @param pallina pallina
+     * 
+     * @author Giacomo Orsenigo
      */
     public Scatola(PApplet processingSketch, DimensioniScatola dimensioni, Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
         this.processingSketch = processingSketch;
@@ -82,6 +96,8 @@ public class Scatola {
      * Richiama {@link #aggiornaDistribuzioneVelocitaSabbia(float, float)} e {@link #aggiornaPosPallina(float, float)}
      * @param inclinazioneX inclinazione X
      * @param inclinazioneY inclinazione Y
+     * 
+     * @author Giacomo Orsenigo
      */
     public void muovi(float inclinazioneX, float inclinazioneY) {
         aggiornaDistribuzioneVelocitaSabbia(inclinazioneX, inclinazioneY);
@@ -95,6 +111,8 @@ public class Scatola {
      * Richiama {@link JPallina#spostaX(float)} e {@link JPallina#spostaY(float)}
      * @param inclinazioneX inclinazione X
      * @param inclinazioneY inclinazione Y
+     * 
+     * @author Giacomo Orsenigo
      */
     public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY) {
         if (inclinazioneX < 0 && isPallinaControBordi() == Directions.SINISTRA)
@@ -119,6 +137,8 @@ public class Scatola {
      * Richiama {@link CSabbia#aggiornati(float, DimensioniScatola)}
      * @param inclinazioneX inclinazione X
      * @param inclinazioneY inclinazione Y
+     * 
+     * @author Giacomo Orsenigo
      */
     public void aggiornaDistribuzioneVelocitaSabbia(float inclinazioneX, float inclinazioneY) {
         sabbiaPresente.aggiornati(inclinazioneX, dimensioni);
@@ -129,6 +149,8 @@ public class Scatola {
      *
      * @param altezza sabbia da spostare
      * @param altra   scatola in cui spostare la sabbia
+     * 
+     * @author Giacomo Orsenigo
      */
     public void spostaSabbia(float altezza, Scatola altra) {
         
@@ -152,6 +174,8 @@ public class Scatola {
      * spostaX la pallina in un'altra scatola
      *
      * @param altra scatola in cui spostare la pallina
+     * 
+     * @author Giacomo Orsenigo
      */
     public void spostaPallina(Scatola altra) {
         this.pallina.rimuoviPallina();
@@ -162,6 +186,8 @@ public class Scatola {
     /**
      * @brief get sabbia presente
      * @return sabbia presente nella scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     public CSabbia getSabbiaPresente() {
         return sabbiaPresente;
@@ -170,6 +196,8 @@ public class Scatola {
     /**
      * @brief get dimensioni
      * @return dimensioni della scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     public DimensioniScatola getDimensioni() {
         return dimensioni;
@@ -186,6 +214,8 @@ public class Scatola {
     /**
      * get posizione centrale
      * @return posizione
+     * 
+     * @author Giacomo Orsenigo
      */
     public Point getPosizioneCentrale() {
         return posizione;
@@ -196,6 +226,8 @@ public class Scatola {
      *
      * Disegna la scatola con tutto il contenuto
      * Richiama {@link CSabbia#visualizza(Scatola, boolean)} e {@link JPallina#draw()}
+     * 
+     * @author Giacomo Orsenigo
      */
     public void draw() {
         processingSketch.fill(processingSketch.color(255, 255, 255));
@@ -212,12 +244,14 @@ public class Scatola {
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
-        sabbiaPresente.visualizza(this, true);
+        sabbiaPresente.visualizza(this, false);
     }
 
     /**
      * @brief controlla se la pallina è contro i bordi
      * @return direzione del bordo con la pallina appoggiata
+     * 
+     * @author Giacomo Orsenigo
      */
     public Directions isPallinaControBordi() {
         if (pallina.getPosizione().x > dimensioni.getLarghezza())
@@ -234,6 +268,8 @@ public class Scatola {
     /**
      * get posizione
      * @return posizione
+     * 
+     * @author Giacomo Orsenigo
      */
     public Point getPosizione() {
         return posizione;
