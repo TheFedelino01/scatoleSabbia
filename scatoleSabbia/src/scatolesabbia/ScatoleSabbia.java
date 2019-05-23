@@ -15,6 +15,7 @@ import java.util.Vector;
  */
 public class ScatoleSabbia extends PApplet {
 
+    
     private static DatiCondivisi dati;
     private static ThScatola[] thScatole;
     private static ThPallina[] thPalline;

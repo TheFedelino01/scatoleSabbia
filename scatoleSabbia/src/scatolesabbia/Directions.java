@@ -13,6 +13,8 @@ public enum Directions {
      * @brief restituisce una direzione in base all'inlcinazione
      * @param inclinazioneX
      * @return
+     * 
+     * @author Giacomo Orsenigo
      */
     public static Directions fromInclinazioneX(float inclinazioneX) {
         if (inclinazioneX > 0)

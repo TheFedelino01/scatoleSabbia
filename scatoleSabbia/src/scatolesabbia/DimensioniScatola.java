@@ -9,6 +9,8 @@ import java.awt.*;
 public class DimensioniScatola {
     /**
      * @brief dimensioni della scatola
+     * 
+     * @author Giacomo Orsenigo
      */
     private final int larghezza, profondita, altezzaSx, altezzaDx, altezzaSopra, altezzaSotto;
 
@@ -16,6 +18,8 @@ public class DimensioniScatola {
      * @brief costruttore
      * <p>
      * Inizializza tutti gli attributi
+     * 
+     * @author Giacomo Orsenigo
      */
     public DimensioniScatola() {
         this(100, 100, 100, 100, 100, 100);
@@ -31,6 +35,8 @@ public class DimensioniScatola {
      * @brief costruttore
      * <p>
      * Inizializza tutti gli attributi
+     * 
+     * @author Giacomo Orsenigo
      */
     public DimensioniScatola(int larghezza, int profondita, int altezzaSx, int altezzaDx, int altezzaSopra, int altezzaSotto) {
         this.larghezza = larghezza;
@@ -47,6 +53,8 @@ public class DimensioniScatola {
      * @brief get altezza in base alla direzione
      * <p>
      * Restituisce l'altezza della vasca nel lato ricevuto
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getAltezza(Directions direzione) {
         switch (direzione) {
@@ -65,6 +73,8 @@ public class DimensioniScatola {
     /**
      *
      * @return larghezza
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getLarghezza() {
         return larghezza;
@@ -72,6 +82,8 @@ public class DimensioniScatola {
     /**
      *
      * @return profondita
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getProfondita() {
         return profondita;
@@ -79,6 +91,8 @@ public class DimensioniScatola {
     /**
      *
      * @return altezzaSx
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getAltezzaSx() {
         return altezzaSx;
@@ -86,6 +100,8 @@ public class DimensioniScatola {
     /**
      *
      * @return altezzaDx
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getAltezzaDx() {
         return altezzaDx;
@@ -93,6 +109,8 @@ public class DimensioniScatola {
     /**
      *
      * @return altezzaSopra
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getAltezzaSopra() {
         return altezzaSopra;
@@ -100,6 +118,8 @@ public class DimensioniScatola {
     /**
      *
      * @return altezzaSotto
+     * 
+     * @author Giacomo Orsenigo
      */
     public int getAltezzaSotto() {
         return altezzaSotto;
