@@ -6,6 +6,8 @@
 package scatolesabbia;
 
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author peduzzi_samuele
@@ -72,7 +74,9 @@ public class ThPallina extends Thread {
             if (scatola.getPallina().isPresente()) {
                 final Directions dirPallina = scatola.isPallinaControBordi();
                 if (dirPallina != Directions.NONE) {
-                    final Scatola s = ptrDati.getScatolaAdiacente(r, c, dirPallina);
+                    System.out.println(dirPallina);
+//                    final Scatola s = ptrDati.getScatolaAdiacente(r, c, dirPallina);
+                    final Scatola s = ptrDati.getScatola(0, 1);
                     scatola.spostaPallina(s);
                     Point nuovaPos = s.getPallina().getPosizione();
                     switch (dirPallina) {
@@ -87,6 +91,12 @@ public class ThPallina extends Thread {
                     }
                     s.getPallina().sposta(nuovaPos);
                 }
+            }
+            
+            try {
+                sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ThPallina.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
