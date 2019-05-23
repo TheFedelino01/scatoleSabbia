@@ -85,7 +85,7 @@ public class Scatola {
         this.posizione = posizione;
         this.sabbiaPresente = sabbiaPresente;
         this.pallina = pallina;
-        pallina.mostraPallina();
+//        pallina.mostraPallina();
     }
 
 

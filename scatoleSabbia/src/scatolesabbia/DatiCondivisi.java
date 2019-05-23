@@ -199,9 +199,15 @@ public class DatiCondivisi {
                 //else
                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
+                
+                
             }
+            
+            
+            
+            
         }
-
+        scatole.get(0).get(0).getPallina().mostraPallina(); //Viene renderizzata solamente la pallina della prima scatola
         //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
 
