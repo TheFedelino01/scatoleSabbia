@@ -17,6 +17,7 @@ public class ScatoleSabbia extends PApplet {
 
     private static DatiCondivisi dati;
     private static ThScatola[] thScatole;
+    private static ThPallina[] thPalline;
     private static int numScatole = 5;
 
     /**
@@ -27,11 +28,17 @@ public class ScatoleSabbia extends PApplet {
 
         dati = new DatiCondivisi(numScatole, this, 100, 100, 500, 1000);
         thScatole = new ThScatola[numScatole];
+        thPalline = new ThPallina[numScatole];
 
         //Assegno al vettore con i th i thread delle scatole
         List<Scatola> scatole = dati.getScatoleInUnaLista();
-        for (int i = 0; i < scatole.size(); i++)
+        
+        for (int i = 0; i < scatole.size(); i++) {
             thScatole[i] = new ThScatola(dati, scatole.get(i));
+        }
+        
+        thPalline[0] = new ThPallina(dati,00);
+            
     }
 
     public static void main(String[] args) {
@@ -50,6 +57,8 @@ public class ScatoleSabbia extends PApplet {
         //Faccio partire i th
         for (int i = 0; i < numScatole; i++)
             thScatole[i].start();
+        
+        thPalline[0].start();
     }
 
     public void setup() {
