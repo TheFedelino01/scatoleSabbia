@@ -164,6 +164,12 @@ public class CSabbia {
      */
     private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX, DimensioniScatola dimensioni) {
         double altezzaScatola;
+       if (quantitaSabbia == 0){
+           //Se non c'e' sabbia, l'altezza MAX e MIN è nulla
+           altezzaLatoMaggiore=0;
+           altezzaLatoMinore=0;
+       }else{
+           //Ce della sabbia
         if (inclinazioneX > 0)
             altezzaScatola = dimensioni.getAltezzaDx();
         else
@@ -175,6 +181,7 @@ public class CSabbia {
         double VolumeIniziale = ((quantitaSabbia * lato) * lato);
 
 
+ 
         double angoloAdiacente = 180 - (90 + inclinazioneX);
         double risCosAngA = Math.cos(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
         double risSinAngA = Math.sin(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
@@ -197,6 +204,8 @@ public class CSabbia {
 
         altezzaLatoMaggiore = (float) (altezzaRett + latoTriangolo);
         altezzaLatoMinore = (float)altezzaRett;
+       }     
+        
     }
 
     /**
