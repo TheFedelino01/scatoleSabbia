@@ -63,6 +63,9 @@ public class CSabbia {
      * @version 1.0
      */
     private PApplet processingSketch;
+    
+    
+    private double larghezzaVisualizzazioneSabbia;
 
     /**
      * @brief Costruttore senza parametri della classe
@@ -162,13 +165,14 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public double c;
+
     private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX, DimensioniScatola dimensioni) {
         double altezzaScatola;
        if (quantitaSabbia == 0){
            //Se non c'e' sabbia, l'altezza MAX e MIN è nulla
            altezzaLatoMaggiore=0;
            altezzaLatoMinore=0;
+           larghezzaVisualizzazioneSabbia=0;
        }else{
            //Ce della sabbia
         if (inclinazioneX > 0)
@@ -205,19 +209,27 @@ public class CSabbia {
 
         altezzaLatoMaggiore = (float) (altezzaRett + latoTriangolo);
         altezzaLatoMinore = (float)altezzaRett;
-        double angoloSottoDx = 90-angoloSuperioreSX;
+        
+        
+         calcolaLarghezzaVisualizzazione(angoloSuperioreSX, dimensioni);
+       }
+       
+    }
+    
+    private void calcolaLarghezzaVisualizzazione(double angoloSupSX, DimensioniScatola dimensioni){
+        double angoloSottoDx = 90-angoloSupSX;
         double ipotenusa =0;
         if(altezzaLatoMinore<0){
             //c=(altezzaLatoMaggiore*angoloSuperioreSX)/Math.sin(trasformaARadianti(angoloSottoDx));
-            ipotenusa = altezzaLatoMaggiore/Math.cos(trasformaARadianti(angoloSuperioreSX));
-            c = Math.sin(trasformaARadianti(angoloSuperioreSX))*ipotenusa;
+            ipotenusa = altezzaLatoMaggiore/Math.cos(Math.toRadians(angoloSupSX));
+            larghezzaVisualizzazioneSabbia = Math.sin(trasformaARadianti(angoloSupSX))*ipotenusa;
         }
-        else
-            c=0;
-       }     
-        
+        else{
+            larghezzaVisualizzazioneSabbia=(float)dimensioni.getLarghezza();
+       }    
     }
 
+    
     /**
      * @return double valore corrispondente in radianti in base ai gradi passati da parametro
      * @brief Il metodo permette di convertire i gradi passati da parametro a radianti
@@ -323,7 +335,7 @@ public class CSabbia {
             //La visione e' quella vista verso l'alto
             
             //Imposto l'opacita a seconda del quantitativo di sabbia
-            processingSketch.tint(255, (255*quantitaSabbia)/100);
+            //processingSketch.tint(255, (255*quantitaSabbia)/100);
             //Carico l'immagine
             PImage img;
             img = processingSketch.loadImage("sabbia.jpg");  
@@ -331,10 +343,14 @@ public class CSabbia {
             
             
             //Imposto la posizione dell'immagine 
-            if(c==0.0){
-                processingSketch.image(img, pos.x, pos.y,largezzaScatola,altezzaScatola);
-            }else
-            processingSketch.image(img, pos.x, pos.y,(float)c,altezzaScatola);
+            if(movimentoX==1){
+                processingSketch.image(img, pos.x, pos.y,(float)larghezzaVisualizzazioneSabbia,altezzaScatola);
+            }else{
+                //la sabbia si muove da sx verso dx
+                float delta = (float)(largezzaScatola-larghezzaVisualizzazioneSabbia);
+                processingSketch.image(img, pos.x+delta, pos.y,(float)larghezzaVisualizzazioneSabbia,altezzaScatola);
+            }
+            
             
             
             //Aggiungo il testo relativo al quantitativo % di sabbia presente
