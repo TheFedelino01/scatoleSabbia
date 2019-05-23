@@ -33,7 +33,6 @@ public class InputAccelerometro extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -51,9 +50,13 @@ public class InputAccelerometro extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         incY = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setPreferredSize(new java.awt.Dimension(400, 300));
         jPanel6.setLayout(new java.awt.GridLayout(3, 3));
@@ -62,11 +65,11 @@ public class InputAccelerometro extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel7);
@@ -84,11 +87,11 @@ public class InputAccelerometro extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel8);
@@ -150,16 +153,16 @@ public class InputAccelerometro extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel11);
 
-        getContentPane().add(jPanel6, new java.awt.GridBagConstraints());
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         jLabel1.setText("Inclinazione X:");
         jPanel1.add(jLabel1);
@@ -168,10 +171,7 @@ public class InputAccelerometro extends javax.swing.JFrame {
         incX.setName("incX"); // NOI18N
         jPanel1.add(incX);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
         jLabel2.setText("Inclinazione Y:");
         jPanel2.add(jLabel2);
@@ -180,10 +180,28 @@ public class InputAccelerometro extends javax.swing.JFrame {
         incY.setName("incY"); // NOI18N
         jPanel2.add(incY);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
+
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+        getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 390, 60));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("0");
+        jLabel3.setToolTipText("");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 390, 40, 60));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setText("-100");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 50, 40));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setText("+100");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 60, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,25 +210,39 @@ public class InputAccelerometro extends javax.swing.JFrame {
         // TODO add your handling code here:
         ptrDati.incInclinazioneTavoloDiGiocoY(-5);
         incY.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoY()));
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        ptrDati.incInclinazioneTavoloDiGiocoX(-5);
-        incX.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoX()));
+        //ptrDati.incInclinazioneTavoloDiGiocoX(-5);
+        //incX.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoX()));
+        
+        jSlider1.setValue(jSlider1.getValue()-2);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        ptrDati.incInclinazioneTavoloDiGiocoX(5);
-        incX.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoX()));
+//        ptrDati.incInclinazioneTavoloDiGiocoX(5);
+//        incX.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoX()));
+        
+       jSlider1.setValue(jSlider1.getValue()+2);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         ptrDati.incInclinazioneTavoloDiGiocoY(5);
         incY.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoY()));
+
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        int value = jSlider1.getValue()*2;//MAX 100 min 0   MAX -100 min 0
+        value -= 100;
+        //System.out.println(value);
+        ptrDati.setInclinazioneTavoloDiGiocoX(value);
+        incX.setText(Integer.toString(ptrDati.getInclinazioneTavoloDiGiocoX()));
+    }//GEN-LAST:event_jSlider1StateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel incX;
@@ -221,6 +253,9 @@ public class InputAccelerometro extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -229,5 +264,6 @@ public class InputAccelerometro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
 }
