@@ -74,7 +74,7 @@ public class CSabbia {
     public CSabbia(PApplet disegno) {
         processingSketch = disegno;
         Random rn = new Random();
-        this.quantitaSabbia = rn.nextInt(100);
+        this.quantitaSabbia = 0;
         setup();
     }
 
@@ -162,6 +162,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
+    public double c;
     private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX, DimensioniScatola dimensioni) {
         double altezzaScatola;
        if (quantitaSabbia == 0){
@@ -204,6 +205,15 @@ public class CSabbia {
 
         altezzaLatoMaggiore = (float) (altezzaRett + latoTriangolo);
         altezzaLatoMinore = (float)altezzaRett;
+        double angoloSottoDx = 90-angoloSuperioreSX;
+        double ipotenusa =0;
+        if(altezzaLatoMinore<0){
+            //c=(altezzaLatoMaggiore*angoloSuperioreSX)/Math.sin(trasformaARadianti(angoloSottoDx));
+            ipotenusa = altezzaLatoMaggiore/Math.cos(trasformaARadianti(angoloSuperioreSX));
+            c = Math.sin(trasformaARadianti(angoloSuperioreSX))*ipotenusa;
+        }
+        else
+            c=0;
        }     
         
     }
@@ -318,8 +328,13 @@ public class CSabbia {
             PImage img;
             img = processingSketch.loadImage("sabbia.jpg");  
             processingSketch.noStroke();
+            
+            
             //Imposto la posizione dell'immagine 
-            processingSketch.image(img, pos.x, pos.y,largezzaScatola,altezzaScatola);
+            if(c==0.0){
+                processingSketch.image(img, pos.x, pos.y,largezzaScatola,altezzaScatola);
+            }else
+            processingSketch.image(img, pos.x, pos.y,(float)c,altezzaScatola);
             
             
             //Aggiungo il testo relativo al quantitativo % di sabbia presente
@@ -337,9 +352,9 @@ public class CSabbia {
                 y1 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
                 y2 = (pos.y+altezzaScatola)-altezzaLatoMinore;
             }else{
-                    y1 = (pos.y+altezzaScatola)-altezzaLatoMinore;
-                    y2 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
-                }
+                y1 = (pos.y+altezzaScatola)-altezzaLatoMinore;
+                y2 = (pos.y+altezzaScatola)-altezzaLatoMaggiore;
+            }
 
             float x = largezzaScatola;
 

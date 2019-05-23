@@ -194,7 +194,12 @@ public class DatiCondivisi {
             scatole.add(new Vector<Scatola>());
             for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
                 if (c < numS) {
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole)));
+                    int quant =0;
+                    if(c==4){
+                        quant=100;
+                    }else{quant=0;}
+                    
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole),quant));
                 }
                 //else
                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));

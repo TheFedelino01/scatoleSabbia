@@ -63,10 +63,11 @@ public class Scatola {
      * 
      * @author Giacomo Orsenigo
      */
-    public Scatola(PApplet processingSketch, Point posizione) {
-        this(processingSketch, new DimensioniScatola(), posizione, new CSabbia(processingSketch), new JPallina(processingSketch, posizione));
+    public Scatola(PApplet processingSketch, Point posizione, int quanita) {
+        this(processingSketch, new DimensioniScatola(), posizione, new CSabbia(quanita,processingSketch), new JPallina(processingSketch, posizione));
     }
 
+    
     /**
      * @brief costruttore
      *
@@ -244,7 +245,7 @@ public class Scatola {
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
-        sabbiaPresente.visualizza(this, false);
+        sabbiaPresente.visualizza(this, true);
     }
 
     /**
