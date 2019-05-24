@@ -5,8 +5,6 @@
  */
 package scatolesabbia;
 
-import java.awt.*;
-
 /**
  * @author Giacomo Orsenigo
  * @brief Thread che gestisce la fisica del gioco

@@ -70,11 +70,12 @@ public class ThPallina extends Thread {
 
         Scatola scatolaAttuale = pallina.getScatola(); //La scatola in cui è contenuta la pallina
         while (!isInterrupted()) {
-
-            scatolaAttuale.aggiornaPosPallina(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY(), idPallina); //viene aggiornata la posizione della pallina
+            int incX = ptrDati.getInclinazioneTavoloDiGiocoX();
+            int incY = ptrDati.getInclinazioneTavoloDiGiocoY();
+            scatolaAttuale.aggiornaPosPallina(incX, incY, idPallina); //viene aggiornata la posizione della pallina
             if (pallina.isPresente()) {
                 final Directions dirPallina = scatolaAttuale.isPallinaControBordi(idPallina);
-                if (dirPallina != Directions.NONE) {
+                if (dirPallina != Directions.NONE && (dirPallina == Directions.fromInclinazioneX(incX)||dirPallina==Directions.fromInclinazioneY(incY))) {
                     System.out.println(dirPallina);
                     final Scatola ricevente = ptrDati.getScatolaAdiacente(scatolaAttuale, dirPallina);
                     //final Scatola s = ptrDati.getScatola(0, 1);
