@@ -14,85 +14,89 @@ import java.util.logging.Logger;
  */
 public class ThPallina extends Thread {
 
-    
+
     /**
      * @brief Puntatore alla classe conenente i dati condivisi
      * @author Peduzzi Samuele
      * @version 1.0
      */
-    
+
     private DatiCondivisi ptrDati;
-    
+
     /**
      * @brief L'attributo rappresenta l'identificativo della pallina
      * @author Peduzzi Samuele
      * @version 1.0
      */
-    
+
     private int idPallina;
-    
+    private JPallina pallina;
+
     /**
-     * @brief Costruttore 
      * @param ptrDati viene passsato il puntatore alla classe dati condivisi mediante costruttore
+     * @brief Costruttore
      * @author Peduzzi Samuele
      * @version 1.0
      */
-    
+
     public ThPallina(DatiCondivisi ptrDati) {
         this.ptrDati = ptrDati;
     }
-    
+
     /**
-     * @brief Costruttore 
      * @param ptrDati viene passsato il puntatore alla classe dati condivisi mediante costruttore
-     * @param idPallina identificatore pallina
+     * @param pallina pallina
+     * @brief Costruttore
      * @author Peduzzi Samuele
      * @version 1.0
      */
-    
-    public ThPallina(DatiCondivisi ptrDati, int idPallina) {
+
+    public ThPallina(DatiCondivisi ptrDati, JPallina pallina) {
         this.ptrDati = ptrDati;
-        this.idPallina = idPallina;
+        this.idPallina = pallina.getId();
+        this.pallina = pallina;
     }
 
 
     @Override
-    
+
     /**
      * @brief run threasd
      * @author Peduzzi Samuele
      * @version 1.0
      */
-    
-    public void run() {
-        int r = 0, c = 0;
-        Scatola scatola = ptrDati.getScatola(r, c); //La pallina inizialmente è nella prima scatola
 
+    public void run() {
+
+        Scatola scatolaAttuale = pallina.getScatola(); //La scatola in cui è contenuta la pallina
         while (!isInterrupted()) {
 
-            scatola.aggiornaPosPallina(ptrDati.getInclinazioneTavoloDiGiocoX(),ptrDati.getInclinazioneTavoloDiGiocoY()); //viene aggiornata la posizione della pallina
-            if (scatola.getPallina().isPresente()) {
-                final Directions dirPallina = scatola.isPallinaControBordi();
+            scatolaAttuale.aggiornaPosPallina(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY(), idPallina); //viene aggiornata la posizione della pallina
+            if (pallina.isPresente()) {
+                final Directions dirPallina = scatolaAttuale.isPallinaControBordi(idPallina);
                 if (dirPallina != Directions.NONE) {
                     System.out.println(dirPallina);
-//                    final Scatola s = ptrDati.getScatolaAdiacente(r, c, dirPallina);
-                    final Scatola s = ptrDati.getScatola(0, 1);
-                    scatola.spostaPallina(s);
-                    Point nuovaPos = s.getPallina().getPosizione();
-                    switch (dirPallina) {
-                        case SOPRA:
-                        case SOTTO:
-                            nuovaPos.y = -nuovaPos.y;
-                            break;
-                        case SINISTRA:
-                        case DESTRA:
-                            nuovaPos.x = -nuovaPos.x;
-                            break;
+                    final Scatola ricevente = ptrDati.getScatolaAdiacente(scatolaAttuale, dirPallina);
+                    //final Scatola s = ptrDati.getScatola(0, 1);
+                    if (ricevente != null) {
+                        scatolaAttuale.spostaPallina(idPallina, ricevente);
+                        scatolaAttuale = ricevente;
+                        Point nuovaPos = pallina.getPosizione();
+                        switch (dirPallina) {
+                            case SOPRA:
+                            case SOTTO:
+                                nuovaPos.y = scatolaAttuale.getDimensioni().getProfondita() - nuovaPos.y;
+                                break;
+                            case SINISTRA:
+                            case DESTRA:
+                                nuovaPos.x = scatolaAttuale.getDimensioni().getLarghezza() - nuovaPos.x;
+                                break;
+                        }
+                        pallina.sposta(nuovaPos);
                     }
-                    s.getPallina().sposta(nuovaPos);
                 }
             }
-            
+
             try {
                 sleep(100);
             } catch (InterruptedException ex) {
