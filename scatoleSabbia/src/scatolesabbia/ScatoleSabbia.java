@@ -37,8 +37,15 @@ public class ScatoleSabbia extends PApplet {
         for (int i = 0; i < scatole.size(); i++) {
             thScatole[i] = new ThScatola(dati, scatole.get(i));
         }
-        
-        thPalline[0] = new ThPallina(dati,00);
+
+
+        Scatola s = scatole.get(0);
+        JPallina p = new JPallina(this,s.getPosizione(),s,1);
+        s.addPallina(p);
+        p.mostraPallina(); //Viene renderizzata solamente la pallina della prima scatola
+
+
+        thPalline[0] = new ThPallina(dati,p);
             
     }
 

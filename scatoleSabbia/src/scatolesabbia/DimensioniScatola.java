@@ -1,7 +1,5 @@
 package scatolesabbia;
 
-import java.awt.*;
-
 /**
  * @brief classe che rappresenta la dimensione di una scatola
  * @author Giacomo Orsenigo

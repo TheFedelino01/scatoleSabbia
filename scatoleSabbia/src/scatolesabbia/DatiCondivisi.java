@@ -81,6 +81,7 @@ public class DatiCondivisi {
     public Vector<Vector<Scatola>> getScatole() {
         return scatole;
     }
+
     /**
      * @return v lista delle scatole
      * @brief Permette di ottenere una lista delle scatele
@@ -96,16 +97,17 @@ public class DatiCondivisi {
         }
         return v;
     }
-/**
+
+    /**
+     * @param scatole
      * @brief Permette di cambiare la lista di sactole
-     * @param scatole 
      * @author Colobmo Alessandro
      * @version 1.0
      */
     public void setScatole(Vector<Vector<Scatola>> scatole) {
         this.scatole = scatole;
     }
-    
+
     /**
      * @return dimensioneSchermoY
      * @brief Ritorna la dimensione y dello schermo
@@ -117,15 +119,15 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief permette di cambiare la dimensione dello schermo
      * @param dimensioneSchermoY dimensionedello schermo y
+     * @brief permette di cambiare la dimensione dello schermo
      * @author Colombo Alessandro
      * @version 1.0
      */
     public void setDimensioneSchermoY(int dimensioneSchermoY) {
         this.dimensioneSchermoY = dimensioneSchermoY;
     }
-    
+
     /**
      * @return dimensioneScatolaX dimensione della scatola x
      * @brief permette di otteneere le dimensionidello schermo
@@ -137,8 +139,8 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief permette di cambiare la dimensione dello schermo x
      * @param dimensioneScatolaX dimensione schermo x
+     * @brief permette di cambiare la dimensione dello schermo x
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -157,8 +159,8 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief permette di cambiare le dimensioni y della scatola
      * @param dimensioneScatolaY diemnsione scatola y
+     * @brief permette di cambiare le dimensioni y della scatola
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -167,14 +169,14 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief costruttore con parametri
-     * costruttore con parametri che crea le scatole in base alla grandezza dello schermo e delle sctole 
-     * @param numScatole numero delle scatole
-     * @param processingSketch Sketch di  processing
+     * @param numScatole         numero delle scatole
+     * @param processingSketch   Sketch di  processing
      * @param dimensioneScatolaX diemnsione scatola x
      * @param dimensioneScatolaY diemnsione scatola y
      * @param dimensioneSchermoY dimensione schermo Y
      * @param dimensioneSchermoX dimensione schermo x
+     * @brief costruttore con parametri
+     * costruttore con parametri che crea le scatole in base alla grandezza dello schermo e delle sctole
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -194,25 +196,26 @@ public class DatiCondivisi {
             scatole.add(new Vector<Scatola>());
             for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
                 if (c < numS) {
-                    int quant =0;
-                    if(c==4){
-                        quant=90;
-                    }else{quant=0;}
-                    
-                    scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole),quant));
+                    int quant = 0;
+                    if (c == 4) {
+                        quant = 100;
+                    } else {
+                        quant = 0;
+                    }
+
+                    scatole.get(i).add(new Scatola(processingSketch, new Point(j, i), new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole), quant));
                 }
                 //else
                 //   scatole.get(i).add(new Scatola(processingSketch, new Point(i*dimensioneScatolaX, j*dimensioneScatolaY /*,false**/)));
                 c++;
-                
-                
+
+
             }
-            
-            
-            
-            
+
+
         }
-        scatole.get(0).get(0).getPallina().mostraPallina(); //Viene renderizzata solamente la pallina della prima scatola
+
+
         //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
 
@@ -225,9 +228,10 @@ public class DatiCondivisi {
     public int getNumS() {
         return numS;
     }
-/**
-     * @brief permette di cambiare il numero delle scatole
+
+    /**
      * @param numS numereo di scatole nuovo
+     * @brief permette di cambiare il numero delle scatole
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -246,8 +250,8 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief permette di ottenere la dimensione x dello schermo
      * @param dimensioneSchermoX dimensione dello schermo
+     * @brief permette di ottenere la dimensione x dello schermo
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -266,8 +270,8 @@ public class DatiCondivisi {
     }
 
     /**
-     * @brief permette di cambiare la inclinazione x
      * @param inclinazioneTavoloDiGiocoX inclinazione del tavolo x
+     * @brief permette di cambiare la inclinazione x
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -286,15 +290,16 @@ public class DatiCondivisi {
     }
 
     /**
+     * @param inclinazioneTavoloDiGiocoY inclinazione del tavolo
      * @brief permette di cambiare la inclinazione y
-     * @param inclinazioneTavoloDiGiocoY inclinazione del tavolo 
      * @author Colombo Alessandro
      * @version 1.0
      */
     public void setInclinazioneTavoloDiGiocoY(int inclinazioneTavoloDiGiocoY) {
         this.inclinazioneTavoloDiGiocoY = inclinazioneTavoloDiGiocoY;
     }
-/**
+
+    /**
      * @param incremento incremento sull'inclinazione
      * @brief incrementa l'inclinazione y
      * @author Colombo Alessandro
@@ -313,8 +318,9 @@ public class DatiCondivisi {
     public void incInclinazioneTavoloDiGiocoX(int incremento) {
         this.inclinazioneTavoloDiGiocoX += incremento;
     }
-/**
-     * @return finito semaforo 
+
+    /**
+     * @return finito semaforo
      * @brief permette di ottenere il semaforo finito
      * @author Colombo Alessandro
      * @version 1.0
@@ -322,7 +328,8 @@ public class DatiCondivisi {
     public Semaphore getFinito() {
         return finito;
     }
-/**
+
+    /**
      * @param finito incremento sull'inclinazione
      * @brief ermette di cambiare il semaforo finito
      * @author Colombo Alessandro
@@ -335,8 +342,8 @@ public class DatiCondivisi {
     /**
      * @param r riga della matrice
      * @param c riga della matrice
-     * @brief permette di ottenere una scatola secondole coordinate
      * @return scatole una scatola precisa secondo le coordinate nella matrice
+     * @brief permette di ottenere una scatola secondole coordinate
      * @author Colombo Alessandro
      * @version 1.0
      */
@@ -345,17 +352,17 @@ public class DatiCondivisi {
     }
 
     /**
-     * @param r riga della matrice
-     * @param c riga della matrice
+     * @param r         riga della matrice
+     * @param c         riga della matrice
      * @param direction direzione impostata
-     * @brief permette di ottenere la scatola adiacente ad unaltra presente nella direzione selezionata
      * @return scatole una scatola precisa secondo le coordinate nella matrice
+     * @brief permette di ottenere la scatola adiacente ad unaltra presente nella direzione selezionata
      * @author Colombo Alessandro
      * @version 1.0
      */
     public Scatola getScatolaAdiacente(int r, int c, Directions direction) {
-        r /= dimensioneScatolaX;
-        c /= dimensioneScatolaY;
+//        r /= dimensioneScatolaX;
+//        c /= dimensioneScatolaY;
         Scatola scatola = null;
         if (direction == Directions.SOPRA) {
             try {
@@ -388,10 +395,14 @@ public class DatiCondivisi {
         return scatola;
     }
 
-    /**
 
-     * @brief permette di ottenere il numero delle scatole
+    public Scatola getScatolaAdiacente(Scatola scatola, Directions direction) {
+        return getScatolaAdiacente(scatola.getPosMatrice().y, scatola.getPosMatrice().x, direction);
+    }
+
+    /**
      * @return numS numeroscatole
+     * @brief permette di ottenere il numero delle scatole
      * @author Colombo Alessandro
      * @version 1.0
      */

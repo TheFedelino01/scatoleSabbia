@@ -5,8 +5,6 @@
  */
 package scatolesabbia;
 
-import java.awt.*;
-
 /**
  * @author Giacomo Orsenigo
  * @brief Thread che gestisce la fisica del gioco
@@ -50,16 +48,16 @@ public class ThScatola extends Thread {
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 
             if (direzioneUscita != Directions.NONE) {
-                final Scatola ricevente = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, direzioneUscita);
+                final Scatola ricevente = ptrDati.getScatolaAdiacente(scatola.getPosMatrice().y, scatola.getPosMatrice().x, direzioneUscita);
                 if (ricevente != null) {    //se la scatola esiste e non è vuoto
                     System.out.println("LA SABBIA ESCE!!");
                     scatola.spostaSabbia(1, ricevente);
-//                        if (scatola.getPallina().isPresente()) {
+//                        if (scatola.getPalline().isPresente()) {
 //                            final Directions dirPallina = scatola.isPallinaControBordi();
 //                            if (dirPallina != Directions.NONE) {
 //                                final Scatola s = ptrDati.getScatolaAdiacente(scatola.getPosizione().y, scatola.getPosizione().x, dirPallina);
 //                                scatola.spostaPallina(s);
-//                                Point nuovaPos = s.getPallina().getPosizione();
+//                                Point nuovaPos = s.getPalline().getPosizione();
 //                                switch (dirPallina) {
 //                                    case SOPRA:
 //                                    case SOTTO:
@@ -70,7 +68,7 @@ public class ThScatola extends Thread {
 //                                        nuovaPos.x = -nuovaPos.x;
 //                                        break;
 //                                }
-//                                s.getPallina().sposta(nuovaPos);
+//                                s.getPalline().sposta(nuovaPos);
 //                            }
 //                        }
                 }
