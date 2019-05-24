@@ -37,6 +37,10 @@ public class Scatola {
      */
     private Point posizione;
 
+    /**
+     * @brief posizione nella matrice
+     * @author Giacomo Orsenigo
+     */
     private Point posMatrice;
 
     /**
@@ -203,6 +207,12 @@ public class Scatola {
         this.palline.add(pallina);
     }
 
+    /**
+     * @brief get palline contenute in questa scatola
+     *
+     * @return palline
+     * @author Giacomo Orsenigo
+     */
     public List<JPallina> getPalline() {
         return palline;
     }
@@ -271,6 +281,12 @@ public class Scatola {
         return posizione;
     }
 
+    /**
+     * @brief get posizione nella matrice
+     *
+     * @return posizione nella matrice
+     * @author Giacomo Orsenigo
+     */
     public Point getPosMatrice() {
         return posMatrice;
     }
@@ -280,6 +296,7 @@ public class Scatola {
      * @return pallina se presente
      * @throws IllegalArgumentException se la pallina non è presente
      * @brief trova una pallina tra quelle presenti nella scatola
+     * @author Giacomo Orsenigo
      */
     public JPallina findPallina(int id) {
         for (JPallina p : palline)

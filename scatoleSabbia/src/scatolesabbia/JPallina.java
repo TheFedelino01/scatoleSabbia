@@ -79,9 +79,14 @@ public final class JPallina {
 //
 //    private int r,c; //Posizione scatola nella quale è presente la pallina
 
-
+    /**
+     * @brief scatola in cui è contenuta
+     */
     private Scatola scatola;
 
+    /**
+     * id univoco della pallina
+     */
     private final int id;
 
     /**
