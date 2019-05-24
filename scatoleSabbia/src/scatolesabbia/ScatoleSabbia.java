@@ -64,7 +64,7 @@ public class ScatoleSabbia extends PApplet {
 
     public void setup() {
         noStroke();
-        frameRate(30);
+        frameRate(100);
         ellipseMode(RADIUS);
     }
 

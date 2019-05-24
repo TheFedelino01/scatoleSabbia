@@ -196,7 +196,7 @@ public class DatiCondivisi {
                 if (c < numS) {
                     int quant =0;
                     if(c==4){
-                        quant=100;
+                        quant=90;
                     }else{quant=0;}
                     
                     scatole.get(i).add(new Scatola(processingSketch, new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole),quant));

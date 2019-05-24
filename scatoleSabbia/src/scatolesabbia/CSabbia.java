@@ -141,7 +141,7 @@ public class CSabbia {
     public void aggiornati(float inclinazioneX, DimensioniScatola dimensioni) {
         impostaMovimentoX(inclinazioneX);
 
-        calcolaLivelloDiRaggiungimentoMaggiore(inclinazioneX, dimensioni);
+        calcolaLivelloDiRaggiungimentoMaggioreUPGRADE(inclinazioneX, dimensioni);
     }
 
     //DEPRECATO
@@ -165,69 +165,121 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
+    //DEPRECATO
+//    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX, DimensioniScatola dimensioni) {
+//        double altezzaScatola;
+//       if (quantitaSabbia == 0){
+//           //Se non c'e' sabbia, l'altezza MAX e MIN è nulla
+//           altezzaLatoMaggiore=0;
+//           altezzaLatoMinore=0;
+//           larghezzaVisualizzazioneSabbia=0;
+//       }else{
+//           //Ce della sabbia
+//        if (inclinazioneX > 0)
+//            altezzaScatola = dimensioni.getAltezzaDx();
+//        else
+//            altezzaScatola = dimensioni.getAltezzaSx();
+//
+//        inclinazioneX = Math.abs(inclinazioneX);//La rendo sempre positiva
+//
+//        double lato = dimensioni.getProfondita();
+//        double VolumeIniziale = ((quantitaSabbia * lato) * lato);
+//
+//
+// 
+//        double angoloAdiacente = 180 - (90 + inclinazioneX);
+//        double risCosAngA = Math.cos(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
+//        double risSinAngA = Math.sin(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
+//
+//        double angoloSuperioreSX = Math.abs((180 - (angoloAdiacente + 90)) - 90);
+//        double angoloSuperioreDX = 180 - (angoloSuperioreSX + 90);
+//
+//        double lunghezzaDiagonale = lato / (Math.cos(trasformaARadianti(angoloSuperioreDX)));
+//
+//
+//        double latoTriangolo = (Math.sin(trasformaARadianti(angoloSuperioreDX)) * lunghezzaDiagonale);
+//        double volumeTriangolo = ((lato * latoTriangolo) / 2) * lato;
+//
+//
+//        double altezzaRett = -((volumeTriangolo - VolumeIniziale) / (lato * lato));
+//        double volumeRettangolo = (altezzaRett * lato) * lato;
+//
+//        double volumeTrapezio = volumeRettangolo + volumeTriangolo;
+//
+//
+//        altezzaLatoMaggiore = (float) (altezzaRett + latoTriangolo);
+//        altezzaLatoMinore = (float)altezzaRett;
+//        
+//        
+//         calcolaLarghezzaVisualizzazione(angoloSuperioreSX, dimensioni);
+//       }
+//       
+//    }
+    
+    private void calcolaLivelloDiRaggiungimentoMaggioreUPGRADE(float inclinazioneX, DimensioniScatola dimensioni){
+        double alpha = 90;//LATO DELLA SCATOLA
+        double beta=inclinazioneX;//UGUALE PER IL TEOREMA DEGLI ANGOLI ALL'INCLINAZIONEX DELLA SCATOLA
+        double omega=180-alpha-beta;//CALCOLATO IN BASE AL TEOREMA CHE LA SOMMA DEGLI ANGOLI INTERNI = 180
+            
+        //CONTROLLO SE C'E' DELLA SABBIA
+        if(quantitaSabbia != 0){
+            //TRASFORMO ANGOLI IN RADIANTI PER CALCOLARE SENO E COSENO
+            alpha = Math.toRadians(alpha);
+            beta = Math.toRadians(beta);
+            omega = Math.toRadians(omega);
 
-    private void calcolaLivelloDiRaggiungimentoMaggiore(float inclinazioneX, DimensioniScatola dimensioni) {
-        double altezzaScatola;
-       if (quantitaSabbia == 0){
-           //Se non c'e' sabbia, l'altezza MAX e MIN è nulla
-           altezzaLatoMaggiore=0;
-           altezzaLatoMinore=0;
-           larghezzaVisualizzazioneSabbia=0;
-       }else{
-           //Ce della sabbia
-        if (inclinazioneX > 0)
-            altezzaScatola = dimensioni.getAltezzaDx();
-        else
-            altezzaScatola = dimensioni.getAltezzaSx();
+            double a;//LUNGHEZZA DIAGONALE SABBIA
+            a = Math.sqrt(
+                    ((2*Math.pow(Math.sin(alpha), 2))*quantitaSabbia)/
+                            (Math.sin(beta)*Math.sin(omega))
+            );
 
-        inclinazioneX = Math.abs(inclinazioneX);//La rendo sempre positiva
+            double c;//LUNGHEZZA SUL FONDO DELLA SCATOLA
+            c = (Math.sin(omega)*a)/Math.sin(alpha);
 
-        double lato = dimensioni.getProfondita();
-        double VolumeIniziale = ((quantitaSabbia * lato) * lato);
-
-
- 
-        double angoloAdiacente = 180 - (90 + inclinazioneX);
-        double risCosAngA = Math.cos(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
-        double risSinAngA = Math.sin(trasformaARadianti(angoloAdiacente)) * altezzaScatola;
-
-        double angoloSuperioreSX = Math.abs((180 - (angoloAdiacente + 90)) - 90);
-        double angoloSuperioreDX = 180 - (angoloSuperioreSX + 90);
-
-        double lunghezzaDiagonale = lato / (Math.cos(trasformaARadianti(angoloSuperioreDX)));
-
-
-        double latoTriangolo = (Math.sin(trasformaARadianti(angoloSuperioreDX)) * lunghezzaDiagonale);
-        double volumeTriangolo = ((lato * latoTriangolo) / 2) * lato;
-
-
-        double altezzaRett = -((volumeTriangolo - VolumeIniziale) / (lato * lato));
-        double volumeRettangolo = (altezzaRett * lato) * lato;
-
-        double volumeTrapezio = volumeRettangolo + volumeTriangolo;
-
-
-        altezzaLatoMaggiore = (float) (altezzaRett + latoTriangolo);
-        altezzaLatoMinore = (float)altezzaRett;
+            double b;//ALTEZZA MASSIMA RAGGIUNTA DALLA SABBIA SULLA SPONDA
+            b = Math.sqrt(Math.pow(a,2)-Math.pow(c, 2));
+            
+            
+            if(inclinazioneX==0){
+                //Se l'inclinazione e' = a 0 la sabbia si vede tutta
+                larghezzaVisualizzazioneSabbia = dimensioni.getLarghezza();
+            }else{
+                altezzaLatoMaggiore=(float)b;
+                larghezzaVisualizzazioneSabbia=(float)c;
+                
+                if(larghezzaVisualizzazioneSabbia>dimensioni.getLarghezza()/10){
+                    //problema del triangolo che esce dalla scatola quindi gli sommo l'altezza del triangolo che esce
+                    float baseTriangoloCheEsce = (float)(larghezzaVisualizzazioneSabbia-dimensioni.getLarghezza()/10);
+                    //OH:RJ=HS:JS
+                    float RJ = (float)((altezzaLatoMaggiore*baseTriangoloCheEsce)/larghezzaVisualizzazioneSabbia);
+                    
+                    //GLI SOMMO L'ALTEZZA
+                    altezzaLatoMaggiore += RJ;
+                }
+            }
+            
+        }else{
+            //NON C'E' SABBIA QUINDI IMPOSTO VALORI A 0
+            altezzaLatoMaggiore=0;
+            larghezzaVisualizzazioneSabbia=0;
+        }
         
-        
-         calcolaLarghezzaVisualizzazione(angoloSuperioreSX, dimensioni);
-       }
-       
     }
     
-    private void calcolaLarghezzaVisualizzazione(double angoloSupSX, DimensioniScatola dimensioni){
-        double angoloSottoDx = 90-angoloSupSX;
-        double ipotenusa =0;
-        if(altezzaLatoMinore<0){
-            //c=(altezzaLatoMaggiore*angoloSuperioreSX)/Math.sin(trasformaARadianti(angoloSottoDx));
-            ipotenusa = altezzaLatoMaggiore/Math.cos(Math.toRadians(angoloSupSX));
-            larghezzaVisualizzazioneSabbia = Math.sin(trasformaARadianti(angoloSupSX))*ipotenusa;
-        }
-        else{
-            larghezzaVisualizzazioneSabbia=(float)dimensioni.getLarghezza();
-       }    
-    }
+    //DEPRECATO!
+//    private void calcolaLarghezzaVisualizzazione(double angoloSupSX, DimensioniScatola dimensioni){
+//        double angoloSottoDx = 90-angoloSupSX;
+//        double ipotenusa =0;
+//        if(altezzaLatoMinore<0){
+//            //c=(altezzaLatoMaggiore*angoloSuperioreSX)/Math.sin(trasformaARadianti(angoloSottoDx));
+//            ipotenusa = altezzaLatoMaggiore/Math.cos(Math.toRadians(angoloSupSX));
+//            larghezzaVisualizzazioneSabbia = Math.sin(trasformaARadianti(angoloSupSX))*ipotenusa;
+//        }
+//        else{
+//            larghezzaVisualizzazioneSabbia=(float)dimensioni.getLarghezza();
+//       }    
+//    }
 
     
     /**
@@ -344,7 +396,15 @@ public class CSabbia {
             
             //Imposto la posizione dell'immagine 
             if(movimentoX==1){
-                processingSketch.image(img, pos.x, pos.y,(float)larghezzaVisualizzazioneSabbia,altezzaScatola);
+                float larghezzaBaseSabbia = (float)larghezzaVisualizzazioneSabbia*10;
+                float larghezzaScatola = scatola.getDimensioni().getLarghezza();
+                
+                if(larghezzaBaseSabbia>larghezzaScatola){
+                   processingSketch.image(img, pos.x, pos.y,larghezzaScatola,altezzaScatola); 
+                }else{
+                    processingSketch.image(img, pos.x, pos.y,larghezzaBaseSabbia,altezzaScatola); 
+                }
+                
             }else{
                 //la sabbia si muove da sx verso dx
                 float delta = (float)(largezzaScatola-larghezzaVisualizzazioneSabbia);

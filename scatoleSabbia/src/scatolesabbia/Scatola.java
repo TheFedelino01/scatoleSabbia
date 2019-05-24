@@ -245,7 +245,7 @@ public class Scatola {
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
-        sabbiaPresente.visualizza(this, false);
+        sabbiaPresente.visualizza(this, true);
     }
 
     /**

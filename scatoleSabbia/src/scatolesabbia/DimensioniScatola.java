@@ -59,13 +59,13 @@ public class DimensioniScatola {
     public int getAltezza(Directions direzione) {
         switch (direzione) {
             case DESTRA:
-                return altezzaDx;
+                return altezzaDx/10;
             case SINISTRA:
-                return altezzaSx;
+                return altezzaSx/10;
             case SOPRA:
-                return altezzaSopra;
+                return altezzaSopra/10;
             case SOTTO:
-                return altezzaSotto;
+                return altezzaSotto/10;
         }
         return 0;
     }
