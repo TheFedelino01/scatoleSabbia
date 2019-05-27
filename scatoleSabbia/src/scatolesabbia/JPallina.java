@@ -143,7 +143,7 @@ public final class JPallina {
         Presente = false;
         Dimensioni = 10.0f;
         Posizione = new Point(); //La posizione andrà impostata al centro della scatola
-        Colore = new Color(0, 0, 240);
+        Colore = new Color(0, 0, 255);
 
     }
 
@@ -253,6 +253,12 @@ public final class JPallina {
     public Color getColore() {
         return Colore;
     }
+
+    public void setColore(Color Colore) {
+        this.Colore = Colore;
+    }
+    
+    
 
     public int getId() {
         return id;

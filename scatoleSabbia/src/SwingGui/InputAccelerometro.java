@@ -58,7 +58,6 @@ public class InputAccelerometro extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 500));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel6.setPreferredSize(new java.awt.Dimension(400, 300));
