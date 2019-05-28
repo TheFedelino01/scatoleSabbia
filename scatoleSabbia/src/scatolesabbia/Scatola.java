@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scatolesabbia;
 
 
@@ -236,20 +231,17 @@ public class Scatola {
      */
     public void draw() {
         processingSketch.fill(processingSketch.color(255, 255, 255));
-        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
-
-//        if (palline.isPresente()) {
-//            processingSketch.fill(palline.getColore().getRGB());
-//            processingSketch.ellipse(palline.getPosizione().x + posizione.x, palline.getPosizione().y + posizione.y, palline.getDimensioni(), palline.getDimensioni());
-//        }
-
-        for (JPallina p : palline)
-            p.draw();
-
+        //Disegna la scatola
         processingSketch.noFill();
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
+        
+        //Disegna tutte le palline
+        for (JPallina p : palline)
+            p.draw();
 
+        
+        //Disegna la sabbia
         sabbiaPresente.visualizza(this, true);
     }
 

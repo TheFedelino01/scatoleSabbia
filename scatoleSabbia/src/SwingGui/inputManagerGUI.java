@@ -15,12 +15,14 @@ import scatolesabbia.DatiCondivisi;
 
 
 /**
- * @author gdfgfdgdfg
+ * @author Saccani Federico
+ * @version 1.0
  */
 public class inputManagerGUI extends JFrame {
     
         private DatiCondivisi ptrDati;
-    
+        private BallColorChooser guiSceltaColore;
+        
 	public inputManagerGUI(DatiCondivisi dati) {
 		initComponents();
                 
@@ -28,13 +30,18 @@ public class inputManagerGUI extends JFrame {
                 
                 asseXLabel.setText("0");//LABEL ASSE X
                 asseYLabel.setText("0");//LABEL ASSE Y
+                
+                guiSceltaColore = new SwingGui.BallColorChooser(ptrDati);
 	}
 
 
 	
 
 	private void btnColoreActionPerformed(ActionEvent e) {
-		new SwingGui.BallColorChooser(ptrDati).setVisible(true);
+            if(guiSceltaColore.isActive()==false){
+                guiSceltaColore.setVisible(true);
+            }
+            
 	}
 
 	

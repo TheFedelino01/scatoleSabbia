@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scatolesabbia;
 
 import java.awt.Color;
@@ -121,10 +116,10 @@ public final class JPallina {
      */
 
 
-    public JPallina(PApplet processingSketch, Point posScatola, Scatola scatola, int id) {
+    public JPallina(PApplet processingSketch,Scatola scatola, int id) {
 
         this.processingSketch = processingSketch;
-        this.posScatola = posScatola;
+        this.posScatola = scatola.getPosizione();
         this.scatola = scatola;
         this.id = id;
         reset();

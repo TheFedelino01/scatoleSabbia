@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scatolesabbia;
 
 import java.awt.Point;
@@ -78,8 +73,6 @@ public class ThPallina extends Thread {
 //
 //    }
 
-    @Override
-
     /**
      * @brief Thread incaricato della gestione di una pallina. Il thread in
      * questione varia costantemente la posizione sul piano della pallina
@@ -95,19 +88,30 @@ public class ThPallina extends Thread {
 
         Scatola scatolaAttuale = pallina.getScatola(); //La scatola in cui è contenuta la pallina
         while (!isInterrupted()) {
+            
             int incX = ptrDati.getInclinazioneTavoloDiGiocoX();
             int incY = ptrDati.getInclinazioneTavoloDiGiocoY();
+            
             scatolaAttuale.aggiornaPosPallina(incX, incY, idPallina); //viene aggiornata la posizione della pallina
+            
             if (pallina.isPresente()) {
+                
                 final Directions dirPallina = scatolaAttuale.isPallinaControBordi(idPallina);
+                
+                
                 if (dirPallina != Directions.NONE && (dirPallina == Directions.fromInclinazioneX(incX) || dirPallina == Directions.fromInclinazioneY(incY))) {
+                    //Se tocca un bordo
                     System.out.println(dirPallina);
+                    
                     final Scatola ricevente = ptrDati.getScatolaAdiacente(scatolaAttuale, dirPallina);
-                    //final Scatola s = ptrDati.getScatola(0, 1);
-                    if (ricevente != null) {
+                    
+                    if (ricevente != null) {//c'e' una scatola?
                         scatolaAttuale.spostaPallina(idPallina, ricevente);
+                        
                         scatolaAttuale = ricevente;
+                        
                         Point nuovaPos = pallina.getPosizione();
+                        //Imposto la posizione della pallina a seconda della nuova scatola
                         switch (dirPallina) {
                             case SOPRA:
                             case SOTTO:

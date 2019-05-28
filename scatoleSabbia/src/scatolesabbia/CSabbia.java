@@ -372,6 +372,7 @@ public class CSabbia {
      * @brief Il metodo permette di disegnare la sabbia sulla tavola da disegno
      * Utilizzando l'attributo processingSketch, il metodo disegna in corrispondenza della scatola la sabbia presente.
      * @paran Scatola la scatola di appartenenza
+     * @paran vistaSopra come vuole che le scatole vengono visualizzate
      * @author Saccani Federico
      * @version 1.0
      */
@@ -414,10 +415,7 @@ public class CSabbia {
                     } 
             }
         
-            
-            
-            
-            
+
             //Aggiungo il testo relativo al quantitativo % di sabbia presente
             processingSketch.textSize(32);
             processingSketch.fill(0, 0, 0);
@@ -453,13 +451,9 @@ public class CSabbia {
 
         }
         
-        
-
-
-        
-
 
     }
+    
 
     //GET e SET DELLA CLASSE
 

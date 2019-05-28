@@ -1,8 +1,3 @@
- /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scatolesabbia;
 
 /**
@@ -43,11 +38,14 @@ public class ThScatola extends Thread {
         while (!isInterrupted()) {
             //scatola.muovi(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
             scatola.aggiornaDistribuzioneVelocitaSabbia(ptrDati.getInclinazioneTavoloDiGiocoX(), ptrDati.getInclinazioneTavoloDiGiocoY());
+            
+            //prendo l'altezza del lato dove c'e' il latoMaggiore della sabbia
             int altezzaLatoUscita = scatola.getDimensioni().getAltezza(Directions.fromInclinazioneX(ptrDati.getDimensioneSchermoX()));
             
             final Directions direzioneUscita = scatola.getSabbiaPresente().direzioneDiUscitaSabbia(altezzaLatoUscita);
 
             if (direzioneUscita != Directions.NONE) {
+                //Sta uscendo
                 final Scatola ricevente = ptrDati.getScatolaAdiacente(scatola.getPosMatrice().y, scatola.getPosMatrice().x, direzioneUscita);
                 if (ricevente != null) {    //se la scatola esiste e non è vuoto
                     System.out.println("LA SABBIA ESCE!!");

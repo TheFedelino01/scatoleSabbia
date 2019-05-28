@@ -9,7 +9,7 @@ import scatolesabbia.DatiCondivisi;
 
 /**
  *
- * @author giaco
+ * @author Giacomo Orsenigo
  */
 public class InputAccelerometroOLD extends javax.swing.JFrame {
 

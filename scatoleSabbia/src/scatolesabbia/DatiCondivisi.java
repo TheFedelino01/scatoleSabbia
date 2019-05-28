@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scatolesabbia;
 
 import processing.core.PApplet;
@@ -88,7 +83,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public List<Scatola> getScatoleInUnaLista() {
+    public List<Scatola> ottieniListaConScatole() {
         List<Scatola> RIS = new ArrayList<Scatola>();
         
         for (Vector<Scatola> vett : scatole) {
@@ -186,15 +181,18 @@ public class DatiCondivisi {
         this.dimensioneScatolaY = dimensioneScatolaY;
         this.dimensioneSchermoY = dimensioneSchermoY;
         this.dimensioneSchermoX = dimensioneSchermoX;
+        
         int spazioTraScatole = 10;
         numS = numScatole;
         int c = 0;
         scatole = new Vector<>();
+        
         int numScatolePerRigaPossibili = dimensioneSchermoX / dimensioneScatolaX;
         int numScatolePerColonnaPossibili = dimensioneSchermoY / dimensioneScatolaY;
+        
         //Aggiungo le scatole al vettore
         for (int i = 0; i < numScatolePerRigaPossibili; i++) {
-            scatole.add(new Vector<Scatola>());
+            scatole.add(new Vector<Scatola>());//PER OGNI RIGA AGGIUNGO UN VETTORE
             for (int j = 0; j < numScatolePerColonnaPossibili; j++) {
                 if (c < numS) {
                     int quant = 0;
@@ -203,7 +201,8 @@ public class DatiCondivisi {
                     } else {
                         quant = 0;
                     }
-
+                    
+                    //AL VETTORE DELLA RIGA, AGGIUNGO LA SCATOLA
                     scatole.get(i).add(new Scatola(processingSketch, new Point(j, i), new Point(j * dimensioneScatolaX + spazioTraScatole * (j + 1), i * dimensioneScatolaY + spazioTraScatole), quant));
                 }
                 //else
@@ -215,9 +214,6 @@ public class DatiCondivisi {
 
 
         }
-
-
-        //scatole.add(new Scatola(processingSketch, new Point(200 * i + 100, 200)));
     }
 
     /**
@@ -365,34 +361,28 @@ public class DatiCondivisi {
 //        r /= dimensioneScatolaX;
 //        c /= dimensioneScatolaY;
         Scatola scatola = null;
-        if (direction == Directions.SOPRA) {
-            try {
-                scatola = scatole.get(r + 1).get(c);
-            } catch (Exception e) {
-                scatola = null;
+        
+        try {
+            
+            if (direction == Directions.SOPRA) {
+                    scatola = scatole.get(r + 1).get(c);
             }
-        }
-        if (direction == Directions.SOTTO) {
-            try {
-                scatola = scatole.get(r - 1).get(c);
-            } catch (Exception e) {
-                scatola = null;
+            if (direction == Directions.SOTTO) {
+                    scatola = scatole.get(r - 1).get(c);
             }
-        }
-        if (direction == Directions.DESTRA) {
-            try {
-                scatola = scatole.get(r).get(c + 1);
-            } catch (Exception e) {
-                scatola = null;
+            if (direction == Directions.DESTRA) {
+                    scatola = scatole.get(r).get(c + 1);
             }
-        }
-        if (direction == Directions.SINISTRA) {
-            try {
-                scatola = scatole.get(r).get(c - 1);
-            } catch (Exception e) {
-                scatola = null;
+            if (direction == Directions.SINISTRA) {
+
+                    scatola = scatole.get(r).get(c - 1);
+                } 
             }
+        
+        catch (Exception e) {
+                scatola = null;
         }
+        
         return scatola;
     }
 
