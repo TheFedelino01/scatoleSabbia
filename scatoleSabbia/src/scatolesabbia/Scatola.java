@@ -118,16 +118,16 @@ public class Scatola {
     public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY, int idPallina) {
         JPallina toMove = findPallina(idPallina);
 
-        if (inclinazioneX < 0 && isPallinaControBordi(idPallina) == Directions.SINISTRA)
+        if (inclinazioneX > 0 && isPallinaControBordi(idPallina) == Directions.SINISTRA)
             return;
-        if (inclinazioneX > 0 && isPallinaControBordi(idPallina) == Directions.DESTRA)
+        if (inclinazioneX < 0 && isPallinaControBordi(idPallina) == Directions.DESTRA)
             return;
 
         toMove.spostaX(inclinazioneX);
 
-        if (inclinazioneY < 0 && isPallinaControBordi(idPallina) == Directions.SOPRA)
+        if (inclinazioneY > 0 && isPallinaControBordi(idPallina) == Directions.SOPRA)
             return;
-        if (inclinazioneY > 0 && isPallinaControBordi(idPallina) == Directions.SOTTO)
+        if (inclinazioneY < 0 && isPallinaControBordi(idPallina) == Directions.SOTTO)
             return;
 
         toMove.spostaY(inclinazioneY);
@@ -243,14 +243,15 @@ public class Scatola {
 //            processingSketch.ellipse(palline.getPosizione().x + posizione.x, palline.getPosizione().y + posizione.y, palline.getDimensioni(), palline.getDimensioni());
 //        }
 
-        for (JPallina p : palline)
-            p.draw();
 
         processingSketch.noFill();
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
 
         sabbiaPresente.visualizza(this, true);
+
+        for (JPallina p : palline)
+            p.draw();
     }
 
     /**
@@ -260,13 +261,13 @@ public class Scatola {
      */
     public Directions isPallinaControBordi(int id) {
         JPallina p = findPallina(id);
-        if (p.getPosizione().x > dimensioni.getLarghezza())
+        if (p.getPosizione().x + p.getDimensioni() > dimensioni.getLarghezza())
             return Directions.DESTRA;
-        else if (p.getPosizione().x < 0)
+        else if (p.getPosizione().x - p.getDimensioni() < 0)
             return Directions.SINISTRA;
-        else if (p.getPosizione().y < 0)
+        else if (p.getPosizione().y- p.getDimensioni()  < 0)
             return Directions.SOPRA;
-        else if (p.getPosizione().y > dimensioni.getProfondita())
+        else if (p.getPosizione().y + p.getDimensioni() > dimensioni.getProfondita())
             return Directions.SOTTO;
         return Directions.NONE;
     }
