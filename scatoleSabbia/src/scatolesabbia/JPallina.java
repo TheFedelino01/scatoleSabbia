@@ -217,9 +217,9 @@ public final class JPallina {
         velocitaSpostamento = Math.abs(inclinazioneScatolaY); //La velocità è direttamente proporzionale all'inclinazione della scatola
 
         if (inclinazioneScatolaY > 0) //Se la scatola è inclinata verso destra la scatola si spostaX verso destra
-            Posizione.y -= (0.5 * velocitaSpostamento);
-        else
             Posizione.y += (0.5 * velocitaSpostamento);
+        else
+            Posizione.y -= (0.5 * velocitaSpostamento);
     }
 
 
