@@ -59,9 +59,9 @@ public class ScatoleSabbia extends PApplet {
 
         faiPartireITh();
 
-        new SwingGui.InputAccelerometro(dati).setVisible(true);
-        new SwingGui.inputGUI().setVisible(true);//TO FIX IT
-        new SwingGui.BallColorChooser(dati).setVisible(true);
+        //new SwingGui.InputAccelerometro(dati).setVisible(true);
+        new SwingGui.inputManagerGUI(dati).setVisible(true);
+        
      
     }
 

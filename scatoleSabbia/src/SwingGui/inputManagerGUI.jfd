@@ -3,10 +3,10 @@ JFDML JFormDesigner: "6.0.4.0.167" Java: "1.8.0_191" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[grow,fill][grow,fill][grow,fill]"
-			"$rowConstraints": "[43,top]0[]0[]0[300!,grow,center]0[]0[]0[grow]0[grow,fill]"
+			"$columnConstraints": "[fill][fill]"
+			"$rowConstraints": "[][50!,grow][]0[][][]0[][grow]"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -16,17 +16,49 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0"
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnColore"
+				"text": "CAMBIA COLORE PALLINA"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnColoreActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnColoreActionPerformed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 1,growy"
+			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "separator1"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 1 3 1"
+				"value": "cell 0 2 2 1"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "INPUT X:"
 				"font": &Font0 new java.awt.Font( "Tahoma", 0, 22 )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 2 3 1"
+				"value": "cell 0 3"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$layoutConstraints": "hidemode 3"
+				"$columnConstraints": "[grow,fill]0[grow,fill]"
+				"$rowConstraints": "[grow]"
+			} ) {
+				name: "panel4"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Inclinazione Asse X:"
+					"font": &Font1 new java.awt.Font( "Tahoma", 1, 15 )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 0"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "asseXLabel"
+					"text": "0"
+					"font": &Font2 new java.awt.Font( "Tahoma", 0, 20 )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 1 0"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
@@ -35,44 +67,25 @@ new FormModel {
 			} ) {
 				name: "panel3"
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button2"
+					name: "btnDownX"
 					"text": "◄"
 					"font": new java.awt.Font( "Tahoma", 0, 24 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDownXActionPerformed", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 0,growy"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button5"
+					name: "btnUpX"
 					"text": "►"
 					"font": new java.awt.Font( "Tahoma", 0, 24 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5ActionPerformed", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpXActionPerformed", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 3 0,growy"
 				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-					"$layoutConstraints": "hidemode 3"
-					"$columnConstraints": "[grow,fill]0[grow,fill]"
-					"$rowConstraints": "[grow]"
-				} ) {
-					name: "panel4"
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label4"
-						"text": "Inclinazione Asse X:"
-						"font": &Font1 new java.awt.Font( "Tahoma", 1, 15 )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "asseXdisplay2"
-						"text": "0"
-						"font": &Font2 new java.awt.Font( "Tahoma", 0, 20 )
-					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 0"
-					} )
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 1 3 1"
-				} )
 				add( new FormComponent( "javax.swing.JSlider" ) {
-					name: "sliderX2"
+					name: "sliderX"
 					"majorTickSpacing": 10
 					"minimum": -100
 					"minorTickSpacing": 10
@@ -80,24 +93,27 @@ new FormModel {
 					"paintTicks": true
 					"value": 0
 					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderStateChanged", true ) )
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderX2StateChanged", true ) )
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderXStateChanged", true ) )
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderXStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 2 5 1,aligny bottom,growy 0"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 3 3 1"
+				"value": "cell 0 4 2 1"
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "separator2"
-				"foreground": new java.awt.Color( 255, 0, 0, 255 )
+				"foreground": sfield java.awt.Color black
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 4 3 1"
+				"value": "cell 0 5 2 1"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label5"
 				"text": "INPUT Y:"
 				"font": #Font0
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 5"
+				"value": "cell 0 6"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
@@ -107,20 +123,20 @@ new FormModel {
 				name: "panel6"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
-					"text": "Inclinazione Asse X:"
+					"text": "Inclinazione Asse Y:"
 					"font": #Font1
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 0 2 1"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "asseXdisplay3"
+					name: "asseYLabel"
 					"text": "0"
 					"font": #Font2
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 0,alignx right,growx 0"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 5 2 1"
+				"value": "cell 1 6"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3,alignx center"
@@ -129,21 +145,25 @@ new FormModel {
 			} ) {
 				name: "panel5"
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button6"
+					name: "btnUpY"
 					"text": "▲"
 					"font": new java.awt.Font( "Tahoma", 0, 24 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button6ActionPerformed", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpYActionPerformed", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 0,growy"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button4"
+					name: "btnDownY"
 					"text": "▼"
 					"font": new java.awt.Font( "Tahoma", 0, 24 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4ActionPerformed", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDownYActionPerformed", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 2,growy"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 6 1 2,align right center,grow 0 0"
+				"value": "cell 0 7,align right center,grow 0 0"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
@@ -152,7 +172,7 @@ new FormModel {
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JSlider" ) {
-					name: "sliderX"
+					name: "sliderY"
 					"majorTickSpacing": 10
 					"minimum": -100
 					"minorTickSpacing": 10
@@ -161,15 +181,17 @@ new FormModel {
 					"value": 0
 					"orientation": 1
 					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderStateChanged", true ) )
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderXStateChanged", true ) )
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sliderYStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 0 5 3,growy"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 6 2 2,growy"
+				"value": "cell 1 7,growy"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 5 )
-			"size": new java.awt.Dimension( 675, 950 )
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 705, 905 )
 		} )
 	}
 }

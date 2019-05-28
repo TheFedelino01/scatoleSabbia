@@ -11,14 +11,14 @@ import scatolesabbia.DatiCondivisi;
  *
  * @author giaco
  */
-public class InputAccelerometro extends javax.swing.JFrame {
+public class InputAccelerometroOLD extends javax.swing.JFrame {
 
     private DatiCondivisi ptrDati;
 
     /**
      * Creates new form InputAccelerometro
      */
-    public InputAccelerometro(DatiCondivisi ptrDati) {
+    public InputAccelerometroOLD(DatiCondivisi ptrDati) {
         this.ptrDati = ptrDati;
         initComponents();
         incX.setText("0");

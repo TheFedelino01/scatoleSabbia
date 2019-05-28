@@ -89,13 +89,14 @@ public class DatiCondivisi {
      * @version 1.0
      */
     public List<Scatola> getScatoleInUnaLista() {
-        List<Scatola> v = new ArrayList<Scatola>();
+        List<Scatola> RIS = new ArrayList<Scatola>();
+        
         for (Vector<Scatola> vett : scatole) {
             for (Scatola s : vett) {
-                v.add(s);
+                RIS.add(s);
             }
         }
-        return v;
+        return RIS;
     }
 
     /**

@@ -230,15 +230,16 @@ public class CSabbia {
 
             double a;//LUNGHEZZA DIAGONALE SABBIA
             a = Math.sqrt(
-                    ((2*Math.pow(Math.sin(alpha), 2))*quantitaSabbia)/
+                    Math.abs(((2*Math.pow(Math.sin(alpha), 2))*quantitaSabbia)/
                             (Math.sin(beta)*Math.sin(omega))
+                    )
             );
 
             double c;//LUNGHEZZA SUL FONDO DELLA SCATOLA
-            c = (Math.sin(omega)*a)/Math.sin(alpha);
+            c = Math.abs((Math.sin(omega)*a)/Math.sin(alpha));
 
             double b;//ALTEZZA MASSIMA RAGGIUNTA DALLA SABBIA SULLA SPONDA
-            b = Math.sqrt(Math.pow(a,2)-Math.pow(c, 2));
+            b = Math.sqrt( Math.abs(Math.pow(a,2)-Math.pow(c, 2)));
             
             
             if(inclinazioneX==0){
@@ -394,22 +395,26 @@ public class CSabbia {
             processingSketch.noStroke();
             
             
-            //Imposto la posizione dell'immagine 
-            if(movimentoX==1){
-                float larghezzaBaseSabbia = (float)larghezzaVisualizzazioneSabbia*10;
-                float larghezzaScatola = scatola.getDimensioni().getLarghezza();
+            float larghezzaBaseSabbia = (float)larghezzaVisualizzazioneSabbia*10;
+            float larghezzaScatola = scatola.getDimensioni().getLarghezza();
                 
-                if(larghezzaBaseSabbia>larghezzaScatola){
+            //Se un pezzo del triangolo esce, significa che la sabbia si vede tutta
+            if(larghezzaBaseSabbia>larghezzaScatola){
                    processingSketch.image(img, pos.x, pos.y,larghezzaScatola,altezzaScatola); 
-                }else{
-                    processingSketch.image(img, pos.x, pos.y,larghezzaBaseSabbia,altezzaScatola); 
-                }
-                
             }else{
-                //la sabbia si muove da sx verso dx
-                float delta = (float)(largezzaScatola-larghezzaVisualizzazioneSabbia);
-                processingSketch.image(img, pos.x+delta, pos.y,(float)larghezzaVisualizzazioneSabbia,altezzaScatola);
+                //Si vede il fondo della scatola, in base all'inclinazione faccio vedere il fondo a dx o a sx
+                if(movimentoX==1){
+                    //Faccio vedere il fondo a dx
+                    processingSketch.image(img, pos.x, pos.y,larghezzaBaseSabbia,altezzaScatola); 
+                }else{
+                        //la sabbia si muove da sx verso dx
+                        //Faccio vedere il fondo a sx
+                        float delta = larghezzaScatola-larghezzaBaseSabbia;
+                        processingSketch.image(img, pos.x+delta, pos.y,(float)larghezzaBaseSabbia,altezzaScatola);
+                    } 
             }
+        
+            
             
             
             

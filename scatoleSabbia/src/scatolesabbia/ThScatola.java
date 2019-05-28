@@ -52,6 +52,18 @@ public class ThScatola extends Thread {
                 if (ricevente != null) {    //se la scatola esiste e non è vuoto
                     System.out.println("LA SABBIA ESCE!!");
                     scatola.spostaSabbia(1, ricevente);
+
+                }
+            }
+            try {
+                sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
 //                        if (scatola.getPalline().isPresente()) {
 //                            final Directions dirPallina = scatola.isPallinaControBordi();
 //                            if (dirPallina != Directions.NONE) {
@@ -71,13 +83,3 @@ public class ThScatola extends Thread {
 //                                s.getPalline().sposta(nuovaPos);
 //                            }
 //                        }
-                }
-            }
-            try {
-                sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}
