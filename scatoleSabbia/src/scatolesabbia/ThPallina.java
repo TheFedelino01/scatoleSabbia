@@ -61,7 +61,12 @@ public class ThPallina extends Thread {
     @Override
 
     /**
-     * @brief run threasd
+     * @brief Thread incaricato della gestione di una pallina.
+     * Il thread in questione varia costantemente la posizione sul piano della pallina basandosi sulle inclinazioni del piano di gioco.
+     * Le inclinazioni vengono recuperate dai dati condivisi 
+     * Inoltre ad ogni iterazione verifica se la pallina entra in contatto con uno dei bordi della scatola.
+     * Basandosi sulla direzione recupera dai dati condivisi la scatola adiacente 
+     * Sposta la pallina all'interno della scatola adiacente e ne aggiorna la posizione
      * @author Peduzzi Samuele
      * @version 1.0
      */
