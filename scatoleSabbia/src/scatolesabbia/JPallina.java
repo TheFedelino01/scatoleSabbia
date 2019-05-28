@@ -137,7 +137,9 @@ public final class JPallina {
         velocitaSpostamento = 0f;
         Presente = false;
         Dimensioni = 10.0f;
-        Posizione = new Point(); //La posizione andrà impostata al centro della scatola
+        //Posizione = new Point(); //La posizione andrà impostata al centro della scatola
+        Posizione= new Point((int)Dimensioni,(int)Dimensioni); //faccio in modo che sia posizionata nell'angolo in alto a sinistra, ma non sovrapposta ai bordi
+
         Colore = new Color(0, 0, 255);
 
     }
@@ -193,9 +195,9 @@ public final class JPallina {
         velocitaSpostamento = Math.abs(inclinazioneScatolaX); //La velocità è direttamente proporzionale all'inclinazione della scatola
 
         if (inclinazioneScatolaX > 0) //Se la scatola è inclinata verso destra la scatola si spostaX verso destra
-            Posizione.x += (0.5 * velocitaSpostamento);
+            Posizione.x -= (0.5 * velocitaSpostamento);
         else
-            Posizione.x += (-0.5 * velocitaSpostamento);
+            Posizione.x += (0.5 * velocitaSpostamento);
     }
 
     /**
@@ -212,7 +214,7 @@ public final class JPallina {
         if (inclinazioneScatolaY > 0) //Se la scatola è inclinata verso destra la scatola si spostaX verso destra
             Posizione.y += (0.5 * velocitaSpostamento);
         else
-            Posizione.y += (-0.5 * velocitaSpostamento);
+            Posizione.y -= (0.5 * velocitaSpostamento);
     }
 
 
@@ -228,6 +230,8 @@ public final class JPallina {
         if (Presente) {
             processingSketch.fill(Colore.getRGB());
             processingSketch.ellipse(Posizione.x + posScatola.x, Posizione.y + posScatola.y, Dimensioni, Dimensioni);
+
+            System.out.println(Posizione.toString());
         }
 
 

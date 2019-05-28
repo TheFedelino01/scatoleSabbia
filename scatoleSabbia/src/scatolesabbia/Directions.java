@@ -18,9 +18,9 @@ public enum Directions {
      */
     public static Directions fromInclinazioneX(float inclinazioneX) {
         if (inclinazioneX > 0)
-            return DESTRA;
-        else
             return SINISTRA;
+        else
+            return DESTRA;
     }
 
     /**
@@ -32,8 +32,8 @@ public enum Directions {
      */
     public static Directions fromInclinazioneY(float inclinazioneY) {
         if (inclinazioneY > 0)
-            return SOPRA;
-        else
             return SOTTO;
+        else
+            return SOPRA;
     }
 }

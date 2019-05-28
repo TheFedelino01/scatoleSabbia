@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package scatolesabbia;
 
 
@@ -113,16 +118,16 @@ public class Scatola {
     public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY, int idPallina) {
         JPallina toMove = findPallina(idPallina);
 
-        if (inclinazioneX < 0 && isPallinaControBordi(idPallina) == Directions.SINISTRA)
+        if (inclinazioneX > 0 && isPallinaControBordiX(idPallina) == Directions.SINISTRA)
             return;
-        if (inclinazioneX > 0 && isPallinaControBordi(idPallina) == Directions.DESTRA)
+        if (inclinazioneX < 0 && isPallinaControBordiX(idPallina) == Directions.DESTRA)
             return;
 
         toMove.spostaX(inclinazioneX);
 
-        if (inclinazioneY < 0 && isPallinaControBordi(idPallina) == Directions.SOPRA)
+        if (inclinazioneY < 0 && isPallinaControBordiY(idPallina) == Directions.SOPRA)
             return;
-        if (inclinazioneY > 0 && isPallinaControBordi(idPallina) == Directions.SOTTO)
+        if (inclinazioneY > 0 && isPallinaControBordiY(idPallina) == Directions.SOTTO)
             return;
 
         toMove.spostaY(inclinazioneY);
@@ -231,38 +236,72 @@ public class Scatola {
      */
     public void draw() {
         processingSketch.fill(processingSketch.color(255, 255, 255));
-        //Disegna la scatola
+        processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
+
+//        if (palline.isPresente()) {
+//            processingSketch.fill(palline.getColore().getRGB());
+//            processingSketch.ellipse(palline.getPosizione().x + posizione.x, palline.getPosizione().y + posizione.y, palline.getDimensioni(), palline.getDimensioni());
+//        }
+
+
         processingSketch.noFill();
         processingSketch.stroke(0, 0, 0);
         processingSketch.rect(posizione.x, posizione.y, (float) dimensioni.getLarghezza(), (float) dimensioni.getProfondita());
-        
-        //Disegna tutte le palline
+
+        sabbiaPresente.visualizza(this, true);
+
         for (JPallina p : palline)
             p.draw();
-
-        
-        //Disegna la sabbia
-        sabbiaPresente.visualizza(this, true);
     }
 
     /**
+     * @deprecated Usare {@link #isPallinaControBordiX(int)} e {@link #isPallinaControBordiY(int)}
+     * @bug Se la pallina è appoggiata a due bordi ne ritorna uno solo
      * @return direzione del bordo con la palline appoggiata
      * @brief controlla se la palline è contro i bordi
      * @author Giacomo Orsenigo
      */
     public Directions isPallinaControBordi(int id) {
         JPallina p = findPallina(id);
-        if (p.getPosizione().x > dimensioni.getLarghezza())
+        if (p.getPosizione().x + p.getDimensioni() >= dimensioni.getLarghezza())
             return Directions.DESTRA;
-        else if (p.getPosizione().x < 0)
+        else if (p.getPosizione().x - p.getDimensioni() <= 0)
             return Directions.SINISTRA;
-        else if (p.getPosizione().y < 0)
+        else if (p.getPosizione().y- p.getDimensioni()  <= 0)
             return Directions.SOPRA;
-        else if (p.getPosizione().y > dimensioni.getProfondita())
+        else if (p.getPosizione().y + p.getDimensioni() >= dimensioni.getProfondita())
             return Directions.SOTTO;
         return Directions.NONE;
     }
 
+
+    /**
+     * @return direzione del bordo con la palline appoggiata
+     * @brief controlla se una pallina è contro i bordi destro o sinistro
+     * @author Giacomo Orsenigo
+     */
+    public Directions isPallinaControBordiX(int id) {
+        JPallina p = findPallina(id);
+        if (p.getPosizione().x + p.getDimensioni() >= dimensioni.getLarghezza())
+            return Directions.DESTRA;
+        else if (p.getPosizione().x - p.getDimensioni() <= 0)
+            return Directions.SINISTRA;
+        return Directions.NONE;
+    }
+
+    /**
+     * @return direzione del bordo con la palline appoggiata
+     * @brief controlla se una pallina è contro i bordi superiore o inferiore
+     * @author Giacomo Orsenigo
+     */
+    public Directions isPallinaControBordiY(int id) {
+        JPallina p = findPallina(id);
+        if (p.getPosizione().y- p.getDimensioni()  <= 0)
+            return Directions.SOPRA;
+        else if (p.getPosizione().y + p.getDimensioni() >= dimensioni.getProfondita())
+            return Directions.SOTTO;
+        return Directions.NONE;
+    }
     /**
      * get posizione
      *
