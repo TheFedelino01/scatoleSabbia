@@ -92,7 +92,7 @@ public class DimensioniScatola {
      * 
      * @author Giacomo Orsenigo
      */
-    public int getAltezzaSx() {
+    public int getAltezzaSx() {//RM-MIO
         return altezzaSx;
     }
     /**
@@ -101,7 +101,7 @@ public class DimensioniScatola {
      * 
      * @author Giacomo Orsenigo
      */
-    public int getAltezzaDx() {
+    public int getAltezzaDx() {//RM-MIO
         return altezzaDx;
     }
     /**
@@ -110,7 +110,7 @@ public class DimensioniScatola {
      * 
      * @author Giacomo Orsenigo
      */
-    public int getAltezzaSopra() {
+    public int getAltezzaSopra() {//RM-MIO
         return altezzaSopra;
     }
     /**

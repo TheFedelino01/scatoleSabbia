@@ -40,7 +40,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    private float altezzaLatoMinore;
+    private float altezzaLatoMinore;//RM-MIO
 
     /**
      * @brief L'attributo rappresenta la quantita' di sabbia presente all'interno della scatola
@@ -290,7 +290,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    private double trasformaARadianti(double gradi) {
+    private double trasformaARadianti(double gradi) {//RM-MIO
         //180:gradi=pi:rad
         return ((gradi * Math.PI) / 180);
     }
@@ -380,7 +380,7 @@ public class CSabbia {
         
         processingSketch.fill(processingSketch.color(0, 255, 0));
         DimensioniScatola dim = scatola.getDimensioni();
-        Point pos = scatola.getPosizioneCentrale();
+        Point pos = scatola.getPosizione();
         Float altezzaScatola = (float)dim.getAltezzaSotto();
         Float largezzaScatola = (float)dim.getLarghezza();
         
@@ -463,7 +463,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public float getMovimentoX() {
+    public float getMovimentoX() {//RM-MIO
         return movimentoX;
     }
 
@@ -483,7 +483,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public float getVelocita() {
+    public float getVelocita() {//RM-MIO
         return velocita;
     }
 
@@ -493,7 +493,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public float getAltezzaLatoMaggiore() {
+    public float getAltezzaLatoMaggiore() {//RM-MIO
         return altezzaLatoMaggiore;
     }
 
@@ -503,7 +503,7 @@ public class CSabbia {
      * @author Saccani Federico
      * @version 1.0
      */
-    public float getAltezzaLatoMinore() {
+    public float getAltezzaLatoMinore() {//RM-MIO
         return altezzaLatoMinore;
     }
 

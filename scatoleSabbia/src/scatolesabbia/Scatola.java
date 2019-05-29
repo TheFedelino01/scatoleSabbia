@@ -106,32 +106,7 @@ public class Scatola {
         aggiornaPosPallina(inclinazioneX, inclinazioneY, idPallina);
     }
 
-    /**
-     * @param inclinazioneX inclinazione X
-     * @param inclinazioneY inclinazione Y
-     * @brief aggiorna posizione palline
-     * <p>
-     * Metodo che permette di aggiornare la posizione della palline all'interno della scatola a seconda della velocita' della sabbia
-     * Richiama {@link JPallina#spostaX(float)} e {@link JPallina#spostaY(float)}
-     * @author Giacomo Orsenigo
-     */
-    public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY, int idPallina) {
-        JPallina toMove = findPallina(idPallina);
-
-        if (inclinazioneX > 0 && isPallinaControBordiX(idPallina) == Directions.SINISTRA)
-            return;
-        if (inclinazioneX < 0 && isPallinaControBordiX(idPallina) == Directions.DESTRA)
-            return;
-
-        toMove.spostaX(inclinazioneX);
-
-        if (inclinazioneY < 0 && isPallinaControBordiY(idPallina) == Directions.SOPRA)
-            return;
-        if (inclinazioneY > 0 && isPallinaControBordiY(idPallina) == Directions.SOTTO)
-            return;
-
-        toMove.spostaY(inclinazioneY);
-    }
+    
 
     /**
      * @param inclinazioneX inclinazione X
@@ -223,9 +198,30 @@ public class Scatola {
      * @return posizione
      * @author Giacomo Orsenigo
      */
-    public Point getPosizioneCentrale() {
+    public Point getPosizioneCentrale() {//RM-MIO
         return posizione;
     }
+    
+    /**
+     * get posizione
+     *
+     * @return posizione
+     * @author Giacomo Orsenigo
+     */
+    public Point getPosizione() {
+        return posizione;
+    }
+
+    /**
+     * @brief get posizione nella matrice
+     *
+     * @return posizione nella matrice
+     * @author Giacomo Orsenigo
+     */
+    public Point getPosMatrice() {
+        return posMatrice;
+    }
+
 
     /**
      * @brief disegna la scatola
@@ -254,6 +250,9 @@ public class Scatola {
             p.draw();
     }
 
+    
+    //////
+    
     /**
      * @deprecated Usare {@link #isPallinaControBordiX(int)} e {@link #isPallinaControBordiY(int)}
      * @bug Se la pallina è appoggiata a due bordi ne ritorna uno solo
@@ -302,26 +301,7 @@ public class Scatola {
             return Directions.SOTTO;
         return Directions.NONE;
     }
-    /**
-     * get posizione
-     *
-     * @return posizione
-     * @author Giacomo Orsenigo
-     */
-    public Point getPosizione() {
-        return posizione;
-    }
-
-    /**
-     * @brief get posizione nella matrice
-     *
-     * @return posizione nella matrice
-     * @author Giacomo Orsenigo
-     */
-    public Point getPosMatrice() {
-        return posMatrice;
-    }
-
+    
     /**
      * @param id id pallina da cercare
      * @return pallina se presente
@@ -334,5 +314,33 @@ public class Scatola {
             if (p.getId() == id)
                 return p;
         throw new IllegalArgumentException("Pallina non presente");
+    }
+    
+    
+    /**
+     * @param inclinazioneX inclinazione X
+     * @param inclinazioneY inclinazione Y
+     * @brief aggiorna posizione palline
+     * <p>
+     * Metodo che permette di aggiornare la posizione della palline all'interno della scatola a seconda della velocita' della sabbia
+     * Richiama {@link JPallina#spostaX(float)} e {@link JPallina#spostaY(float)}
+     * @author Giacomo Orsenigo
+     */
+    public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY, int idPallina) {
+        JPallina toMove = findPallina(idPallina);
+
+        if (inclinazioneX > 0 && isPallinaControBordiX(idPallina) == Directions.SINISTRA)
+            return;
+        if (inclinazioneX < 0 && isPallinaControBordiX(idPallina) == Directions.DESTRA)
+            return;
+
+        toMove.spostaX(inclinazioneX);
+
+        if (inclinazioneY < 0 && isPallinaControBordiY(idPallina) == Directions.SOPRA)
+            return;
+        if (inclinazioneY > 0 && isPallinaControBordiY(idPallina) == Directions.SOTTO)
+            return;
+
+        toMove.spostaY(inclinazioneY);
     }
 }

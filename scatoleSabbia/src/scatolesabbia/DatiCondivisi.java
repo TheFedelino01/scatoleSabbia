@@ -53,7 +53,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    private Semaphore finito;
+    private Semaphore finito;//RM-MIO
     /**
      * @brief dimensione scatola x
      * @author Colombo Alessandro
@@ -100,7 +100,7 @@ public class DatiCondivisi {
      * @author Colobmo Alessandro
      * @version 1.0
      */
-    public void setScatole(Vector<Vector<Scatola>> scatole) {
+    public void setScatole(Vector<Vector<Scatola>> scatole) {//RM-MIO
         this.scatole = scatole;
     }
 
@@ -120,7 +120,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setDimensioneSchermoY(int dimensioneSchermoY) {
+    public void setDimensioneSchermoY(int dimensioneSchermoY) {//RM-MIO
         this.dimensioneSchermoY = dimensioneSchermoY;
     }
 
@@ -130,7 +130,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public int getDimensioneScatolaX() {
+    public int getDimensioneScatolaX() {//RM-MIO
         return dimensioneScatolaX;
     }
 
@@ -140,7 +140,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setDimensioneScatolaX(int dimensioneScatolaX) {
+    public void setDimensioneScatolaX(int dimensioneScatolaX) {//RM-MIO
         this.dimensioneScatolaX = dimensioneScatolaX;
     }
 
@@ -150,7 +150,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public int getDimensioneScatolaY() {
+    public int getDimensioneScatolaY() {//RM-MIO
         return dimensioneScatolaY;
     }
 
@@ -160,7 +160,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setDimensioneScatolaY(int dimensioneScatolaY) {
+    public void setDimensioneScatolaY(int dimensioneScatolaY) {//RM-MIO
         this.dimensioneScatolaY = dimensioneScatolaY;
     }
 
@@ -222,7 +222,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public int getNumS() {
+    public int getNumS() {//RM-MIO
         return numS;
     }
 
@@ -232,7 +232,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setNumS(int numS) {
+    public void setNumS(int numS) {//RM-MIO
         this.numS = numS;
     }
 
@@ -252,7 +252,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setDimensioneSchermoX(int dimensioneSchermoX) {
+    public void setDimensioneSchermoX(int dimensioneSchermoX) {//RM-MIO
         this.dimensioneSchermoX = dimensioneSchermoX;
     }
 
@@ -322,7 +322,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public Semaphore getFinito() {
+    public Semaphore getFinito() {//RM-MIO
         return finito;
     }
 
@@ -332,7 +332,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public void setFinito(Semaphore finito) {
+    public void setFinito(Semaphore finito) {//RM-MIO
         this.finito = finito;
     }
 
@@ -344,7 +344,7 @@ public class DatiCondivisi {
      * @author Colombo Alessandro
      * @version 1.0
      */
-    public Scatola getScatola(int r, int c) {
+    public Scatola getScatola(int r, int c) {//RM-MIO
         return (Scatola) scatole.get(r).get(c);
     }
 

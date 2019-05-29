@@ -144,7 +144,7 @@ public final class JPallina {
 
     }
 
-    public void visualizza() {
+    public void visualizza() {//RM-MIO
         //TO DO
     }
 
@@ -249,7 +249,7 @@ public final class JPallina {
         return Dimensioni;
     }
 
-    public Color getColore() {
+    public Color getColore() {//RM-MIO
         return Colore;
     }
 
@@ -272,4 +272,6 @@ public final class JPallina {
         this.scatola = scatola;
         posScatola = scatola.getPosizione();
     }
+    
+    ///
 }
