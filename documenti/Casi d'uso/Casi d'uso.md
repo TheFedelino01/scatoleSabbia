@@ -18,6 +18,7 @@ Racconto:
 2.	Il sistema calcola gli spostamenti della sabbia e della pallina in base alla direzione e al verso dell’inclinazione del dispositivo
 3.	Il sistema visualizza graficamente lo spostamento della sabbia e della pallina tra le vasche
 
+![Immagine sabbia](spostamentoSabbia.png)
 
 
 ## Titolo: Inclinazione del tablet/smartphone su più assi
