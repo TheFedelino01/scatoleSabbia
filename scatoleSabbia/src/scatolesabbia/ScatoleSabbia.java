@@ -1,9 +1,9 @@
 package scatolesabbia;
 
+import SwingGui.InputManagerGUI;
 import processing.core.PApplet;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * @author Saccani Federico
@@ -86,7 +86,7 @@ public class ScatoleSabbia extends PApplet {
         faiPartireITh();
 
         //new SwingGui.InputAccelerometro(dati).setVisible(true);
-        new SwingGui.inputManagerGUI(dati).setVisible(true);
+        new InputManagerGUI(dati).setVisible(true);
         
      
     }

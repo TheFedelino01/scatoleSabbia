@@ -231,7 +231,7 @@ public final class JPallina {
             processingSketch.fill(Colore.getRGB());
             processingSketch.ellipse(Posizione.x + posScatola.x, Posizione.y + posScatola.y, Dimensioni, Dimensioni);
 
-            System.out.println(Posizione.toString());
+            //System.out.println(Posizione.toString());
         }
 
 

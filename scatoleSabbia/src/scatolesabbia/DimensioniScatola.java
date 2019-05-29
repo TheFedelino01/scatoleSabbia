@@ -1,38 +1,38 @@
 package scatolesabbia;
 
 /**
- * @brief classe che rappresenta la dimensione di una scatola
+ * @brief classe che rappresenta la dimensione di una scatola.
  * @author Giacomo Orsenigo
  */
 public class DimensioniScatola {
     /**
-     * @brief dimensioni della scatola
+     * @brief dimensioni della scatola.
      * 
      * @author Giacomo Orsenigo
      */
-    private final int larghezza, profondita, altezzaSx, altezzaDx, altezzaSopra, altezzaSotto;
+    private final int larghezza, profondita, altezzaSx, altezzaDx, altezzaSopra, altezzaSotto; //le 4 altezze possono essere diverse
 
     /**
-     * @brief costruttore
-     * <p>
-     * Inizializza tutti gli attributi
+     * @brief costruttore.
+     *
+     * Inizializza tutti gli attributi richiamando {@link #DimensioniScatola(int, int, int, int, int, int)}
      * 
      * @author Giacomo Orsenigo
      */
     public DimensioniScatola() {
-        this(100, 100, 100, 100, 100, 100);
+        this(100, 100, 10, 10, 10, 10);
     }
 
     /**
+     * @brief costruttore.
+     *
+     * Inizializza tutti gli attributi
      * @param larghezza
      * @param profondita
      * @param altezzaSx
      * @param altezzaDx
      * @param altezzaSopra
      * @param altezzaSotto
-     * @brief costruttore
-     * <p>
-     * Inizializza tutti gli attributi
      * 
      * @author Giacomo Orsenigo
      */
@@ -46,30 +46,30 @@ public class DimensioniScatola {
     }
 
     /**
+     * @brief get altezza in base alla direzione.
+     *
+     * Restituisce l'altezza della vasca nel lato ricevuto
      * @param direzione direzione scelta
      * @return altezza corrispondente
-     * @brief get altezza in base alla direzione
-     * <p>
-     * Restituisce l'altezza della vasca nel lato ricevuto
      * 
      * @author Giacomo Orsenigo
      */
     public int getAltezza(Directions direzione) {
         switch (direzione) {
             case DESTRA:
-                return altezzaDx/10;
+                return altezzaDx;
             case SINISTRA:
-                return altezzaSx/10;
+                return altezzaSx;
             case SOPRA:
-                return altezzaSopra/10;
+                return altezzaSopra;
             case SOTTO:
-                return altezzaSotto/10;
+                return altezzaSotto;
         }
         return 0;
     }
 
     /**
-     *
+     * @brief get larghezza.
      * @return larghezza
      * 
      * @author Giacomo Orsenigo
@@ -78,7 +78,7 @@ public class DimensioniScatola {
         return larghezza;
     }
     /**
-     *
+     * @brief get profondità.
      * @return profondita
      * 
      * @author Giacomo Orsenigo
@@ -87,7 +87,7 @@ public class DimensioniScatola {
         return profondita;
     }
     /**
-     *
+     * @brief get altezza sinistra.
      * @return altezzaSx
      * 
      * @author Giacomo Orsenigo
@@ -96,7 +96,7 @@ public class DimensioniScatola {
         return altezzaSx;
     }
     /**
-     *
+     * @brief get altezza destra.
      * @return altezzaDx
      * 
      * @author Giacomo Orsenigo
@@ -105,7 +105,7 @@ public class DimensioniScatola {
         return altezzaDx;
     }
     /**
-     *
+     * @brief get altezza superiore.
      * @return altezzaSopra
      * 
      * @author Giacomo Orsenigo
@@ -114,7 +114,7 @@ public class DimensioniScatola {
         return altezzaSopra;
     }
     /**
-     *
+     * @brief get alteza inferiore.
      * @return altezzaSotto
      * 
      * @author Giacomo Orsenigo

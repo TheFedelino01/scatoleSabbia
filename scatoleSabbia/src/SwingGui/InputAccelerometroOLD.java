@@ -8,7 +8,7 @@ package SwingGui;
 import scatolesabbia.DatiCondivisi;
 
 /**
- *
+ * @deprecated usare {@link InputManagerGUI}
  * @author Giacomo Orsenigo
  */
 public class InputAccelerometroOLD extends javax.swing.JFrame {

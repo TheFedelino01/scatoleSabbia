@@ -381,7 +381,7 @@ public class CSabbia {
         processingSketch.fill(processingSketch.color(0, 255, 0));
         DimensioniScatola dim = scatola.getDimensioni();
         Point pos = scatola.getPosizione();
-        Float altezzaScatola = (float)dim.getAltezzaSotto();
+        Float altezzaScatola = (float)dim.getProfondita();
         Float largezzaScatola = (float)dim.getLarghezza();
         
         

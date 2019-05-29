@@ -1,27 +1,29 @@
 package scatolesabbia;
 
 /**
+ * @brief Thread che gestisce il movimento della sabbia di ogni scatola.
  * @author Giacomo Orsenigo
- * @brief Thread che gestisce la fisica del gioco
  */
 public class ThScatola extends Thread {
 
     /**
-     * @brief puntatore ai dati condivisi
+     * @brief puntatore ai dati condivisi.
+     * @author Giacomo Orsenigo
      */
     private final DatiCondivisi ptrDati;
 
     /**
-     * @brief id della scatola
+     * @brief scatola.
+     * @author Giacomo Orsenigo
      */
     private final Scatola scatola;
 
     /**
+     * @brief costruttore.
+     * Inizializza gli attributi
      * @param ptrDati dati condivisi
      * @param s scatola
-     * @brief costruttore
-     * <p>
-     * Inizializza gli attributi
+     * @author Giacomo Orsenigo
      */
     public ThScatola(DatiCondivisi ptrDati, Scatola s) {
         this.ptrDati = ptrDati;
@@ -29,9 +31,15 @@ public class ThScatola extends Thread {
     }
 
     /**
-     * @brief run
+     * @brief run.
      *
      * Il thread aggiorna continuamente gli stati delle scatole in base all'inclinazione
+     * Se la sabbia esce dalla scatola la sposta in quella adiacente
+     * @see Scatola#aggiornaDistribuzioneVelocitaSabbia(float, float)
+     * @see CSabbia#direzioneDiUscitaSabbia(int)
+     * @see DatiCondivisi#getScatolaAdiacente(int, int, Directions)
+     * @see Scatola#spostaSabbia(float, Scatola)
+     * @author Giacomo Orsenigo
      */
     @Override
     public void run() {

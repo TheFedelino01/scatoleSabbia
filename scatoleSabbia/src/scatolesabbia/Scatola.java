@@ -15,52 +15,58 @@ import java.util.Vector;
 
 /**
  * @author Giacomo Orsenigo
- * @brief Classe che rappresenta una scatola, che può contentere sabbia e palline
+ * @brief Classe che rappresenta una scatola.
+ * può contentere sabbia ({@link CSabbia}) e palline ({@link JPallina})
  */
 public class Scatola {
     /**
-     * @brief Puntatore all'istanza di processing per usare le librerie grafiche
+     * @brief Puntatore all'istanza di processing per usare le librerie grafiche.
      * @author Giacomo Orsenigo
      */
     private final PApplet processingSketch;
 
 
     /**
-     * @brief dimensioni della scatola
+     * @brief dimensioni della scatola.
+     * @see DimensioniScatola
      * @author Giacomo Orsenigo
      */
     private DimensioniScatola dimensioni; //misurata in cm
 
     /**
-     * @brief posizione della scatola nel piano
+     * @brief posizione della scatola nel piano.
      * @author Giacomo Orsenigo
      */
     private Point posizione;
 
     /**
-     * @brief posizione nella matrice
+     * @brief posizione nella matrice.     *
+     * Valori X,Y della scatola all'interno della matrice {@link DatiCondivisi#scatole}
      * @author Giacomo Orsenigo
      */
     private Point posMatrice;
 
     /**
-     * @brief sabbia presente nella scatola
+     * @brief sabbia presente nella scatola.
+     * @see CSabbia
      * @author Giacomo Orsenigo
      */
     private CSabbia sabbiaPresente;
 
     /**
-     * @brief palline presente nella scatola (se presenti)
+     * @brief Lista contenente le palline presente nella scatola (se presenti).
      * @author Giacomo Orsenigo
      */
     private List<JPallina> palline;
 
     /**
+     * @brief costruttore.
+     * Inizializza tutti gli attributi richiamando il costruttore {@link #Scatola(PApplet, DimensioniScatola, Point, Point, CSabbia, JPallina)}
      * @param processingSketch istanza di processing
+     * @param posMatrice        posizione all'interno della matrice
      * @param posizione        posizione della scatola
-     * @brief costruttore
-     * <p>
-     * Inizializza tutti gli attributi richiamando il costruttore {@link #Scatola(PApplet, DimensioniScatola, Point, CSabbia, JPallina)}
+     * @param quanita           quantità di sabbia presente
+     *
      * @author Giacomo Orsenigo
      */
     public Scatola(PApplet processingSketch, Point posMatrice,Point posizione, int quanita) {
@@ -69,14 +75,14 @@ public class Scatola {
 
 
     /**
+     * @brief costruttore.
+     * Inizializza tutti gli attributi in base ai parametri
      * @param processingSketch istanza di processing
      * @param dimensioni       dimensione della scatola
+     * @param posMatrice        posizione all'interno della matrice
      * @param posizione        posizione della scatola
      * @param sabbiaPresente   sabbia presente nella scatola
-     * @param pallina          pallina
-     * @brief costruttore
-     * <p>
-     * Inizializza tutti gli attributi in base ai parametri
+     * @param pallina          pallina presente nella scatola
      * @author Giacomo Orsenigo
      */
     public Scatola(PApplet processingSketch, DimensioniScatola dimensioni, Point posMatrice,Point posizione, CSabbia sabbiaPresente, JPallina pallina) {
@@ -93,12 +99,12 @@ public class Scatola {
 
 
     /**
+     * @brief muove la scatola.
+     * Metodo che permette di simulare un movimento  della scatola
+     * Richiama {@link #aggiornaDistribuzioneVelocitaSabbia(float, float)} e {@link #aggiornaPosPallina(float, float, int)}
      * @param inclinazioneX inclinazione X
      * @param inclinazioneY inclinazione Y
-     * @brief muove la scatola
-     * <p>
-     * Metodo che permette di simulare un movimento  della scatola richiamando aggiornamento Sabbia, poi aggiornamento Pallina e successivamento visualizzazione scatola
-     * Richiama {@link #aggiornaDistribuzioneVelocitaSabbia(float, float)} e {@link #aggiornaPosPallina(float, float, int)}
+     * @param idPallina id della pallina
      * @author Giacomo Orsenigo
      */
     public void muovi(float inclinazioneX, float inclinazioneY, int idPallina) {
@@ -106,15 +112,14 @@ public class Scatola {
         aggiornaPosPallina(inclinazioneX, inclinazioneY, idPallina);
     }
 
-    
+
 
     /**
-     * @param inclinazioneX inclinazione X
-     * @param inclinazioneY inclinazione Y
-     * @brief aggiorna inclinazione della sabbia
-     * <p>
+     * @brief aggiorna inclinazione della sabbia.
      * Metodo che permette di aggiornare l'altezza e la velocita della sabbia nella parte destra e sinistra della scatola in base ai gradi di inclinazione della scatola
      * Richiama {@link CSabbia#aggiornati(float, DimensioniScatola)}
+     * @param inclinazioneX inclinazione X
+     * @param inclinazioneY inclinazione Y
      * @author Giacomo Orsenigo
      */
     public void aggiornaDistribuzioneVelocitaSabbia(float inclinazioneX, float inclinazioneY) {
@@ -122,8 +127,8 @@ public class Scatola {
     }
 
     /**
-     * spostaX la sabbia in un'altra scatola
-     *
+     * @brief spostaX la sabbia in un'altra scatola.
+     * Modifica {@link #sabbiaPresente}
      * @param altezza sabbia da spostare
      * @param altra   scatola in cui spostare la sabbia
      * @author Giacomo Orsenigo
@@ -147,8 +152,9 @@ public class Scatola {
     }
 
     /**
-     * spostaX la palline in un'altra scatola
-     *
+     * @brief spostaX la pallina in un'altra scatola.
+     * Modifica la lista {@link #palline}
+     * @param id id della pallina da spostare
      * @param altra scatola in cui spostare la palline
      * @author Giacomo Orsenigo
      */
@@ -161,8 +167,8 @@ public class Scatola {
     }
 
     /**
+     * @brief get sabbia presente.
      * @return sabbia presente nella scatola
-     * @brief get sabbia presente
      * @author Giacomo Orsenigo
      */
     public CSabbia getSabbiaPresente() {
@@ -170,22 +176,26 @@ public class Scatola {
     }
 
     /**
+     * @brief get dimensioni.
      * @return dimensioni della scatola
-     * @brief get dimensioni
      * @author Giacomo Orsenigo
      */
     public DimensioniScatola getDimensioni() {
         return dimensioni;
     }
 
+    /**
+     * @brief aggiunge una pallina a questa scatola.
+     * @param pallina da aggiungere
+     * @author Giacomo Orsenigo
+     */
     public void addPallina(JPallina pallina) {
         this.palline.add(pallina);
     }
 
     /**
-     * @brief get palline contenute in questa scatola
-     *
-     * @return palline
+     * @brief get palline contenute in questa scatola.     *
+     * @return lista di palline
      * @author Giacomo Orsenigo
      */
     public List<JPallina> getPalline() {
@@ -193,18 +203,7 @@ public class Scatola {
     }
 
     /**
-     * get posizione centrale
-     *
-     * @return posizione
-     * @author Giacomo Orsenigo
-     */
-    public Point getPosizioneCentrale() {//RM-MIO
-        return posizione;
-    }
-    
-    /**
-     * get posizione
-     *
+     * @brief get posizione.     *
      * @return posizione
      * @author Giacomo Orsenigo
      */
@@ -213,8 +212,7 @@ public class Scatola {
     }
 
     /**
-     * @brief get posizione nella matrice
-     *
+     * @brief get posizione nella matrice.
      * @return posizione nella matrice
      * @author Giacomo Orsenigo
      */
@@ -224,8 +222,7 @@ public class Scatola {
 
 
     /**
-     * @brief disegna la scatola
-     * <p>
+     * @brief disegna la scatola.
      * Disegna la scatola con tutto il contenuto
      * Richiama {@link CSabbia#visualizza(Scatola, boolean)} e {@link JPallina#draw()}
      * @author Giacomo Orsenigo
@@ -250,14 +247,15 @@ public class Scatola {
             p.draw();
     }
 
-    
+
     //////
-    
+
     /**
+     * @brief controlla se la palline è contro i bordi.
      * @deprecated Usare {@link #isPallinaControBordiX(int)} e {@link #isPallinaControBordiY(int)}
      * @bug Se la pallina è appoggiata a due bordi ne ritorna uno solo
-     * @return direzione del bordo con la palline appoggiata
-     * @brief controlla se la palline è contro i bordi
+     * @param id id della pallina
+     * @return direzione del bordo con la pallina appoggiata
      * @author Giacomo Orsenigo
      */
     public Directions isPallinaControBordi(int id) {
@@ -275,8 +273,9 @@ public class Scatola {
 
 
     /**
+     * @brief controlla se una pallina è contro i bordi destro o sinistro.
+     * @param id id della pallina
      * @return direzione del bordo con la palline appoggiata
-     * @brief controlla se una pallina è contro i bordi destro o sinistro
      * @author Giacomo Orsenigo
      */
     public Directions isPallinaControBordiX(int id) {
@@ -289,8 +288,9 @@ public class Scatola {
     }
 
     /**
+     * @brief controlla se una pallina è contro i bordi superiore o inferiore.
+     * @param id id della pallina
      * @return direzione del bordo con la palline appoggiata
-     * @brief controlla se una pallina è contro i bordi superiore o inferiore
      * @author Giacomo Orsenigo
      */
     public Directions isPallinaControBordiY(int id) {
@@ -301,12 +301,12 @@ public class Scatola {
             return Directions.SOTTO;
         return Directions.NONE;
     }
-    
+
     /**
-     * @param id id pallina da cercare
+     * @brief trova una pallina tra quelle presenti nella scatola.
+     * @param id id della pallina da cercare
      * @return pallina se presente
      * @throws IllegalArgumentException se la pallina non è presente
-     * @brief trova una pallina tra quelle presenti nella scatola
      * @author Giacomo Orsenigo
      */
     public JPallina findPallina(int id) {
@@ -315,15 +315,15 @@ public class Scatola {
                 return p;
         throw new IllegalArgumentException("Pallina non presente");
     }
-    
-    
+
+
     /**
-     * @param inclinazioneX inclinazione X
-     * @param inclinazioneY inclinazione Y
-     * @brief aggiorna posizione palline
-     * <p>
+     * @brief aggiorna posizione palline.
      * Metodo che permette di aggiornare la posizione della palline all'interno della scatola a seconda della velocita' della sabbia
      * Richiama {@link JPallina#spostaX(float)} e {@link JPallina#spostaY(float)}
+     * @param inclinazioneX inclinazione X
+     * @param inclinazioneY inclinazione Y
+     * @param idPallina id della pallina
      * @author Giacomo Orsenigo
      */
     public void aggiornaPosPallina(float inclinazioneX, float inclinazioneY, int idPallina) {
